@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Operador {
+  id       String   @id
+  nome     String
+  ativo    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  pesagens  Pesagem[]
+}
+
+model Corte {
+  id        String   @id
+  nome      String
+  imagem    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  pesagens  Pesagem[]
+}
+
+model Pesagem {
+  id          String     @id @default(uuid())
+  peso        Float
+  tipoPesagem String     // "inicial" ou "final"
+  
+  // Relações
+  corte       Corte      @relation(fields: [corteId], references: [id])
+  corteId     String
+  
+  operador    Operador   @relation(fields: [operadorId], references: [id])
+  operadorId  String
+}
