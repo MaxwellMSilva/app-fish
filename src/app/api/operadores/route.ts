@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
-// GET - Listar todos os operadores
 export async function GET() {
   try {
     const operadores = await prisma.operador.findMany({
@@ -17,7 +16,6 @@ export async function GET() {
   }
 }
 
-// POST - Criar um novo operador
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
@@ -26,7 +24,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Nome é obrigatório" }, { status: 400 })
     }
 
-    // Verifica se já existe operador com o mesmo nome
     const existe = await prisma.operador.findFirst({
       where: {
         nome: body.nome,
@@ -37,7 +34,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Já existe um operador com este nome" }, { status: 409 })
     }
 
-    // Busca último ID e gera o próximo ID no formato "0001"
     const ultimo = await prisma.operador.findFirst({
       orderBy: { id: "desc" },
     })
@@ -48,11 +44,10 @@ export async function POST(request: NextRequest) {
       proximoId = numero.toString().padStart(4, "0")
     }
 
-    // Cria operador com ID personalizado
     const operador = await prisma.operador.create({
       data: {
         id: proximoId,
-        nome: body.nome,
+        nome: body.nome
       },
     })
 

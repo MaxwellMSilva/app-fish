@@ -47,7 +47,6 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       },
       data: {
         nome: body.nome !== undefined ? body.nome : corte.nome,
-        preco: body.preco !== undefined ? body.preco : corte.preco,
         imagem: body.imagem !== undefined ? body.imagem : corte.imagem,
       },
     })

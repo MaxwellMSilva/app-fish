@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { toast } from "sonner"
 import { CheckCircle, Upload, XCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -23,7 +23,7 @@ type Operador = {
 }
 
 type ProcessoFormData = {
-  tipoPesagem: "inicial" | "final"
+  tipoPesagem: "" | "inicial" | "final"
   operadorId: string
   peso: string
 }
@@ -34,9 +34,9 @@ type PesagemFormProps = {
   onCancel: () => void
 }
 
-export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
+export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
   const [processoFormData, setProcessoFormData] = useState<ProcessoFormData>({
-    tipoPesagem: "inicial",
+    tipoPesagem: "",
     operadorId: "",
     peso: "",
   })
@@ -44,7 +44,9 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
   const [operadorEncontrado, setOperadorEncontrado] = useState<Operador | null>(null)
   const [verificandoOperador, setVerificandoOperador] = useState(false)
   const [operadorStatus, setOperadorStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
-
+  const dialogContentRef = useRef<HTMLDivElement>(null); // Ref para o DialogContent
+  const formRef = useRef<HTMLFormElement>(null) // Ref para o formulário  
+  
   // Verificar operador quando o código é digitado
   const verificarOperador = async (id: string) => {
     if (!id.trim()) {
@@ -57,7 +59,7 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
       setVerificandoOperador(true)
       setOperadorStatus("loading")
   
-      const url = `/api/operadores?id=${encodeURIComponent(id)}`
+      const url = `/api/operadores/${encodeURIComponent(id)}`
       console.log("Verificando operador na URL:", url)
   
       const response = await fetch(url)
@@ -93,6 +95,7 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
   // Manipular mudanças no formulário de processo
   const handleProcessoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
+
     setProcessoFormData((prev) => ({ ...prev, [id]: value }))
 
     // Verificar operador quando o código é digitado
@@ -118,7 +121,7 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
   }, [processoFormData.operadorId])
 
   // Manipular mudança no tipo de pesagem
-  const handleTipoPesagemChange = (value: "inicial" | "final") => {
+  const handleTipoPesagemChange = (value: "" | "inicial" | "final") => {
     setProcessoFormData((prev) => ({ ...prev, tipoPesagem: value }))
   }
 
@@ -130,23 +133,31 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
 
     // Validar formulário
     if (!processoFormData.operadorId.trim()) {
-      toast.error("O código do operador é obrigatório")
+      toast.error("O código do operador é obrigatório", {
+        duration: 2000
+      })
       return
     }
 
     if (operadorStatus === "error") {
-      toast.error("Operador não encontrado. Por favor, verifique o código.")
+      toast.error("Operador não encontrado. Por favor, verifique o código.", {
+        duration: 2000
+      })
       return
     }
 
     if (!processoFormData.peso.trim()) {
-      toast.error("O peso é obrigatório")
+      toast.error("O peso é obrigatório", {
+        duration: 2000
+      })
       return
     }
 
     const pesoNum = Number.parseFloat(processoFormData.peso)
     if (isNaN(pesoNum) || pesoNum <= 0) {
-      toast.error("Por favor, insira um peso válido")
+      toast.error("Por favor, insira um peso válido", {
+        duration: 2000
+      })
       return
     }
 
@@ -183,21 +194,22 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
       const data = await response.json()
       console.log("Pesagem registrada:", data.pesagem)
 
-      toast.success(`Processo de pesagem ${processoFormData.tipoPesagem} registrado com sucesso`)
+      toast.success(`Processo de pesagem ${processoFormData.tipoPesagem} registrado com sucesso`, {
+        duration: 2000
+      })
 
-      // Resetar o formulário para o próximo uso
       setProcessoFormData({
-        tipoPesagem: "inicial",
+        tipoPesagem: "",
         operadorId: "",
         peso: "",
       })
       setOperadorEncontrado(null)
       setOperadorStatus("idle")
-
-      onSuccess()
     } catch (error: any) {
       console.error("Erro ao registrar processo:", error)
-      toast.error(error.message || "Não foi possível registrar o processo")
+      toast.error(error.message || "Não foi possível registrar o processo", {
+        duration: 2000
+      })
     } finally {
       setSubmittingProcesso(false)
     }
@@ -205,7 +217,7 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
 
   const handleCancel = () => {
     setProcessoFormData({
-      tipoPesagem: "inicial",
+      tipoPesagem: "",
       operadorId: "",
       peso: "",
     })
@@ -214,12 +226,32 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
     onCancel()
   }
 
+  // Manipulador para fechar quando clicar fora
+  const handleClickOutside = (e: MouseEvent) => {
+    if (formRef.current && !formRef.current.contains(e.target as Node)) {
+      setProcessoFormData({
+        tipoPesagem: "",
+        operadorId: "",
+        peso: "",
+      })
+      setOperadorEncontrado(null)
+      setOperadorStatus("idle")
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
+
   return (
-    <DialogContent>
+    <DialogContent ref={dialogContentRef}>
       <DialogHeader>
         <DialogTitle>Iniciar Processo de Pesagem</DialogTitle>
       </DialogHeader>
-      <form onSubmit={handleProcessoSubmit}>
+      <form onSubmit={handleProcessoSubmit} ref={formRef}>
         <div className="grid gap-6 py-4">
           {corte && (
             <div className="flex items-center gap-4 p-3 bg-gray-50 rounded-md">
@@ -242,7 +274,7 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
           )}
 
           <div className="space-y-2">
-            <Label>Tipo de Pesagem</Label>
+            <Label className="mb-3 font-bold">Tipo de Pesagem:</Label>
             <RadioGroup
               value={processoFormData.tipoPesagem}
               onValueChange={(value) => handleTipoPesagemChange(value as "inicial" | "final")}
@@ -260,14 +292,18 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="operadorId">Código do Operador</Label>
+            <Label htmlFor="operadorId" className="font-bold">Código do Operador:</Label>
             <div className="relative">
             <Input
               id="operadorId"
               name="operadorId"
               value={processoFormData.operadorId}
               onChange={handleProcessoChange}
-              placeholder="Digite ou bipe o código do operador"
+              onInput={(e) => {
+                const target = e.target as HTMLInputElement;
+                target.value = target.value.replace(/[^0-9]/g, "");
+              }}
+              placeholder="Digite ou bipe o código do operador..."
               className={`pr-10 ${
                 operadorStatus === "success"
                   ? "border-green-500 focus-visible:ring-green-500"
@@ -301,7 +337,7 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="peso">Peso (kg)</Label>
+            <Label htmlFor="peso" className="font-bold">Peso (kg):</Label>
             <Input
               id="peso"
               name="peso"
@@ -310,7 +346,7 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
               step="0.01"
               value={processoFormData.peso}
               onChange={handleProcessoChange}
-              placeholder="Digite o peso em kg"
+              placeholder="Digite o peso..."
               required
             />
           </div>
@@ -322,7 +358,10 @@ export function PesagemForm({ corte, onSuccess, onCancel }: PesagemFormProps) {
           <Button
             type="submit"
             className="bg-green-500 hover:bg-green-600"
-            disabled={submittingProcesso || (!!processoFormData.operadorId && operadorStatus === "error")}
+            disabled={submittingProcesso || 
+                      (!processoFormData.tipoPesagem) ||
+                      (!!processoFormData.operadorId && operadorStatus === "error") || 
+                        !processoFormData.peso.trim() || isNaN(Number(processoFormData.peso)) || Number(processoFormData.peso) <= 0}
           >
             {submittingProcesso ? "Salvando..." : "Confirmar"}
           </Button>

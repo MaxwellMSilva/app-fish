@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -18,11 +18,19 @@ export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
   const [formData, setFormData] = useState({ nome: "", imagem: "" })
   const [previewImage, setPreviewImage] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const dialogContentRef = useRef<HTMLDivElement>(null); // Ref para o DialogContent
+  const formRef = useRef<HTMLFormElement>(null) // Ref para o formulário
 
   // Manipular mudanças no formulário
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+
+    const formattedValue = value
+    .toUpperCase() // Converte para maiúsculas
+    .normalize("NFD") // Normaliza caracteres com acentos
+    .replace(/[\u0300-\u036f]/g, "") // Remove acentos
+
+    setFormData((prev) => ({ ...prev, [name]: formattedValue }))
   }
 
   // Manipular upload de imagem
@@ -32,7 +40,9 @@ export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
 
     // Validar tipo de arquivo
     if (!file.type.includes("image/")) {
-      toast.error("Por favor, selecione uma imagem válida")
+      toast.error("Por favor, selecione uma imagem válida", {
+        duration: 2000
+      })
       return
     }
 
@@ -75,11 +85,18 @@ export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
         throw new Error(errorMessage)
       }
 
-      toast.success("Corte criado com sucesso")
+      toast.success("Corte criado com sucesso", {
+        duration: 2000
+      })
       onSuccess()
+
+      setFormData({ nome: "", imagem: "" })
+      setPreviewImage(null)
     } catch (error: any) {
       console.error("Erro ao criar corte:", error)
-      toast.error(error.message || "Não foi possível criar o corte")
+      toast.error(error.message || "Não foi possível criar o corte", {
+        duration: 2000
+      })
     } finally {
       setIsSubmitting(false)
     }
@@ -91,20 +108,39 @@ export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
     onCancel()
   }
 
+  // Manipulador para fechar quando clicar fora
+  const handleClickOutside = (e: MouseEvent) => {
+    if (formRef.current && !formRef.current.contains(e.target as Node)) {
+      setFormData({
+        nome: "",
+        imagem: ""
+      })
+      setPreviewImage(null)
+    }
+  }
+  
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
+
   return (
-    <DialogContent>
+    <DialogContent ref={dialogContentRef}>
       <DialogHeader>
-        <DialogTitle>Adicionar Novo Corte</DialogTitle>
+        <DialogTitle>Cadastrar Novo Corte</DialogTitle>
       </DialogHeader>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} ref={formRef}>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="nome" className="text-right">
-              Nome
+            <Label htmlFor="nome" className="text-right font-bold">
+              Nome:
             </Label>
             <Input
               id="nome"
               name="nome"
+              placeholder="Nome do corte..."
               value={formData.nome}
               onChange={handleChange}
               className="col-span-3"
@@ -112,8 +148,8 @@ export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
             />
           </div>
           <div className="grid grid-cols-4 items-start gap-4">
-            <Label htmlFor="imagem" className="text-right pt-2">
-              Imagem
+            <Label htmlFor="imagem" className="text-right pt-2 font-bold">
+              Imagem:
             </Label>
             <div className="col-span-3">
               <Input
@@ -138,10 +174,13 @@ export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
           </div>
         </div>
         <DialogFooter>
-          <Button type="button" variant="outline" onClick={handleCancel} disabled={isSubmitting}>
+          <Button type="button" variant="outline" onClick={handleCancel} disabled={isSubmitting} className="h-10 w-25">
             Cancelar
           </Button>
-          <Button type="submit" className="bg-green-500 hover:bg-green-600" disabled={isSubmitting}>
+          <Button type="submit" 
+                  className="bg-green-500 hover:bg-green-600 h-10 w-25" 
+                  disabled={isSubmitting || !formData.nome}
+          >
             {isSubmitting ? "Salvando..." : "Salvar"}
           </Button>
         </DialogFooter>

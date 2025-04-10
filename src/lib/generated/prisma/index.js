@@ -137,7 +137,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\maxwe\\Documents\\projetos\\app-fish\\src\\lib\\generated\\prisma",
+      "value": "C:\\Users\\maxwe\\Documents\\projects\\app-fish\\src\\lib\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -151,7 +151,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\maxwe\\Documents\\projetos\\app-fish\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\maxwe\\Documents\\projects\\app-fish\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

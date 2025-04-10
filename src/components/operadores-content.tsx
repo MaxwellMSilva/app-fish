@@ -1,14 +1,14 @@
 "use client"
 
-import type React from "react"
-
 import { useState, useEffect } from "react"
-import { Search, Plus, Trash2, Pencil } from "lucide-react"
+
+import { Search, Plus, Trash2, Pencil, Printer } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
+import { Dialog } from "@/components/ui/dialog"
 import { toast } from "sonner"
+
+import { NovoOperadorForm } from "@/components/operadores/novo-operador-form"
 
 type Operador = {
   id: string
@@ -20,7 +20,7 @@ export function OperadoresContent() {
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [formData, setFormData] = useState({ nome: "" })
+  const [isClient, setIsClient] = useState(false)
 
   // Buscar operadores
   const fetchOperadores = async () => {
@@ -33,7 +33,9 @@ export function OperadoresContent() {
       setOperadores(data)
     } catch (error) {
       console.error("Erro ao buscar operadores:", error)
-      toast.error("Não foi possível carregar os operadores")
+      toast.error("Não foi possível carregar os operadores", {
+        duration: 2000
+      })
     } finally {
       setLoading(false)
     }
@@ -51,41 +53,6 @@ export function OperadoresContent() {
       operador.nome.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
-  // Manipular mudanças no formulário
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  // Enviar formulário
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    try {
-      const response = await fetch("/api/operadores", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || "Falha ao criar operador")
-      }
-
-      await fetchOperadores()
-      setIsDialogOpen(false)
-      setFormData({ nome: "" })
-
-      toast.success("Operador criado com sucesso")
-    } catch (error: any) {
-      console.error("Erro ao criar operador:", error)
-      toast.error(error.message || "Não foi possível criar o operador")
-    }
-  }
-
   // Excluir operador
   const handleDelete = async (id: string) => {
     if (!confirm("Tem certeza que deseja excluir este operador?")) return
@@ -98,18 +65,28 @@ export function OperadoresContent() {
       if (!response.ok) throw new Error("Falha ao excluir operador")
 
       await fetchOperadores()
-      toast.success("Operador excluído com sucesso")
+      toast.success("Operador excluído com sucesso", {
+        duration: 2000
+      })
     } catch (error) {
       console.error("Erro ao excluir operador:", error)
-      toast.error("Não foi possível excluir o operador")
+      toast.error("Não foi possível excluir o operador", {
+        duration: 2000
+      })
     }
+  }
+
+  // Handlers para os formulários
+  const handleNovoOperadorSuccess = () => {
+    fetchOperadores()
+    setIsDialogOpen(false)
   }
 
   return (
     <>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Operadores</h1>
-        <Button className="bg-green-500 hover:bg-green-600" onClick={() => setIsDialogOpen(true)}>
+        <Button className="bg-green-500 hover:bg-green-600 cursor-pointer" onClick={() => setIsDialogOpen(true)}>
           <Plus className="mr-2 h-4 w-4" /> Novo Operador
         </Button>
       </div>
@@ -155,10 +132,14 @@ export function OperadoresContent() {
                       <td className="py-3 px-4">{operador.nome}</td>
                       <td className="py-3 px-4 text-right">
                         <div className="flex justify-end gap-2">
-                          <Button variant="outline" size="icon">
+                          <Button variant="outline" size="icon" className="flex w-40 bg-gray-300 hover:bg-gray-400 cursor-pointer">
+                            <p>Etiqueta</p>
+                            <Printer className="h-4 w-4" />
+                          </Button>
+                          <Button variant="outline" size="icon" className="cursor-pointer bg-amber-200 hover:bg-amber-300">
                             <Pencil className="h-4 w-4" />
                           </Button>
-                          <Button variant="destructive" size="icon" onClick={() => handleDelete(operador.id)}>
+                          <Button variant="destructive" size="icon" className="cursor-pointer bg-red-400 hover:bg-red-500" onClick={() => handleDelete(operador.id)}>
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </div>
@@ -174,38 +155,7 @@ export function OperadoresContent() {
 
       {/* Modal para adicionar novo operador */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Adicionar Novo Operador</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleSubmit}>
-            <div className="grid gap-4 py-4">
-              
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="nome" className="text-right">
-                  Nome
-                </Label>
-                <Input
-                  id="nome"
-                  name="nome"
-                  value={formData.nome}
-                  onChange={handleChange}
-                  className="col-span-3"
-                  required
-                />
-              </div>
-              
-            </div>
-            <DialogFooter>
-              <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
-                Cancelar
-              </Button>
-              <Button type="submit" className="bg-green-500 hover:bg-green-600">
-                Salvar
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
+        <NovoOperadorForm onSuccess={handleNovoOperadorSuccess} onCancel={() => setIsDialogOpen(false)} />
       </Dialog>
     </>
   )

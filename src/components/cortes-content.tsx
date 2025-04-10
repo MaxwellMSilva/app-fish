@@ -23,6 +23,11 @@ export function CortesContent() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isProcessoDialogOpen, setIsProcessoDialogOpen] = useState(false)
   const [corteAtual, setCorteAtual] = useState<Corte | null>(null)
+  
+  // Função para remover acentos
+  const removeAccents = (str: string) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  }
 
   // Buscar cortes
   const fetchCortes = async () => {
@@ -35,7 +40,9 @@ export function CortesContent() {
       setCortes(data)
     } catch (error) {
       console.error("Erro ao buscar cortes:", error)
-      toast.error("Não foi possível carregar os cortes")
+      toast.error("Não foi possível carregar os cortes", {
+        duration: 2000
+      })
     } finally {
       setLoading(false)
     }
@@ -46,8 +53,12 @@ export function CortesContent() {
     fetchCortes()
   }, [])
 
-  // Filtrar cortes com base no termo de busca
-  const filteredCortes = cortes.filter((corte) => corte.nome.toLowerCase().includes(searchTerm.toLowerCase()))
+  // Filtrar cortes com base no termo de busca (com maiúsculas e sem acentos)
+  const filteredCortes = cortes.filter(
+    (corte) =>
+      removeAccents(corte.id.toUpperCase()).includes(removeAccents(searchTerm.toUpperCase())) ||
+      removeAccents(corte.nome.toUpperCase()).includes(removeAccents(searchTerm.toUpperCase()))
+  )
 
   // Excluir corte
   const handleDelete = async (id: string) => {
@@ -61,10 +72,14 @@ export function CortesContent() {
       if (!response.ok) throw new Error("Falha ao excluir corte")
 
       await fetchCortes()
-      toast.success("Corte excluído com sucesso")
+      toast.success("Corte excluído com sucesso", {
+        duration: 2000
+      })
     } catch (error) {
       console.error("Erro ao excluir corte:", error)
-      toast.error("Não foi possível excluir o corte")
+      toast.error("Não foi possível excluir o corte", {
+        duration: 2000
+      })
     }
   }
 
@@ -89,8 +104,8 @@ export function CortesContent() {
     <>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Cortes</h1>
-        <Button className="bg-green-500 hover:bg-green-600" onClick={() => setIsDialogOpen(true)}>
-          <Plus className="mr-2 h-4 w-4" /> Novo Corte
+        <Button className="bg-green-500 hover:bg-green-600 cursor-pointer" onClick={() => setIsDialogOpen(true)}>
+          <Plus className="mr-1 h-4 w-4" />Novo Corte
         </Button>
       </div>
 
@@ -101,7 +116,7 @@ export function CortesContent() {
             className="pl-10 w-full"
             placeholder="Buscar cortes..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(removeAccents(e.target.value.toUpperCase()))}
           />
         </div>
       </div>
@@ -139,13 +154,13 @@ export function CortesContent() {
                         <p className="text-sm text-gray-500">Código: {corte.id.substring(0, 8)}</p>
                       </div>
                       <div className="flex gap-1">
-                        <Button variant="outline" size="icon" className="h-8 w-8">
+                        <Button variant="outline" size="icon" className="h-10 w-10 cursor-pointer bg-amber-200 hover:bg-amber-300">
                           <Pencil className="h-4 w-4" />
                         </Button>
                         <Button
                           variant="destructive"
                           size="icon"
-                          className="h-8 w-8"
+                          className="cursor-pointer bg-red-400 hover:bg-red-500 h-10 w-10"
                           onClick={() => handleDelete(corte.id)}
                         >
                           <Trash2 className="h-4 w-4" />
@@ -155,10 +170,10 @@ export function CortesContent() {
                   </CardContent>
                   <CardFooter className="p-4 pt-0">
                     <Button
-                      className="w-full bg-green-500 hover:bg-green-600"
+                      className="w-full bg-green-500 hover:bg-green-600 cursor-pointer"
                       onClick={() => handleStartProcess(corte)}
                     >
-                      <Play className="mr-2 h-4 w-4" /> INICIAR PROCESSO
+                      <Play className="mr-1 h-4 w-4" />INICIAR PROCESSO
                     </Button>
                   </CardFooter>
                 </Card>

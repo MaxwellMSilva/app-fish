@@ -2,8 +2,11 @@
 
 import type React from "react"
 
+import Image from 'next/image'
+import rfLogo from '../../public/rondo01.png'
+
 import Link from "next/link"
-import { User, Scissors, BarChart3, Trophy } from "lucide-react"
+import { User, Fish, BarChart3, Trophy } from "lucide-react"
 
 interface AdminLayoutProps {
   children: React.ReactNode
@@ -14,39 +17,10 @@ export function AdminLayout({ children, activeTab }: AdminLayoutProps) {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Header */}
-      <header className="border-b">
+      {/* <header className="border-b">
         <div className="container flex items-center h-16">
-          <div className="flex items-center mr-8">
-            <div className="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-green-500"
-              >
-                <path d="M19.5 8.5c0 1.5-1.5 2-1.5 2"></path>
-                <path d="M19.5 4.5c0 1.5-1.5 2-1.5 2"></path>
-                <path d="M19.5 12.5c0 1.5-1.5 2-1.5 2"></path>
-                <path d="M15.5 8.5c0 1.5-1.5 2-1.5 2"></path>
-                <path d="M15.5 4.5c0 1.5-1.5 2-1.5 2"></path>
-                <path d="M15.5 12.5c0 1.5-1.5 2-1.5 2"></path>
-                <path d="M4 19h16"></path>
-                <path d="M4 15l4-6"></path>
-                <path d="M4 9l4 6"></path>
-                <path d="M12 9l-4 6"></path>
-                <path d="M12 9l4 6"></path>
-                <path d="M20 9l-4 6"></path>
-              </svg>
-              <span className="ml-2 text-xl font-bold">
-                Rondo<span className="text-yellow-400">Fish</span>
-              </span>
-            </div>
+          <div className="flex items-center">
+            
           </div>
           <nav className="flex space-x-4">
             <Link
@@ -69,12 +43,15 @@ export function AdminLayout({ children, activeTab }: AdminLayoutProps) {
             </Link>
           </nav>
         </div>
-      </header>
+      </header> */}
 
       <div className="flex flex-1">
         {/* Sidebar */}
         <aside className="w-60 border-r bg-gray-50">
           <nav className="flex flex-col p-2">
+            <div className="flex items-center h-25">
+              <Image src={rfLogo} alt="logoEmpresa" className="flex items-center gap-2 px-3 py-2 rounded-md"/>
+            </div>
             <Link
               href="/operadores"
               className={`flex items-center gap-2 px-3 py-2 rounded-md ${
@@ -90,17 +67,8 @@ export function AdminLayout({ children, activeTab }: AdminLayoutProps) {
                 activeTab === "cortes" ? "bg-blue-50 text-blue-600" : "text-gray-700"
               }`}
             >
-              <Scissors size={18} />
+              <Fish size={18} />
               <span>Cortes</span>
-            </Link>
-            <Link
-              href="/dashboard"
-              className={`flex items-center gap-2 px-3 py-2 rounded-md ${
-                activeTab === "dashboard" ? "bg-blue-50 text-blue-600" : "text-gray-700"
-              }`}
-            >
-              <BarChart3 size={18} />
-              <span>Dashboard</span>
             </Link>
             <Link
               href="/ranking"
@@ -110,6 +78,15 @@ export function AdminLayout({ children, activeTab }: AdminLayoutProps) {
             >
               <Trophy size={18} />
               <span>Ranking</span>
+            </Link>
+            <Link
+              href="/dashboard"
+              className={`flex items-center gap-2 px-3 py-2 rounded-md ${
+                activeTab === "dashboard" ? "bg-blue-50 text-blue-600" : "text-gray-700"
+              }`}
+            >
+              <BarChart3 size={18} />
+              <span>Dashboard</span>
             </Link>
           </nav>
         </aside>

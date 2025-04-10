@@ -1,10 +1,9 @@
 import { AdminLayout } from "@/components/admin-layout"
-import { OperadoresContent } from "@/components/operadores-content"
 
 export default function Home() {
   return (
-    <AdminLayout activeTab="operadores">
-      <OperadoresContent />
+    <AdminLayout activeTab="">
+      <h1>FALA MEU BOM</h1>
     </AdminLayout>
   )
 }

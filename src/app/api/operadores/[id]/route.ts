@@ -1,21 +1,25 @@
-import { type NextRequest, NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const id = params.id
+    const { id } = params
 
-    const operador = await prisma.operador.findUnique({
+    if (!id) {
+      return NextResponse.json({ error: "ID do operador é obrigatório" }, { status: 400 })
+    }
+
+    const operador = await prisma.operador.findFirst({
       where: {
         id: id,
       },
     })
 
     if (!operador) {
-      return NextResponse.json({ error: "Operador não encontrado" }, { status: 404 })
+      return NextResponse.json({ error: "Operador não encontrado", exists: false }, { status: 404 })
     }
 
-    return NextResponse.json(operador)
+    return NextResponse.json({ exists: true, operador })
   } catch (error) {
     console.error("Erro ao buscar operador:", error)
     return NextResponse.json({ error: "Erro ao buscar operador" }, { status: 500 })

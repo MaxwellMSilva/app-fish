@@ -3,50 +3,35 @@ import { prisma } from "@/lib/prisma"
 
 export async function POST(request: NextRequest) {
   try {
-    // Obter dados do corpo da requisição
     const data = await request.json()
 
-    // Validar dados obrigatórios
     if (!data.corteId || !data.operadorId || !data.peso) {
       return NextResponse.json({ error: "Dados incompletos. Todos os campos são obrigatórios." }, { status: 400 })
     }
 
-    // Validar tipo de pesagem
     if (data.tipoPesagem !== "inicial" && data.tipoPesagem !== "final") {
       return NextResponse.json({ error: "Tipo de pesagem inválido. Use 'inicial' ou 'final'." }, { status: 400 })
     }
 
-    // Validar peso
     const peso = Number(data.peso)
     if (isNaN(peso) || peso <= 0) {
       return NextResponse.json({ error: "Peso inválido. Deve ser um número positivo." }, { status: 400 })
     }
 
-    // Criar nova pesagem no banco de dados usando Prisma
     const novaPesagem = await prisma.pesagem.create({
       data: {
+        tipoPesagem: data.tipoPesagem,
         corteId: data.corteId,
         operadorId: data.operadorId,
-        peso: peso,
-        tipoPesagem: data.tipoPesagem,
-        // As datas createdAt e updatedAt são gerenciadas automaticamente pelo Prisma
+        peso: peso
       },
     })
 
-    // Retornar sucesso com os dados salvos
-    return NextResponse.json(
-      {
-        message: "Pesagem registrada com sucesso",
-        pesagem: novaPesagem,
-      },
-      { status: 201 },
-    )
+    return NextResponse.json(novaPesagem, { status: 201 })
   } catch (error: any) {
     console.error("Erro ao processar requisição:", error)
 
-    // Tratamento específico para erros do Prisma
     if (error.code) {
-      // Erros comuns do Prisma
       switch (error.code) {
         case "P2002":
           return NextResponse.json({ error: "Registro duplicado encontrado." }, { status: 409 })
@@ -62,7 +47,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ error: "Erro interno do servidor" }, { status: 500 })
   } finally {
-    // Desconectar o cliente Prisma para evitar conexões pendentes
     await prisma.$disconnect()
   }
 }
