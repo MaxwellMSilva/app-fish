@@ -1,7 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Medal, Trophy, Award } from "lucide-react"
+import { Medal, Trophy, Award, Calendar } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Card, CardContent } from "@/components/ui/card"
 
 export function RankingContent() {
   const [operadores, setOperadores] = useState<any[]>([])
@@ -12,9 +16,13 @@ export function RankingContent() {
   const [cortes, setCortes] = useState<any[]>([])
 
   const fetchCortes = async () => {
-    const res = await fetch("/api/cortes")
-    const data = await res.json()
-    setCortes(data)
+    try {
+      const res = await fetch("/api/cortes")
+      const data = await res.json()
+      setCortes(data)
+    } catch (error) {
+      console.error("Erro ao buscar cortes:", error)
+    }
   }
 
   const fetchRanking = async () => {
@@ -23,7 +31,9 @@ export function RankingContent() {
       const params = new URLSearchParams()
       if (dataInicial) params.append("dataInicial", dataInicial)
       if (dataFinal) params.append("dataFinal", dataFinal)
-      if (corteId) params.append("corteId", corteId)
+      if (corteId && corteId !== "todos") {
+        params.append("corteId", corteId)
+      }
 
       const response = await fetch(`/api/ranking?${params.toString()}`)
       const data = await response.json()
@@ -37,50 +47,88 @@ export function RankingContent() {
 
   useEffect(() => {
     fetchCortes()
+    fetchRanking()
   }, [])
 
   useEffect(() => {
-    if (dataInicial || dataFinal || corteId) {
-      fetchRanking()
-    }
-  }, [dataInicial, dataFinal, corteId]) // Chama o fetchRanking toda vez que essas variáveis mudarem
+    fetchRanking()
+  }, [dataInicial, dataFinal, corteId])
 
   return (
     <>
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold">Ranking</h1>
-        <p className="text-gray-500">Desempenho dos operadores</p>
-      </div>
+      
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <input
-          type="date"
-          className="border p-2 rounded"
-          value={dataInicial}
-          onChange={(e) => setDataInicial(e.target.value)}
-        />
-        <input
-          type="date"
-          className="border p-2 rounded"
-          value={dataFinal}
-          onChange={(e) => setDataFinal(e.target.value)}
-        />
-        <select
-          className="border p-2 rounded"
-          value={corteId}
-          onChange={(e) => setCorteId(e.target.value)}
-        >
-          <option value="">Todos os Cortes</option>
-          {cortes.map((corte: any) => (
-            <option key={corte.id} value={corte.id}>
-              {corte.nome}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Card className="mb-6 border-gray-200 shadow-sm">
+        <CardContent className="p-6">
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="">
+              <h1 className="text-2xl font-bold">Ranking</h1>
+              <p className="text-gray-500">Desempenho dos operadores</p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="dataInicial" className="font-semibold ml-1">
+                Data Inicial:
+              </Label>
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+                <Input
+                  id="dataInicial"
+                  type="date"
+                  className="pl-10 border-gray-300 focus:border-green-500 focus:ring-green-500"
+                  value={dataInicial}
+                  onChange={(e) => setDataInicial(e.target.value)}
+                />
+              </div>
+            </div>
 
-      {operadores.length === 0 ? (
-        <div className="text-gray-500 italic text-center mt-10">
+            <div className="space-y-2">
+              <Label htmlFor="dataFinal" className="font-semibold ml-1">
+                Data Final:
+              </Label>
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+                <Input
+                  id="dataFinal"
+                  type="date"
+                  className="pl-10 border-gray-300 focus:border-green-500 focus:ring-green-500"
+                  value={dataFinal}
+                  onChange={(e) => setDataFinal(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="corte" className="font-semibold ml-1">
+                Tipo de Corte:
+              </Label>
+              <Select value={corteId} onValueChange={setCorteId}>
+                <SelectTrigger
+                  id="corte"
+                  className="w-full border-gray-300 focus:border-green-500 focus:ring-green-500"
+                >
+                  <SelectValue placeholder="Todos os Cortes" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="todos">Todos os Cortes</SelectItem>
+                  {cortes.map((corte) => (
+                    <SelectItem key={corte.id} value={corte.id}>
+                      {corte.nome}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {loading ? (
+        <div className="flex justify-center items-center h-40">
+          <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-green-500"></div>
+        </div>
+      ) : operadores.length === 0 ? (
+        <div className="text-gray-500 italic text-center mt-10 p-8 bg-white border rounded-md shadow-sm">
           Nenhum dado encontrado. Selecione um intervalo de datas para visualizar o ranking.
         </div>
       ) : (
@@ -88,13 +136,16 @@ export function RankingContent() {
           {/* Top 3 Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             {operadores.slice(0, 3).map((operador, index) => (
-              <div key={index} className={`bg-white p-6 rounded-lg border shadow-sm text-center ${
-                index === 0
+              <div
+                key={index}
+                className={`bg-white p-6 rounded-lg border shadow-sm text-center ${
+                  index === 0
                     ? "scale-105 shadow-xl" // Top 1 animação de aumento de escala e brilho
                     : index === 1
-                    ? "scale-103 shadow-lg" // Top 2 com animação sutil
-                    : "scale-100 shadow-sm" // Top 3 sem animação
-                }`}>
+                      ? "scale-103 shadow-lg" // Top 2 com animação sutil
+                      : "scale-100 shadow-sm" // Top 3 sem animação
+                }`}
+              >
                 <div className="flex justify-center mb-4">
                   {index === 0 ? (
                     <Trophy className="h-12 w-12 text-yellow-500 animate-pulse" />
@@ -120,16 +171,16 @@ export function RankingContent() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-3 px-4 font-medium">Posição:</th>
-                    <th className="text-left py-3 px-4 font-medium">Operador:</th>
-                    <th className="text-center py-3 px-4 font-medium">Total Processado (Kg):</th>
-                    <th className="text-center py-3 px-4 font-medium">Rendimento (%):</th>
-                    <th className="text-center py-3 px-4 font-medium">Perda (%):</th>
+                    <th className="text-left py-3 px-4 font-semibold">Posição:</th>
+                    <th className="text-left py-3 px-4 font-semibold">Operador:</th>
+                    <th className="text-center py-3 px-4 font-semibold">Total Processado (Kg):</th>
+                    <th className="text-center py-3 px-4 font-semibold">Rendimento (%):</th>
+                    <th className="text-center py-3 px-4 font-semibold">Perda (%):</th>
                   </tr>
                 </thead>
                 <tbody>
                   {operadores.map((operador, index) => (
-                    <tr key={operador.id} className="border-b">
+                    <tr key={operador.id} className="border-b hover:bg-gray-50">
                       <td className="py-3 px-4">
                         <div className="flex items-center">
                           <span className="font-bold mr-2">{index + 1}º</span>

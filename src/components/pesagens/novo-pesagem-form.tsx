@@ -249,7 +249,7 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
   return (
     <DialogContent ref={dialogContentRef}>
       <DialogHeader>
-        <DialogTitle>Iniciar Processo de Pesagem</DialogTitle>
+        <DialogTitle className="font-bold">Iniciar Processo de Pesagem</DialogTitle>
       </DialogHeader>
       <form onSubmit={handleProcessoSubmit} ref={formRef}>
         <div className="grid gap-6 py-4">
@@ -274,7 +274,7 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
           )}
 
           <div className="space-y-2">
-            <Label className="mb-3 font-bold">Tipo de Pesagem:</Label>
+            <Label className="mb-3 font-semibold">Tipo de Pesagem:</Label>
             <RadioGroup
               value={processoFormData.tipoPesagem}
               onValueChange={(value) => handleTipoPesagemChange(value as "inicial" | "final")}
@@ -282,17 +282,17 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
             >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="inicial" id="pesagem-inicial" />
-                <Label htmlFor="pesagem-inicial">Pesagem Inicial</Label>
+                <Label htmlFor="pesagem-inicial" className="font-normal">Pesagem Inicial</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="final" id="pesagem-final" />
-                <Label htmlFor="pesagem-final">Pesagem Final</Label>
+                <Label htmlFor="pesagem-final" className="font-normal">Pesagem Final</Label>
               </div>
             </RadioGroup>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="operadorId" className="font-bold">Código do Operador:</Label>
+            <Label htmlFor="operadorId" className="font-semibold">Código do Operador:</Label>
             <div className="relative">
             <Input
               id="operadorId"
@@ -337,7 +337,7 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="peso" className="font-bold">Peso (kg):</Label>
+            <Label htmlFor="peso" className="font-semibold">Peso (kg):</Label>
             <Input
               id="peso"
               name="peso"
@@ -352,12 +352,12 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
           </div>
         </div>
         <DialogFooter>
-          <Button type="button" variant="outline" onClick={handleCancel} disabled={submittingProcesso}>
+          <Button type="button" variant="outline" onClick={handleCancel} disabled={submittingProcesso} className="cursor-pointer font-semibold">
             Cancelar
           </Button>
           <Button
             type="submit"
-            className="bg-green-500 hover:bg-green-600"
+            className="bg-green-500 hover:bg-green-600 cursor-pointer font-semibold"
             disabled={submittingProcesso || 
                       (!processoFormData.tipoPesagem) ||
                       (!!processoFormData.operadorId && operadorStatus === "error") || 

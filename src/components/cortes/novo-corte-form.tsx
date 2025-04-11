@@ -129,12 +129,12 @@ export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
   return (
     <DialogContent ref={dialogContentRef}>
       <DialogHeader>
-        <DialogTitle>Cadastrar Novo Corte</DialogTitle>
+        <DialogTitle className="font-bold">Cadastrar Novo Corte</DialogTitle>
       </DialogHeader>
       <form onSubmit={handleSubmit} ref={formRef}>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="nome" className="text-right font-bold">
+            <Label htmlFor="nome" className="text-right font-semibold">
               Nome:
             </Label>
             <Input
@@ -148,7 +148,7 @@ export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
             />
           </div>
           <div className="grid grid-cols-4 items-start gap-4">
-            <Label htmlFor="imagem" className="text-right pt-2 font-bold">
+            <Label htmlFor="imagem" className="text-right pt-2 font-semibold">
               Imagem:
             </Label>
             <div className="col-span-3">
@@ -174,11 +174,11 @@ export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
           </div>
         </div>
         <DialogFooter>
-          <Button type="button" variant="outline" onClick={handleCancel} disabled={isSubmitting} className="h-10 w-25">
+          <Button type="button" variant="outline" onClick={handleCancel} disabled={isSubmitting} className="h-10 w-25 font-semibold cursor-pointer">
             Cancelar
           </Button>
           <Button type="submit" 
-                  className="bg-green-500 hover:bg-green-600 h-10 w-25" 
+                  className="bg-green-500 hover:bg-green-600 h-10 w-25 font-semibold cursor-pointer" 
                   disabled={isSubmitting || !formData.nome}
           >
             {isSubmitting ? "Salvando..." : "Salvar"}

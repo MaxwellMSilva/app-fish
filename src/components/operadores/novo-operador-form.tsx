@@ -12,7 +12,7 @@ import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/compon
 type Operador = {
     onSuccess: () => void
     onCancel: () => void
-  }
+}
 
 export function NovoOperadorForm({ onSuccess, onCancel }: Operador) {
   const [formData, setFormData] = useState({ nome: "" })
@@ -128,11 +128,11 @@ export function NovoOperadorForm({ onSuccess, onCancel }: Operador) {
               
             </div>
             <DialogFooter>
-              <Button type="button" variant="outline" onClick={handleCancel} disabled={isSubmitting} className="h-10 w-25">
+              <Button type="button" variant="outline" onClick={handleCancel} disabled={isSubmitting} className="h-10 w-25 cursor-pointer font-semibold">
                 Cancelar
               </Button>
               <Button type="submit" 
-                      className="bg-green-500 hover:bg-green-600 h-10 w-25"
+                      className="bg-green-500 hover:bg-green-600 h-10 w-25 cursor-pointer font-semibold"
                       disabled={isSubmitting || !formData.nome}
                       >
                 {isSubmitting ? "Salvando..." : "Salvar"}

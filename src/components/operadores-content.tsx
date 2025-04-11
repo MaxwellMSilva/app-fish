@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-
 import { Search, Plus, Trash2, Pencil, Printer } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -9,6 +8,7 @@ import { Dialog } from "@/components/ui/dialog"
 import { toast } from "sonner"
 
 import { NovoOperadorForm } from "@/components/operadores/novo-operador-form"
+import { EtiquetaModal } from "@/components/operadores/etiquetal-modal"
 
 type Operador = {
   id: string
@@ -20,7 +20,8 @@ export function OperadoresContent() {
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [isClient, setIsClient] = useState(false)
+  const [isEtiquetaModalOpen, setIsEtiquetaModalOpen] = useState(false)
+  const [selectedOperador, setSelectedOperador] = useState<Operador | null>(null)
 
   // Buscar operadores
   const fetchOperadores = async () => {
@@ -34,7 +35,7 @@ export function OperadoresContent() {
     } catch (error) {
       console.error("Erro ao buscar operadores:", error)
       toast.error("Não foi possível carregar os operadores", {
-        duration: 2000
+        duration: 2000,
       })
     } finally {
       setLoading(false)
@@ -50,7 +51,7 @@ export function OperadoresContent() {
   const filteredOperadores = operadores.filter(
     (operador) =>
       operador.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      operador.nome.toLowerCase().includes(searchTerm.toLowerCase())
+      operador.nome.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
   // Excluir operador
@@ -66,14 +67,25 @@ export function OperadoresContent() {
 
       await fetchOperadores()
       toast.success("Operador excluído com sucesso", {
-        duration: 2000
+        duration: 2000,
       })
     } catch (error) {
       console.error("Erro ao excluir operador:", error)
       toast.error("Não foi possível excluir o operador", {
-        duration: 2000
+        duration: 2000,
       })
     }
+  }
+
+  // Abrir modal de etiqueta
+  const handleOpenEtiquetaModal = (operador: Operador) => {
+    setSelectedOperador(operador)
+    setIsEtiquetaModalOpen(true)
+  }
+
+  // Fechar modal de etiqueta
+  const handleCloseEtiquetaModal = () => {
+    setIsEtiquetaModalOpen(false)
   }
 
   // Handlers para os formulários
@@ -87,7 +99,7 @@ export function OperadoresContent() {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Operadores</h1>
         <Button className="bg-green-500 hover:bg-green-600 cursor-pointer" onClick={() => setIsDialogOpen(true)}>
-          <Plus className="mr-2 h-4 w-4" /> Novo Operador
+          <Plus className="mr-2 h-4 w-4 font-semibold" />Novo Operador
         </Button>
       </div>
 
@@ -114,8 +126,9 @@ export function OperadoresContent() {
             <table className="w-full">
               <thead>
                 <tr className="border-b">
-                  <th className="text-left py-3 px-4 font-medium">Id</th>
-                  <th className="text-left py-3 px-4 font-medium">Nome</th>
+                  <th className="text-left py-3 px-4 font-semibold">Id</th>
+                  <th className="text-left py-3 px-4 font-semibold">Nome</th>
+                  <th className="text-right py-3 px-4 font-semibold">Ações</th>
                 </tr>
               </thead>
               <tbody>
@@ -132,14 +145,27 @@ export function OperadoresContent() {
                       <td className="py-3 px-4">{operador.nome}</td>
                       <td className="py-3 px-4 text-right">
                         <div className="flex justify-end gap-2">
-                          <Button variant="outline" size="icon" className="flex w-40 bg-gray-300 hover:bg-gray-400 cursor-pointer">
-                            <p>Etiqueta</p>
+                          <Button
+                            variant="outline"
+                            className="flex w-40 bg-gray-300 hover:bg-gray-400 cursor-pointer"
+                            onClick={() => handleOpenEtiquetaModal(operador)}
+                          >
+                            <p className="mr-2">Etiqueta</p>
                             <Printer className="h-4 w-4" />
                           </Button>
-                          <Button variant="outline" size="icon" className="cursor-pointer bg-amber-200 hover:bg-amber-300">
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="cursor-pointer bg-amber-200 hover:bg-amber-300"
+                          >
                             <Pencil className="h-4 w-4" />
                           </Button>
-                          <Button variant="destructive" size="icon" className="cursor-pointer bg-red-400 hover:bg-red-500" onClick={() => handleDelete(operador.id)}>
+                          <Button
+                            variant="destructive"
+                            size="icon"
+                            className="cursor-pointer bg-red-400 hover:bg-red-500"
+                            onClick={() => handleDelete(operador.id)}
+                          >
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </div>
@@ -156,6 +182,13 @@ export function OperadoresContent() {
       {/* Modal para adicionar novo operador */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <NovoOperadorForm onSuccess={handleNovoOperadorSuccess} onCancel={() => setIsDialogOpen(false)} />
+      </Dialog>
+
+      {/* Modal para impressão de etiqueta */}
+      <Dialog open={isEtiquetaModalOpen} onOpenChange={setIsEtiquetaModalOpen}>
+        {selectedOperador && (
+          <EtiquetaModal operador={selectedOperador} onCancel={handleCloseEtiquetaModal} isOpen={isEtiquetaModalOpen} />
+        )}
       </Dialog>
     </>
   )

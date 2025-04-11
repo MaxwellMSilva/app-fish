@@ -104,8 +104,8 @@ export function CortesContent() {
     <>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Cortes</h1>
-        <Button className="bg-green-500 hover:bg-green-600 cursor-pointer" onClick={() => setIsDialogOpen(true)}>
-          <Plus className="mr-1 h-4 w-4" />Novo Corte
+        <Button className="bg-green-500 hover:bg-green-600 cursor-pointer font-bold" onClick={() => setIsDialogOpen(true)}>
+          <Plus className="mr-1 h-4 w-4 font-semibold" />Novo Corte
         </Button>
       </div>
 
@@ -173,7 +173,7 @@ export function CortesContent() {
                       className="w-full bg-green-500 hover:bg-green-600 cursor-pointer"
                       onClick={() => handleStartProcess(corte)}
                     >
-                      <Play className="mr-1 h-4 w-4" />INICIAR PROCESSO
+                      <Play className="mr-1 h-4 w-4 font-semibold" />INICIAR PROCESSO
                     </Button>
                   </CardFooter>
                 </Card>
