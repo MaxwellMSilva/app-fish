@@ -102,6 +102,7 @@ export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
     }
   }
 
+  // Cancelar formulário
   const handleCancel = () => {
     setFormData({ nome: "", imagem: "" })
     setPreviewImage(null)

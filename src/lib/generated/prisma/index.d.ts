@@ -241,8 +241,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.6.0
-   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   * Prisma Client JS version: 6.11.0
+   * Query Engine version: 9c30299f5a0ea26a96790e13f796dc6094db3173
    */
   export type PrismaVersion = {
     client: string
@@ -1118,50 +1118,78 @@ export namespace Prisma {
 
   export type AggregateOperador = {
     _count: OperadorCountAggregateOutputType | null
+    _avg: OperadorAvgAggregateOutputType | null
+    _sum: OperadorSumAggregateOutputType | null
     _min: OperadorMinAggregateOutputType | null
     _max: OperadorMaxAggregateOutputType | null
   }
 
+  export type OperadorAvgAggregateOutputType = {
+    matricula: number | null
+    valor: Decimal | null
+  }
+
+  export type OperadorSumAggregateOutputType = {
+    matricula: number | null
+    valor: Decimal | null
+  }
+
   export type OperadorMinAggregateOutputType = {
-    id: string | null
+    matricula: number | null
     nome: string | null
+    valor: Decimal | null
     ativo: boolean | null
     createdAt: Date | null
   }
 
   export type OperadorMaxAggregateOutputType = {
-    id: string | null
+    matricula: number | null
     nome: string | null
+    valor: Decimal | null
     ativo: boolean | null
     createdAt: Date | null
   }
 
   export type OperadorCountAggregateOutputType = {
-    id: number
+    matricula: number
     nome: number
+    valor: number
     ativo: number
     createdAt: number
     _all: number
   }
 
 
+  export type OperadorAvgAggregateInputType = {
+    matricula?: true
+    valor?: true
+  }
+
+  export type OperadorSumAggregateInputType = {
+    matricula?: true
+    valor?: true
+  }
+
   export type OperadorMinAggregateInputType = {
-    id?: true
+    matricula?: true
     nome?: true
+    valor?: true
     ativo?: true
     createdAt?: true
   }
 
   export type OperadorMaxAggregateInputType = {
-    id?: true
+    matricula?: true
     nome?: true
+    valor?: true
     ativo?: true
     createdAt?: true
   }
 
   export type OperadorCountAggregateInputType = {
-    id?: true
+    matricula?: true
     nome?: true
+    valor?: true
     ativo?: true
     createdAt?: true
     _all?: true
@@ -1205,6 +1233,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: OperadorAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OperadorSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: OperadorMinAggregateInputType
@@ -1235,16 +1275,21 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: OperadorCountAggregateInputType | true
+    _avg?: OperadorAvgAggregateInputType
+    _sum?: OperadorSumAggregateInputType
     _min?: OperadorMinAggregateInputType
     _max?: OperadorMaxAggregateInputType
   }
 
   export type OperadorGroupByOutputType = {
-    id: string
+    matricula: number
     nome: string
+    valor: Decimal
     ativo: boolean
     createdAt: Date
     _count: OperadorCountAggregateOutputType | null
+    _avg: OperadorAvgAggregateOutputType | null
+    _sum: OperadorSumAggregateOutputType | null
     _min: OperadorMinAggregateOutputType | null
     _max: OperadorMaxAggregateOutputType | null
   }
@@ -1264,8 +1309,9 @@ export namespace Prisma {
 
 
   export type OperadorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
+    matricula?: boolean
     nome?: boolean
+    valor?: boolean
     ativo?: boolean
     createdAt?: boolean
     pesagens?: boolean | Operador$pesagensArgs<ExtArgs>
@@ -1273,27 +1319,30 @@ export namespace Prisma {
   }, ExtArgs["result"]["operador"]>
 
   export type OperadorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
+    matricula?: boolean
     nome?: boolean
+    valor?: boolean
     ativo?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["operador"]>
 
   export type OperadorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
+    matricula?: boolean
     nome?: boolean
+    valor?: boolean
     ativo?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["operador"]>
 
   export type OperadorSelectScalar = {
-    id?: boolean
+    matricula?: boolean
     nome?: boolean
+    valor?: boolean
     ativo?: boolean
     createdAt?: boolean
   }
 
-  export type OperadorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "ativo" | "createdAt", ExtArgs["result"]["operador"]>
+  export type OperadorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"matricula" | "nome" | "valor" | "ativo" | "createdAt", ExtArgs["result"]["operador"]>
   export type OperadorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pesagens?: boolean | Operador$pesagensArgs<ExtArgs>
     _count?: boolean | OperadorCountOutputTypeDefaultArgs<ExtArgs>
@@ -1307,8 +1356,9 @@ export namespace Prisma {
       pesagens: Prisma.$PesagemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      matricula: number
       nome: string
+      valor: Prisma.Decimal
       ativo: boolean
       createdAt: Date
     }, ExtArgs["result"]["operador"]>
@@ -1394,8 +1444,8 @@ export namespace Prisma {
      * // Get first 10 Operadors
      * const operadors = await prisma.operador.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const operadorWithIdOnly = await prisma.operador.findMany({ select: { id: true } })
+     * // Only select the `matricula`
+     * const operadorWithMatriculaOnly = await prisma.operador.findMany({ select: { matricula: true } })
      * 
      */
     findMany<T extends OperadorFindManyArgs>(args?: SelectSubset<T, OperadorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OperadorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1439,9 +1489,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Operadors and only return the `id`
-     * const operadorWithIdOnly = await prisma.operador.createManyAndReturn({
-     *   select: { id: true },
+     * // Create many Operadors and only return the `matricula`
+     * const operadorWithMatriculaOnly = await prisma.operador.createManyAndReturn({
+     *   select: { matricula: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -1530,9 +1580,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Operadors and only return the `id`
-     * const operadorWithIdOnly = await prisma.operador.updateManyAndReturn({
-     *   select: { id: true },
+     * // Update zero or more Operadors and only return the `matricula`
+     * const operadorWithMatriculaOnly = await prisma.operador.updateManyAndReturn({
+     *   select: { matricula: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1735,8 +1785,9 @@ export namespace Prisma {
    * Fields of the Operador model
    */
   interface OperadorFieldRefs {
-    readonly id: FieldRef<"Operador", 'String'>
+    readonly matricula: FieldRef<"Operador", 'Int'>
     readonly nome: FieldRef<"Operador", 'String'>
+    readonly valor: FieldRef<"Operador", 'Decimal'>
     readonly ativo: FieldRef<"Operador", 'Boolean'>
     readonly createdAt: FieldRef<"Operador", 'DateTime'>
   }
@@ -3249,68 +3300,84 @@ export namespace Prisma {
 
   export type PesagemAvgAggregateOutputType = {
     peso: number | null
+    operadorMatricula: number | null
   }
 
   export type PesagemSumAggregateOutputType = {
     peso: number | null
+    operadorMatricula: number | null
   }
 
   export type PesagemMinAggregateOutputType = {
     id: string | null
     peso: number | null
     tipoPesagem: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
     corteId: string | null
-    operadorId: string | null
+    operadorMatricula: number | null
   }
 
   export type PesagemMaxAggregateOutputType = {
     id: string | null
     peso: number | null
     tipoPesagem: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
     corteId: string | null
-    operadorId: string | null
+    operadorMatricula: number | null
   }
 
   export type PesagemCountAggregateOutputType = {
     id: number
     peso: number
     tipoPesagem: number
+    createdAt: number
+    updatedAt: number
     corteId: number
-    operadorId: number
+    operadorMatricula: number
     _all: number
   }
 
 
   export type PesagemAvgAggregateInputType = {
     peso?: true
+    operadorMatricula?: true
   }
 
   export type PesagemSumAggregateInputType = {
     peso?: true
+    operadorMatricula?: true
   }
 
   export type PesagemMinAggregateInputType = {
     id?: true
     peso?: true
     tipoPesagem?: true
+    createdAt?: true
+    updatedAt?: true
     corteId?: true
-    operadorId?: true
+    operadorMatricula?: true
   }
 
   export type PesagemMaxAggregateInputType = {
     id?: true
     peso?: true
     tipoPesagem?: true
+    createdAt?: true
+    updatedAt?: true
     corteId?: true
-    operadorId?: true
+    operadorMatricula?: true
   }
 
   export type PesagemCountAggregateInputType = {
     id?: true
     peso?: true
     tipoPesagem?: true
+    createdAt?: true
+    updatedAt?: true
     corteId?: true
-    operadorId?: true
+    operadorMatricula?: true
     _all?: true
   }
 
@@ -3404,8 +3471,10 @@ export namespace Prisma {
     id: string
     peso: number
     tipoPesagem: string
+    createdAt: Date
+    updatedAt: Date
     corteId: string
-    operadorId: string
+    operadorMatricula: number
     _count: PesagemCountAggregateOutputType | null
     _avg: PesagemAvgAggregateOutputType | null
     _sum: PesagemSumAggregateOutputType | null
@@ -3431,8 +3500,10 @@ export namespace Prisma {
     id?: boolean
     peso?: boolean
     tipoPesagem?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     corteId?: boolean
-    operadorId?: boolean
+    operadorMatricula?: boolean
     corte?: boolean | CorteDefaultArgs<ExtArgs>
     operador?: boolean | OperadorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pesagem"]>
@@ -3441,8 +3512,10 @@ export namespace Prisma {
     id?: boolean
     peso?: boolean
     tipoPesagem?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     corteId?: boolean
-    operadorId?: boolean
+    operadorMatricula?: boolean
     corte?: boolean | CorteDefaultArgs<ExtArgs>
     operador?: boolean | OperadorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pesagem"]>
@@ -3451,8 +3524,10 @@ export namespace Prisma {
     id?: boolean
     peso?: boolean
     tipoPesagem?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     corteId?: boolean
-    operadorId?: boolean
+    operadorMatricula?: boolean
     corte?: boolean | CorteDefaultArgs<ExtArgs>
     operador?: boolean | OperadorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pesagem"]>
@@ -3461,11 +3536,13 @@ export namespace Prisma {
     id?: boolean
     peso?: boolean
     tipoPesagem?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     corteId?: boolean
-    operadorId?: boolean
+    operadorMatricula?: boolean
   }
 
-  export type PesagemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "peso" | "tipoPesagem" | "corteId" | "operadorId", ExtArgs["result"]["pesagem"]>
+  export type PesagemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "peso" | "tipoPesagem" | "createdAt" | "updatedAt" | "corteId" | "operadorMatricula", ExtArgs["result"]["pesagem"]>
   export type PesagemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     corte?: boolean | CorteDefaultArgs<ExtArgs>
     operador?: boolean | OperadorDefaultArgs<ExtArgs>
@@ -3489,8 +3566,10 @@ export namespace Prisma {
       id: string
       peso: number
       tipoPesagem: string
+      createdAt: Date
+      updatedAt: Date
       corteId: string
-      operadorId: string
+      operadorMatricula: number
     }, ExtArgs["result"]["pesagem"]>
     composites: {}
   }
@@ -3919,8 +3998,10 @@ export namespace Prisma {
     readonly id: FieldRef<"Pesagem", 'String'>
     readonly peso: FieldRef<"Pesagem", 'Float'>
     readonly tipoPesagem: FieldRef<"Pesagem", 'String'>
+    readonly createdAt: FieldRef<"Pesagem", 'DateTime'>
+    readonly updatedAt: FieldRef<"Pesagem", 'DateTime'>
     readonly corteId: FieldRef<"Pesagem", 'String'>
-    readonly operadorId: FieldRef<"Pesagem", 'String'>
+    readonly operadorMatricula: FieldRef<"Pesagem", 'Int'>
   }
     
 
@@ -4345,8 +4426,9 @@ export namespace Prisma {
 
 
   export const OperadorScalarFieldEnum: {
-    id: 'id',
+    matricula: 'matricula',
     nome: 'nome',
+    valor: 'valor',
     ativo: 'ativo',
     createdAt: 'createdAt'
   };
@@ -4369,8 +4451,10 @@ export namespace Prisma {
     id: 'id',
     peso: 'peso',
     tipoPesagem: 'tipoPesagem',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     corteId: 'corteId',
-    operadorId: 'operadorId'
+    operadorMatricula: 'operadorMatricula'
   };
 
   export type PesagemScalarFieldEnum = (typeof PesagemScalarFieldEnum)[keyof typeof PesagemScalarFieldEnum]
@@ -4398,9 +4482,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
     
 
 
@@ -4423,13 +4521,6 @@ export namespace Prisma {
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
-
-
-  /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
   /**
    * Deep Input Types
    */
@@ -4439,48 +4530,55 @@ export namespace Prisma {
     AND?: OperadorWhereInput | OperadorWhereInput[]
     OR?: OperadorWhereInput[]
     NOT?: OperadorWhereInput | OperadorWhereInput[]
-    id?: StringFilter<"Operador"> | string
+    matricula?: IntFilter<"Operador"> | number
     nome?: StringFilter<"Operador"> | string
+    valor?: DecimalFilter<"Operador"> | Decimal | DecimalJsLike | number | string
     ativo?: BoolFilter<"Operador"> | boolean
     createdAt?: DateTimeFilter<"Operador"> | Date | string
     pesagens?: PesagemListRelationFilter
   }
 
   export type OperadorOrderByWithRelationInput = {
-    id?: SortOrder
+    matricula?: SortOrder
     nome?: SortOrder
+    valor?: SortOrder
     ativo?: SortOrder
     createdAt?: SortOrder
     pesagens?: PesagemOrderByRelationAggregateInput
   }
 
   export type OperadorWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    matricula?: number
     AND?: OperadorWhereInput | OperadorWhereInput[]
     OR?: OperadorWhereInput[]
     NOT?: OperadorWhereInput | OperadorWhereInput[]
     nome?: StringFilter<"Operador"> | string
+    valor?: DecimalFilter<"Operador"> | Decimal | DecimalJsLike | number | string
     ativo?: BoolFilter<"Operador"> | boolean
     createdAt?: DateTimeFilter<"Operador"> | Date | string
     pesagens?: PesagemListRelationFilter
-  }, "id">
+  }, "matricula">
 
   export type OperadorOrderByWithAggregationInput = {
-    id?: SortOrder
+    matricula?: SortOrder
     nome?: SortOrder
+    valor?: SortOrder
     ativo?: SortOrder
     createdAt?: SortOrder
     _count?: OperadorCountOrderByAggregateInput
+    _avg?: OperadorAvgOrderByAggregateInput
     _max?: OperadorMaxOrderByAggregateInput
     _min?: OperadorMinOrderByAggregateInput
+    _sum?: OperadorSumOrderByAggregateInput
   }
 
   export type OperadorScalarWhereWithAggregatesInput = {
     AND?: OperadorScalarWhereWithAggregatesInput | OperadorScalarWhereWithAggregatesInput[]
     OR?: OperadorScalarWhereWithAggregatesInput[]
     NOT?: OperadorScalarWhereWithAggregatesInput | OperadorScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Operador"> | string
+    matricula?: IntWithAggregatesFilter<"Operador"> | number
     nome?: StringWithAggregatesFilter<"Operador"> | string
+    valor?: DecimalWithAggregatesFilter<"Operador"> | Decimal | DecimalJsLike | number | string
     ativo?: BoolWithAggregatesFilter<"Operador"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Operador"> | Date | string
   }
@@ -4547,8 +4645,10 @@ export namespace Prisma {
     id?: StringFilter<"Pesagem"> | string
     peso?: FloatFilter<"Pesagem"> | number
     tipoPesagem?: StringFilter<"Pesagem"> | string
+    createdAt?: DateTimeFilter<"Pesagem"> | Date | string
+    updatedAt?: DateTimeFilter<"Pesagem"> | Date | string
     corteId?: StringFilter<"Pesagem"> | string
-    operadorId?: StringFilter<"Pesagem"> | string
+    operadorMatricula?: IntFilter<"Pesagem"> | number
     corte?: XOR<CorteScalarRelationFilter, CorteWhereInput>
     operador?: XOR<OperadorScalarRelationFilter, OperadorWhereInput>
   }
@@ -4557,8 +4657,10 @@ export namespace Prisma {
     id?: SortOrder
     peso?: SortOrder
     tipoPesagem?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     corteId?: SortOrder
-    operadorId?: SortOrder
+    operadorMatricula?: SortOrder
     corte?: CorteOrderByWithRelationInput
     operador?: OperadorOrderByWithRelationInput
   }
@@ -4570,8 +4672,10 @@ export namespace Prisma {
     NOT?: PesagemWhereInput | PesagemWhereInput[]
     peso?: FloatFilter<"Pesagem"> | number
     tipoPesagem?: StringFilter<"Pesagem"> | string
+    createdAt?: DateTimeFilter<"Pesagem"> | Date | string
+    updatedAt?: DateTimeFilter<"Pesagem"> | Date | string
     corteId?: StringFilter<"Pesagem"> | string
-    operadorId?: StringFilter<"Pesagem"> | string
+    operadorMatricula?: IntFilter<"Pesagem"> | number
     corte?: XOR<CorteScalarRelationFilter, CorteWhereInput>
     operador?: XOR<OperadorScalarRelationFilter, OperadorWhereInput>
   }, "id">
@@ -4580,8 +4684,10 @@ export namespace Prisma {
     id?: SortOrder
     peso?: SortOrder
     tipoPesagem?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     corteId?: SortOrder
-    operadorId?: SortOrder
+    operadorMatricula?: SortOrder
     _count?: PesagemCountOrderByAggregateInput
     _avg?: PesagemAvgOrderByAggregateInput
     _max?: PesagemMaxOrderByAggregateInput
@@ -4596,59 +4702,68 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Pesagem"> | string
     peso?: FloatWithAggregatesFilter<"Pesagem"> | number
     tipoPesagem?: StringWithAggregatesFilter<"Pesagem"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Pesagem"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Pesagem"> | Date | string
     corteId?: StringWithAggregatesFilter<"Pesagem"> | string
-    operadorId?: StringWithAggregatesFilter<"Pesagem"> | string
+    operadorMatricula?: IntWithAggregatesFilter<"Pesagem"> | number
   }
 
   export type OperadorCreateInput = {
-    id: string
+    matricula: number
     nome: string
+    valor: Decimal | DecimalJsLike | number | string
     ativo?: boolean
     createdAt?: Date | string
     pesagens?: PesagemCreateNestedManyWithoutOperadorInput
   }
 
   export type OperadorUncheckedCreateInput = {
-    id: string
+    matricula: number
     nome: string
+    valor: Decimal | DecimalJsLike | number | string
     ativo?: boolean
     createdAt?: Date | string
     pesagens?: PesagemUncheckedCreateNestedManyWithoutOperadorInput
   }
 
   export type OperadorUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    matricula?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pesagens?: PesagemUpdateManyWithoutOperadorNestedInput
   }
 
   export type OperadorUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    matricula?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pesagens?: PesagemUncheckedUpdateManyWithoutOperadorNestedInput
   }
 
   export type OperadorCreateManyInput = {
-    id: string
+    matricula: number
     nome: string
+    valor: Decimal | DecimalJsLike | number | string
     ativo?: boolean
     createdAt?: Date | string
   }
 
   export type OperadorUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    matricula?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OperadorUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    matricula?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4717,6 +4832,8 @@ export namespace Prisma {
     id?: string
     peso: number
     tipoPesagem: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     corte: CorteCreateNestedOneWithoutPesagensInput
     operador: OperadorCreateNestedOneWithoutPesagensInput
   }
@@ -4725,14 +4842,18 @@ export namespace Prisma {
     id?: string
     peso: number
     tipoPesagem: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     corteId: string
-    operadorId: string
+    operadorMatricula: number
   }
 
   export type PesagemUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     peso?: FloatFieldUpdateOperationsInput | number
     tipoPesagem?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     corte?: CorteUpdateOneRequiredWithoutPesagensNestedInput
     operador?: OperadorUpdateOneRequiredWithoutPesagensNestedInput
   }
@@ -4741,30 +4862,49 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     peso?: FloatFieldUpdateOperationsInput | number
     tipoPesagem?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     corteId?: StringFieldUpdateOperationsInput | string
-    operadorId?: StringFieldUpdateOperationsInput | string
+    operadorMatricula?: IntFieldUpdateOperationsInput | number
   }
 
   export type PesagemCreateManyInput = {
     id?: string
     peso: number
     tipoPesagem: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     corteId: string
-    operadorId: string
+    operadorMatricula: number
   }
 
   export type PesagemUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     peso?: FloatFieldUpdateOperationsInput | number
     tipoPesagem?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PesagemUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     peso?: FloatFieldUpdateOperationsInput | number
     tipoPesagem?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     corteId?: StringFieldUpdateOperationsInput | string
-    operadorId?: StringFieldUpdateOperationsInput | string
+    operadorMatricula?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4779,6 +4919,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -4808,24 +4959,53 @@ export namespace Prisma {
   }
 
   export type OperadorCountOrderByAggregateInput = {
-    id?: SortOrder
+    matricula?: SortOrder
     nome?: SortOrder
+    valor?: SortOrder
     ativo?: SortOrder
     createdAt?: SortOrder
   }
 
+  export type OperadorAvgOrderByAggregateInput = {
+    matricula?: SortOrder
+    valor?: SortOrder
+  }
+
   export type OperadorMaxOrderByAggregateInput = {
-    id?: SortOrder
+    matricula?: SortOrder
     nome?: SortOrder
+    valor?: SortOrder
     ativo?: SortOrder
     createdAt?: SortOrder
   }
 
   export type OperadorMinOrderByAggregateInput = {
-    id?: SortOrder
+    matricula?: SortOrder
     nome?: SortOrder
+    valor?: SortOrder
     ativo?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type OperadorSumOrderByAggregateInput = {
+    matricula?: SortOrder
+    valor?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -4843,6 +5023,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -4952,32 +5148,40 @@ export namespace Prisma {
     id?: SortOrder
     peso?: SortOrder
     tipoPesagem?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     corteId?: SortOrder
-    operadorId?: SortOrder
+    operadorMatricula?: SortOrder
   }
 
   export type PesagemAvgOrderByAggregateInput = {
     peso?: SortOrder
+    operadorMatricula?: SortOrder
   }
 
   export type PesagemMaxOrderByAggregateInput = {
     id?: SortOrder
     peso?: SortOrder
     tipoPesagem?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     corteId?: SortOrder
-    operadorId?: SortOrder
+    operadorMatricula?: SortOrder
   }
 
   export type PesagemMinOrderByAggregateInput = {
     id?: SortOrder
     peso?: SortOrder
     tipoPesagem?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     corteId?: SortOrder
-    operadorId?: SortOrder
+    operadorMatricula?: SortOrder
   }
 
   export type PesagemSumOrderByAggregateInput = {
     peso?: SortOrder
+    operadorMatricula?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -5010,8 +5214,24 @@ export namespace Prisma {
     connect?: PesagemWhereUniqueInput | PesagemWhereUniqueInput[]
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -5132,6 +5352,17 @@ export namespace Prisma {
     update?: XOR<XOR<OperadorUpdateToOneWithWhereWithoutPesagensInput, OperadorUpdateWithoutPesagensInput>, OperadorUncheckedUpdateWithoutPesagensInput>
   }
 
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -5144,6 +5375,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -5160,6 +5402,33 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -5179,15 +5448,20 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -5254,17 +5528,6 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[]
@@ -5285,6 +5548,8 @@ export namespace Prisma {
     id?: string
     peso: number
     tipoPesagem: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     corte: CorteCreateNestedOneWithoutPesagensInput
   }
 
@@ -5292,6 +5557,8 @@ export namespace Prisma {
     id?: string
     peso: number
     tipoPesagem: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     corteId: string
   }
 
@@ -5327,14 +5594,18 @@ export namespace Prisma {
     id?: StringFilter<"Pesagem"> | string
     peso?: FloatFilter<"Pesagem"> | number
     tipoPesagem?: StringFilter<"Pesagem"> | string
+    createdAt?: DateTimeFilter<"Pesagem"> | Date | string
+    updatedAt?: DateTimeFilter<"Pesagem"> | Date | string
     corteId?: StringFilter<"Pesagem"> | string
-    operadorId?: StringFilter<"Pesagem"> | string
+    operadorMatricula?: IntFilter<"Pesagem"> | number
   }
 
   export type PesagemCreateWithoutCorteInput = {
     id?: string
     peso: number
     tipoPesagem: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     operador: OperadorCreateNestedOneWithoutPesagensInput
   }
 
@@ -5342,7 +5613,9 @@ export namespace Prisma {
     id?: string
     peso: number
     tipoPesagem: string
-    operadorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    operadorMatricula: number
   }
 
   export type PesagemCreateOrConnectWithoutCorteInput = {
@@ -5392,15 +5665,17 @@ export namespace Prisma {
   }
 
   export type OperadorCreateWithoutPesagensInput = {
-    id: string
+    matricula: number
     nome: string
+    valor: Decimal | DecimalJsLike | number | string
     ativo?: boolean
     createdAt?: Date | string
   }
 
   export type OperadorUncheckedCreateWithoutPesagensInput = {
-    id: string
+    matricula: number
     nome: string
+    valor: Decimal | DecimalJsLike | number | string
     ativo?: boolean
     createdAt?: Date | string
   }
@@ -5449,15 +5724,17 @@ export namespace Prisma {
   }
 
   export type OperadorUpdateWithoutPesagensInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    matricula?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OperadorUncheckedUpdateWithoutPesagensInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    matricula?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5466,6 +5743,8 @@ export namespace Prisma {
     id?: string
     peso: number
     tipoPesagem: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     corteId: string
   }
 
@@ -5473,6 +5752,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     peso?: FloatFieldUpdateOperationsInput | number
     tipoPesagem?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     corte?: CorteUpdateOneRequiredWithoutPesagensNestedInput
   }
 
@@ -5480,6 +5761,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     peso?: FloatFieldUpdateOperationsInput | number
     tipoPesagem?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     corteId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -5487,6 +5770,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     peso?: FloatFieldUpdateOperationsInput | number
     tipoPesagem?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     corteId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -5494,13 +5779,17 @@ export namespace Prisma {
     id?: string
     peso: number
     tipoPesagem: string
-    operadorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    operadorMatricula: number
   }
 
   export type PesagemUpdateWithoutCorteInput = {
     id?: StringFieldUpdateOperationsInput | string
     peso?: FloatFieldUpdateOperationsInput | number
     tipoPesagem?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     operador?: OperadorUpdateOneRequiredWithoutPesagensNestedInput
   }
 
@@ -5508,14 +5797,18 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     peso?: FloatFieldUpdateOperationsInput | number
     tipoPesagem?: StringFieldUpdateOperationsInput | string
-    operadorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    operadorMatricula?: IntFieldUpdateOperationsInput | number
   }
 
   export type PesagemUncheckedUpdateManyWithoutCorteInput = {
     id?: StringFieldUpdateOperationsInput | string
     peso?: FloatFieldUpdateOperationsInput | number
     tipoPesagem?: StringFieldUpdateOperationsInput | string
-    operadorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    operadorMatricula?: IntFieldUpdateOperationsInput | number
   }
 
 

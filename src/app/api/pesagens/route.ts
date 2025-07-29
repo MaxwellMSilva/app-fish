@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     const data = await request.json()
 
-    if (!data.corteId || !data.operadorId || !data.peso) {
+    if (!data.corteId || !data.operadorMatricula || !data.peso) {
       return NextResponse.json({ error: "Dados incompletos. Todos os campos são obrigatórios." }, { status: 400 })
     }
 
@@ -18,12 +18,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Peso inválido. Deve ser um número positivo." }, { status: 400 })
     }
 
+    if (data.corteId === "0001" && data.tipoPesagem === "inicial") {
+      return NextResponse.json({ error: "Para o corte 0001 só é permitido pesagem final." }, { status: 400 })
+    }
+    
     const novaPesagem = await prisma.pesagem.create({
       data: {
         tipoPesagem: data.tipoPesagem,
         corteId: data.corteId,
-        operadorId: data.operadorId,
-        peso: peso
+        operadorMatricula: data.operadorMatricula,
+        peso: peso,
       },
     })
 
@@ -37,8 +41,8 @@ export async function POST(request: NextRequest) {
           return NextResponse.json({ error: "Registro duplicado encontrado." }, { status: 409 })
         case "P2003":
           return NextResponse.json(
-            { error: "Referência inválida. Verifique se o corteId e operadorId existem." },
-            { status: 400 },
+            { error: "Referência inválida. Verifique se o corteId e operadorMatricula existem." },
+            { status: 400 }
           )
         case "P2025":
           return NextResponse.json({ error: "Registro não encontrado." }, { status: 404 })
@@ -56,12 +60,12 @@ export async function GET(request: NextRequest) {
     // Obter parâmetros de consulta
     const url = new URL(request.url)
     const corteId = url.searchParams.get("corteId")
-    const operadorId = url.searchParams.get("operadorId")
+    const operadorMatricula = url.searchParams.get("operadorMatricula")
 
     // Construir filtro baseado nos parâmetros
     const where: any = {}
     if (corteId) where.corteId = corteId
-    if (operadorId) where.operadorId = operadorId
+    if (operadorMatricula) where.operadorMatricula = operadorMatricula
 
     // Buscar pesagens no banco de dados usando Prisma
     const pesagens = await prisma.pesagem.findMany({

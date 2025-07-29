@@ -18,13 +18,13 @@ type Corte = {
 }
 
 type Operador = {
-  id: string
+  matricula: number
   nome: string
 }
 
 type ProcessoFormData = {
   tipoPesagem: "" | "inicial" | "final"
-  operadorId: string
+  operadorMatricula: string
   peso: string
 }
 
@@ -37,7 +37,7 @@ type PesagemFormProps = {
 export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
   const [processoFormData, setProcessoFormData] = useState<ProcessoFormData>({
     tipoPesagem: "",
-    operadorId: "",
+    operadorMatricula: "",
     peso: "",
   })
   const [submittingProcesso, setSubmittingProcesso] = useState(false)
@@ -60,7 +60,6 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
       setOperadorStatus("loading")
   
       const url = `/api/operadores/${encodeURIComponent(id)}`
-      console.log("Verificando operador na URL:", url)
   
       const response = await fetch(url)
   
@@ -74,7 +73,6 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
       }
   
       const data = await response.json()
-      console.log("Resposta da API:", data)
   
       if (data.exists && data.operador) {
         setOperadorEncontrado(data.operador)
@@ -99,7 +97,7 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
     setProcessoFormData((prev) => ({ ...prev, [id]: value }))
 
     // Verificar operador quando o código é digitado
-    if (id === "operadorId" && value.trim()) {
+    if (id === "operadorMatricula" && value.trim()) {
       // Usar debounce para evitar muitas requisições
       const timeoutId = setTimeout(() => {
         verificarOperador(value)
@@ -111,14 +109,14 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
 
   // Efeito para verificar operador quando o código muda
   useEffect(() => {
-    if (!processoFormData.operadorId.trim()) return
+    if (!processoFormData.operadorMatricula.trim()) return
   
     const timeoutId = setTimeout(() => {
-      verificarOperador(processoFormData.operadorId)
+      verificarOperador(processoFormData.operadorMatricula)
     }, 300)
   
     return () => clearTimeout(timeoutId)
-  }, [processoFormData.operadorId])
+  }, [processoFormData.operadorMatricula])
 
   // Manipular mudança no tipo de pesagem
   const handleTipoPesagemChange = (value: "" | "inicial" | "final") => {
@@ -132,7 +130,7 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
     if (!corte) return
 
     // Validar formulário
-    if (!processoFormData.operadorId.trim()) {
+    if (!processoFormData.operadorMatricula.trim()) {
       toast.error("O código do operador é obrigatório", {
         duration: 2000
       })
@@ -172,7 +170,7 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
         },
         body: JSON.stringify({
           corteId: corte.id,
-          operadorId: processoFormData.operadorId,
+          operadorMatricula: parseInt(processoFormData.operadorMatricula, 10), // ✅ Convertendo aqui
           peso: pesoNum,
           tipoPesagem: processoFormData.tipoPesagem,
         }),
@@ -191,16 +189,13 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
         throw new Error(errorMessage)
       }
 
-      const data = await response.json()
-      console.log("Pesagem registrada:", data.pesagem)
-
       toast.success(`Processo de pesagem ${processoFormData.tipoPesagem} registrado com sucesso`, {
         duration: 2000
       })
 
       setProcessoFormData({
-        tipoPesagem: "",
-        operadorId: "",
+        tipoPesagem: corte?.id === "0001" ? "final" : "",
+        operadorMatricula: "",
         peso: "",
       })
       setOperadorEncontrado(null)
@@ -218,7 +213,7 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
   const handleCancel = () => {
     setProcessoFormData({
       tipoPesagem: "",
-      operadorId: "",
+      operadorMatricula: "",
       peso: "",
     })
     setOperadorEncontrado(null)
@@ -231,13 +226,22 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
     if (formRef.current && !formRef.current.contains(e.target as Node)) {
       setProcessoFormData({
         tipoPesagem: "",
-        operadorId: "",
+        operadorMatricula: "",
         peso: "",
       })
       setOperadorEncontrado(null)
       setOperadorStatus("idle")
     }
   }
+
+  useEffect(() => {
+  if (corte?.id === "0001") {
+    setProcessoFormData((prev) => ({
+      ...prev,
+      tipoPesagem: "final",
+    }))
+  }
+}, [corte])
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside)
@@ -281,7 +285,11 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
               className="flex gap-4"
             >
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="inicial" id="pesagem-inicial" />
+                <RadioGroupItem
+                  value="inicial"
+                  id="pesagem-inicial"
+                  disabled={corte?.id === "0001"} // ✅ Desativa quando for 0001
+                />
                 <Label htmlFor="pesagem-inicial" className="font-normal">Pesagem Inicial</Label>
               </div>
               <div className="flex items-center space-x-2">
@@ -292,12 +300,12 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="operadorId" className="font-semibold">Código do Operador:</Label>
+            <Label htmlFor="operadorMatricula" className="font-semibold">Código do Operador:</Label>
             <div className="relative">
             <Input
-              id="operadorId"
-              name="operadorId"
-              value={processoFormData.operadorId}
+              id="operadorMatricula"
+              name="operadorMatricula"
+              value={processoFormData.operadorMatricula}
               onChange={handleProcessoChange}
               onInput={(e) => {
                 const target = e.target as HTMLInputElement;
@@ -307,7 +315,7 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
               className={`pr-10 ${
                 operadorStatus === "success"
                   ? "border-green-500 focus-visible:ring-green-500"
-                  : operadorStatus === "error" && processoFormData.operadorId
+                  : operadorStatus === "error" && processoFormData.operadorMatricula
                   ? "border-red-500 focus-visible:ring-red-500"
                   : ""
               }`}
@@ -322,7 +330,7 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
               {operadorStatus === "success" && (
                 <CheckCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 text-green-500 h-5 w-5" />
               )}
-              {operadorStatus === "error" && processoFormData.operadorId && (
+              {operadorStatus === "error" && processoFormData.operadorMatricula && (
                 <XCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-500 h-5 w-5" />
               )}
             </div>
@@ -331,7 +339,7 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
                 Operador: <span className="font-medium">{operadorEncontrado.nome}</span>
               </p>
             )}
-            {operadorStatus === "error" && processoFormData.operadorId && (
+            {operadorStatus === "error" && processoFormData.operadorMatricula && (
               <p className="text-sm text-red-600 mt-1">Operador não encontrado</p>
             )}
           </div>
@@ -360,7 +368,7 @@ export function PesagemForm({ corte, onCancel }: PesagemFormProps) {
             className="bg-green-500 hover:bg-green-600 cursor-pointer font-semibold"
             disabled={submittingProcesso || 
                       (!processoFormData.tipoPesagem) ||
-                      (!!processoFormData.operadorId && operadorStatus === "error") || 
+                      (!!processoFormData.operadorMatricula && operadorStatus === "error") || 
                         !processoFormData.peso.trim() || isNaN(Number(processoFormData.peso)) || Number(processoFormData.peso) <= 0}
           >
             {submittingProcesso ? "Salvando..." : "Confirmar"}

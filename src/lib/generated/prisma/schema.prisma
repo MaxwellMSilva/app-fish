@@ -9,8 +9,9 @@ datasource db {
 }
 
 model Operador {
-  id        String   @id
+  matricula Int      @id
   nome      String
+  valor     Decimal
   ativo     Boolean  @default(true)
   createdAt DateTime @default(now())
 
@@ -28,14 +29,16 @@ model Corte {
 }
 
 model Pesagem {
-  id          String @id @default(uuid())
+  id          String   @id @default(uuid())
   peso        Float
   tipoPesagem String // "inicial" ou "final"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   // Relações
   corte   Corte  @relation(fields: [corteId], references: [id])
   corteId String
 
-  operador   Operador @relation(fields: [operadorId], references: [id])
-  operadorId String
+  operador          Operador @relation(fields: [operadorMatricula], references: [matricula])
+  operadorMatricula Int
 }

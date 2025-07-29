@@ -19,58 +19,89 @@ export async function GET(request: NextRequest) {
       include: {
         pesagens: {
           where: {
-            tipoPesagem: {
-              in: ['inicial', 'final'],
+            tipoPesagem: corteId === "0001" ? "final" : { in: ["inicial", "final"] },
+            createdAt: {
+              gte: dataInicial,
+              lte: dataFinal,
             },
-            corte: {
-              ...(corteId && { id: corteId }),
-              createdAt: {
-                gte: dataInicial,
-                lte: dataFinal,
-              },
-            },
+            ...(corteId && corteId !== "todos" && { corteId }),
+          },
+          orderBy: {
+            createdAt: "asc",
           },
         },
       },
     })
 
-    const operadoresComPerda = operadores.map((operador) => {
-      const pesagensIniciais = operador.pesagens.filter(p => p.tipoPesagem === 'inicial')
-      const pesagensFinais = operador.pesagens.filter(p => p.tipoPesagem === 'final')
-    
-      let totalPerdaKg = 0
-      let totalPesoInicial = 0
-      let totalPesoFinal = 0
-    
-      pesagensIniciais.forEach((pesagemInicial, index) => {
-        const pesagemFinal = pesagensFinais[index]
-        if (pesagemFinal && pesagemInicial.peso && pesagemFinal.peso) {
-          const perdaKg = pesagemInicial.peso - pesagemFinal.peso
-          totalPerdaKg += perdaKg
-          totalPesoInicial += pesagemInicial.peso
-          totalPesoFinal += pesagemFinal.peso
+    const operadoresProcessados = operadores.map((operador) => {
+      if (corteId === "0001") {
+        // Só pesagens finais
+        const pesagensFinais = operador.pesagens.filter((p) => p.tipoPesagem === "final")
+        const totalPesoFinal = pesagensFinais.reduce((sum, p) => sum + p.peso, 0)
+
+        return {
+          matricula: operador.matricula,
+          nome: operador.nome,
+          pesagens: operador.pesagens,
+          mediaPerdaKg: "0.00",
+          mediaRendimento: "100.00",
+          mediaPorcentagem: "0.00",
+          totalPesoProcessado: parseFloat(totalPesoFinal.toFixed(2)),
         }
-      })
-    
-      const mediaPerdaKg = totalPerdaKg.toFixed(2)
-      const mediaRendimento = totalPesoInicial > 0
-        ? ((totalPesoFinal / totalPesoInicial) * 100)
-        : 0
-      const mediaPorcentagem = totalPesoInicial > 0
-        ? (totalPerdaKg / totalPesoInicial) * 100
-        : 0
-    
-      return {
-        ...operador,
-        mediaPerdaKg,
-        mediaRendimento: mediaRendimento.toFixed(2),
-        mediaPorcentagem: mediaPorcentagem.toFixed(2),
-        totalPesoProcessado: parseFloat(totalPesoInicial.toFixed(2)),
+      } else {
+        // Comparação inicial x final
+        const gruposPorCorte = new Map<string, { iniciais: number[]; finais: number[] }>()
+
+        operador.pesagens.forEach((pesagem) => {
+          if (!gruposPorCorte.has(pesagem.corteId)) {
+            gruposPorCorte.set(pesagem.corteId, { iniciais: [], finais: [] })
+          }
+          const grupo = gruposPorCorte.get(pesagem.corteId)!
+          if (pesagem.tipoPesagem === "inicial") {
+            grupo.iniciais.push(pesagem.peso)
+          } else if (pesagem.tipoPesagem === "final") {
+            grupo.finais.push(pesagem.peso)
+          }
+        })
+
+        let totalPerdaKg = 0
+        let totalPesoInicial = 0
+        let totalPesoFinal = 0
+
+        gruposPorCorte.forEach((grupo) => {
+          const pares = Math.min(grupo.iniciais.length, grupo.finais.length)
+
+          for (let i = 0; i < pares; i++) {
+            const pesoInicial = grupo.iniciais[i]
+            const pesoFinal = grupo.finais[i]
+
+            if (pesoInicial && pesoFinal) {
+              const perdaKg = pesoInicial - pesoFinal
+              totalPerdaKg += perdaKg
+              totalPesoInicial += pesoInicial
+              totalPesoFinal += pesoFinal
+            }
+          }
+        })
+
+        const mediaPerdaKg = totalPerdaKg.toFixed(2)
+        const mediaRendimento = totalPesoInicial > 0 ? ((totalPesoFinal / totalPesoInicial) * 100).toFixed(2) : "0.00"
+        const mediaPorcentagem = totalPesoInicial > 0 ? ((totalPerdaKg / totalPesoInicial) * 100).toFixed(2) : "0.00"
+
+        return {
+          matricula: operador.matricula,
+          nome: operador.nome,
+          pesagens: operador.pesagens,
+          mediaPerdaKg,
+          mediaRendimento,
+          mediaPorcentagem,
+          totalPesoProcessado: parseFloat(totalPesoInicial.toFixed(2)),
+        }
       }
     })
 
-    const operadoresFiltrados = operadoresComPerda.filter((operador) => {
-      return parseFloat(operador.mediaPerdaKg) > 0 && operador.totalPesoProcessado > 0
+    const operadoresFiltrados = operadoresProcessados.filter((operador) => {
+      return operador.totalPesoProcessado > 0
     })
 
     const ranking = operadoresFiltrados.sort((a, b) => {
@@ -83,7 +114,5 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Erro ao buscar ranking:", error)
     return NextResponse.json({ error: "Erro ao buscar ranking" }, { status: 500 })
-  } finally {
-    await prisma.$disconnect()
   }
 }

@@ -10,7 +10,7 @@ import { toast } from "sonner"
 
 interface EtiquetaModalProps {
   operador: {
-    id: string
+    matricula: number
     nome: string
   }
   onCancel: () => void
@@ -110,7 +110,7 @@ export function EtiquetaModal({ operador, onCancel, isOpen }: EtiquetaModalProps
             (_, index) => `
           <div class="etiqueta-container">
             <div class="nome">${operador.nome}</div>
-            <div class="id">ID: ${operador.id}</div>
+            <div class="id">ID: ${operador.matricula}</div>
             <div class="barcode">
               <svg id="barcode-${index}"></svg>
             </div>
@@ -126,7 +126,7 @@ export function EtiquetaModal({ operador, onCancel, isOpen }: EtiquetaModalProps
             .fill(0)
             .map(
               (_, index) => `
-            JsBarcode("#barcode-${index}", "${operador.id}", {
+            JsBarcode("#barcode-${index}", "${operador.matricula}", {
               format: "CODE128",
               width: 2,
               height: 50,
@@ -201,7 +201,7 @@ export function EtiquetaModal({ operador, onCancel, isOpen }: EtiquetaModalProps
           <Label htmlFor="id" className="text-right font-semibold">
             ID:
           </Label>
-          <div className="col-span-3 ml-2">{operador.id}</div>
+          <div className="col-span-3 ml-2">{operador.matricula}</div>
         </div>
 
         <div className="grid grid-cols-4 items-center gap-4">

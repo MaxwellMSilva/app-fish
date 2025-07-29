@@ -66,7 +66,7 @@ export function AdminLayout({ children, activeTab }: AdminLayoutProps) {
                 <Fish size={18} />
                 <span>Cortes</span>
               </Link>
-              <Link
+              {/* <Link
                 href="/ranking"
                 className={`flex items-center gap-2 px-3 py-2 rounded-md transition-all duration-300 ease-in-out ${
                   activeTab === "ranking" ? "bg-blue-50 text-blue-600" : "text-gray-700"
@@ -76,14 +76,14 @@ export function AdminLayout({ children, activeTab }: AdminLayoutProps) {
                 <span>Ranking</span>
               </Link>
               <Link
-                href="/dashboard"
+                href="/relatorios"
                 className={`flex items-center gap-2 px-3 py-2 rounded-md transition-all duration-300 ease-in-out ${
-                  activeTab === "dashboard" ? "bg-blue-50 text-blue-600" : "text-gray-700"
+                  activeTab === "relatorios" ? "bg-blue-50 text-blue-600" : "text-gray-700"
                 }`}
               >
                 <BarChart3 size={18} />
-                <span>Dashboard</span>
-              </Link>
+                <span>Relatórios</span>
+              </Link> */}
             </nav>
           </aside>
         )}
