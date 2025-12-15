@@ -19,7 +19,13 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table"
-import { Download, FileText, Image as ImageIcon, Filter } from "lucide-react"
+import {
+  Download,
+  FileText,
+  Image as ImageIcon,
+  Filter,
+  Calendar,
+} from "lucide-react"
 import html2canvas from "html2canvas"
 import jsPDF from "jspdf"
 import {
@@ -31,6 +37,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts"
+import { Card, CardContent } from "@/components/ui/card"
 
 interface RelatorioItem {
   matricula: number
@@ -49,93 +56,70 @@ export function RelatoriosContent() {
 
   const handleGerarRelatorio = async () => {
     if (!dataInicial || !dataFinal || !corteId) {
-      alert("Por favor, preencha todos os filtros!")
+      alert("Preencha todos os filtros")
       return
     }
 
-    try {
-      const queryParams = new URLSearchParams()
-      queryParams.append("dataInicial", dataInicial)
-      queryParams.append("dataFinal", dataFinal)
-      queryParams.append("corteId", corteId)
-
-      const response = await fetch(`/api/relatorios?${queryParams.toString()}`)
-      if (!response.ok) {
-        const err = await response.json()
-        alert("Erro ao buscar dados: " + (err.error ?? "Erro desconhecido"))
-        return
-      }
-      const data: RelatorioItem[] = await response.json()
-      setRelatorioData(data)
-    } catch (error) {
-      console.error("Erro ao gerar relatório:", error)
-      alert("Erro ao gerar relatório. Veja o console.")
+    const params = new URLSearchParams({ dataInicial, dataFinal, corteId })
+    const res = await fetch(`/api/relatorios?${params.toString()}`)
+    if (!res.ok) {
+      alert("Erro ao buscar relatório")
+      return
     }
+
+    setRelatorioData(await res.json())
   }
 
   const handleExportarCSV = () => {
-    if (relatorioData.length === 0) {
-      alert("Nenhum dado para exportar.")
-      return
-    }
+    if (!relatorioData.length) return
 
-    const header = ["Matrícula", "Nome", "Total KG", "Valor Total (R$)"]
-    const rows = relatorioData.map((item) => [
-      item.matricula,
-      item.nome,
-      item.totalKg.toFixed(2),
-      item.valorTotal.toLocaleString("pt-BR", {
+    const header = ["Matrícula", "Nome", "Total KG", "Valor Total"]
+    const rows = relatorioData.map((i) => [
+      i.matricula,
+      i.nome,
+      i.totalKg.toFixed(2),
+      i.valorTotal.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL",
       }),
     ])
 
-    const csvContent = [header, ...rows].map((e) => e.join(";")).join("\n")
-
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
+    const csv = [header, ...rows].map((r) => r.join(";")).join("\n")
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" })
     const url = URL.createObjectURL(blob)
 
     const link = document.createElement("a")
     link.href = url
-    link.setAttribute("download", "relatorio.csv")
-    document.body.appendChild(link)
+    link.download = "relatorio.csv"
     link.click()
-    document.body.removeChild(link)
   }
 
   const handleExportarPDF = () => {
-    if (relatorioData.length === 0) {
-      alert("Nenhum dado para exportar.")
-      return
-    }
+    if (!relatorioData.length) return
 
     const pdf = new jsPDF()
-    pdf.setFontSize(14)
     pdf.text("Relatório de Operadores", 10, 10)
 
     let y = 20
-    relatorioData.forEach((item) => {
+    relatorioData.forEach((i) => {
       pdf.text(
-        `${item.matricula} - ${item.nome} | ${item.totalKg.toFixed(
+        `${i.matricula} - ${i.nome} | ${i.totalKg.toFixed(
           2
-        )} kg | ${item.valorTotal.toLocaleString("pt-BR", {
+        )} kg | ${i.valorTotal.toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
         })}`,
         10,
         y
       )
-      y += 10
+      y += 8
     })
 
     pdf.save("relatorio.pdf")
   }
 
   const handleExportarGrafico = async () => {
-    if (!chartRef.current) {
-      alert("Nenhum gráfico para exportar.")
-      return
-    }
+    if (!chartRef.current) return
     const canvas = await html2canvas(chartRef.current)
     const link = document.createElement("a")
     link.href = canvas.toDataURL("image/png")
@@ -144,134 +128,150 @@ export function RelatoriosContent() {
   }
 
   return (
-    <div className="p-6 space-y-8 max-w-7xl mx-auto">
-      {/* Filtros */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-        <div>
-          <Label>Data Inicial</Label>
-          <Input
-            type="date"
-            value={dataInicial}
-            onChange={(e) => setDataInicial(e.target.value)}
-          />
-        </div>
+    <div className="space-y-8">
+      {/* HEADER PADRÃO RANKING */}
+      <Card className="border-gray-200 shadow-sm">
+        <CardContent className="p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div>
+              <h1 className="text-2xl font-bold">Relatórios</h1>
+              <p className="text-gray-500 text-sm">
+                Análise de desempenho por operador
+              </p>
+            </div>
 
-        <div>
-          <Label>Data Final</Label>
-          <Input
-            type="date"
-            value={dataFinal}
-            onChange={(e) => setDataFinal(e.target.value)}
-          />
-        </div>
+            <div className="space-y-2">
+              <Label>Data Inicial</Label>
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  type="date"
+                  className="pl-10"
+                  value={dataInicial}
+                  onChange={(e) => setDataInicial(e.target.value)}
+                />
+              </div>
+            </div>
 
-        <div>
-          <Label>Corte</Label>
-          <Select value={corteId} onValueChange={setCorteId}>
-            <SelectTrigger>
-              <SelectValue placeholder="Selecione um corte" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="0001">Corte 0001</SelectItem>
-              <SelectItem value="0002">Corte 0002</SelectItem>
-              <SelectItem value="0003">Corte 0003</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+            <div className="space-y-2">
+              <Label>Data Final</Label>
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  type="date"
+                  className="pl-10"
+                  value={dataFinal}
+                  onChange={(e) => setDataFinal(e.target.value)}
+                />
+              </div>
+            </div>
 
-        <div>
-          <Button
-            className="w-full bg-green-600 hover:bg-green-700"
-            onClick={handleGerarRelatorio}
-          >
-            <Filter className="mr-2 h-4 w-4" />
-            Filtrar
-          </Button>
-        </div>
-      </div>
+            <div className="space-y-2">
+              <Label>Corte</Label>
+              <Select value={corteId} onValueChange={setCorteId}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecione um corte" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="0001">Corte 0001</SelectItem>
+                  <SelectItem value="0002">Corte 0002</SelectItem>
+                  <SelectItem value="0003">Corte 0003</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
 
-      {/* Ações de exportação */}
+          <div className="mt-6">
+            <Button
+              className="bg-green-600 hover:bg-green-700 w-full sm:w-auto"
+              onClick={handleGerarRelatorio}
+            >
+              <Filter className="mr-2 h-4 w-4" />
+              Filtrar
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* EXPORTAÇÕES */}
       {relatorioData.length > 0 && (
-        <div className="flex gap-4">
-          <Button
-            onClick={handleExportarCSV}
-            variant="outline"
-            className="flex items-center gap-2"
-          >
-            <Download className="w-4 h-4" />
-            Exportar CSV
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button variant="outline" onClick={handleExportarCSV}>
+            <Download className="mr-2 h-4 w-4" />
+            CSV
           </Button>
-          <Button
-            onClick={handleExportarPDF}
-            variant="outline"
-            className="flex items-center gap-2"
-          >
-            <FileText className="w-4 h-4" />
-            Exportar PDF
+          <Button variant="outline" onClick={handleExportarPDF}>
+            <FileText className="mr-2 h-4 w-4" />
+            PDF
           </Button>
-          <Button
-            onClick={handleExportarGrafico}
-            variant="outline"
-            className="flex items-center gap-2"
-          >
-            <ImageIcon className="w-4 h-4" />
-            Exportar Gráfico
+          <Button variant="outline" onClick={handleExportarGrafico}>
+            <ImageIcon className="mr-2 h-4 w-4" />
+            Gráfico
           </Button>
         </div>
       )}
 
-      {/* Tabela */}
-      {relatorioData.length > 0 ? (
-        <Table className="mt-4">
-          <TableHead>
-            <TableRow>
-              <TableHeader>Matrícula</TableHeader>
-              <TableHeader>Nome</TableHeader>
-              <TableHeader>Total KG</TableHeader>
-              <TableHeader>Valor Total (R$)</TableHeader>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {relatorioData.map((item) => (
-              <TableRow key={item.matricula}>
-                <TableCell>{item.matricula}</TableCell>
-                <TableCell>{item.nome}</TableCell>
-                <TableCell>{item.totalKg.toFixed(2)}</TableCell>
-                <TableCell>
-                  {item.valorTotal.toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  })}
-                </TableCell>
+      {/* MOBILE – CARDS */}
+      {relatorioData.length > 0 && (
+        <div className="sm:hidden space-y-3">
+          {relatorioData.map((i) => (
+            <div key={i.matricula} className="border rounded-md p-4 bg-white">
+              <p className="font-semibold">{i.nome}</p>
+              <p className="text-sm text-gray-500">
+                Matrícula: {i.matricula}
+              </p>
+              <p className="mt-1">Total: {i.totalKg.toFixed(2)} kg</p>
+              <p className="font-semibold">
+                {i.valorTotal.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* DESKTOP – TABELA */}
+      {relatorioData.length > 0 && (
+        <div className="hidden sm:block">
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableHeader>Matrícula</TableHeader>
+                <TableHeader>Nome</TableHeader>
+                <TableHeader>Total KG</TableHeader>
+                <TableHeader>Valor Total</TableHeader>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      ) : (
-        <p className="text-center mt-6 text-muted-foreground">
-          Nenhum dado para mostrar.
-        </p>
+            </TableHead>
+            <TableBody>
+              {relatorioData.map((i) => (
+                <TableRow key={i.matricula}>
+                  <TableCell>{i.matricula}</TableCell>
+                  <TableCell>{i.nome}</TableCell>
+                  <TableCell>{i.totalKg.toFixed(2)}</TableCell>
+                  <TableCell>
+                    {i.valorTotal.toLocaleString("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       )}
 
-      {/* Gráfico */}
+      {/* GRÁFICO */}
       {relatorioData.length > 0 && (
-        <div
-          ref={chartRef}
-          className="mt-10 h-64 w-full bg-white p-4 rounded-md shadow-md"
-        >
+        <div ref={chartRef} className="bg-white border rounded-md p-4 h-72">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={relatorioData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
+            <BarChart data={relatorioData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="nome" />
               <YAxis />
-              <Tooltip
-                formatter={(value: number) =>
-                  value.toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  })
-                }
-              />
+              <Tooltip />
               <Bar dataKey="totalKg" fill="#22c55e" />
             </BarChart>
           </ResponsiveContainer>
