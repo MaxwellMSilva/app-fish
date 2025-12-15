@@ -42,3 +42,62 @@ model Pesagem {
   operador          Operador @relation(fields: [operadorMatricula], references: [matricula])
   operadorMatricula Int
 }
+
+model Especie {
+  id   String @id @default(uuid())
+  nome String
+
+  faixas EspecieFaixaPeso[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([nome])
+}
+
+model EspecieFaixaPeso {
+  id String @id @default(uuid())
+
+  especie   Especie @relation(fields: [especieId], references: [id])
+  especieId String
+
+  pesoMin Decimal
+  pesoMax Decimal
+
+  valoresFornecedor FornecedorValorEspecie[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([especieId, pesoMin, pesoMax])
+}
+
+model Fornecedor {
+  id      String @id @default(uuid())
+  nome    String
+  fazenda String
+
+  valores FornecedorValorEspecie[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([nome, fazenda])
+}
+
+model FornecedorValorEspecie {
+  id String @id @default(uuid())
+
+  fornecedor   Fornecedor @relation(fields: [fornecedorId], references: [id])
+  fornecedorId String
+
+  faixaPeso   EspecieFaixaPeso @relation(fields: [faixaPesoId], references: [id])
+  faixaPesoId String
+
+  valorKg Decimal
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([fornecedorId, faixaPesoId])
+}

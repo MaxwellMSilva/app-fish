@@ -116,6 +116,39 @@ exports.Prisma.PesagemScalarFieldEnum = {
   operadorMatricula: 'operadorMatricula'
 };
 
+exports.Prisma.EspecieScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EspecieFaixaPesoScalarFieldEnum = {
+  id: 'id',
+  especieId: 'especieId',
+  pesoMin: 'pesoMin',
+  pesoMax: 'pesoMax',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FornecedorScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  fazenda: 'fazenda',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FornecedorValorEspecieScalarFieldEnum = {
+  id: 'id',
+  fornecedorId: 'fornecedorId',
+  faixaPesoId: 'faixaPesoId',
+  valorKg: 'valorKg',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -130,7 +163,11 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   Operador: 'Operador',
   Corte: 'Corte',
-  Pesagem: 'Pesagem'
+  Pesagem: 'Pesagem',
+  Especie: 'Especie',
+  EspecieFaixaPeso: 'EspecieFaixaPeso',
+  Fornecedor: 'Fornecedor',
+  FornecedorValorEspecie: 'FornecedorValorEspecie'
 };
 /**
  * Create the Client
@@ -179,13 +216,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/lib/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Operador {\n  matricula Int      @id\n  nome      String\n  valor     Decimal\n  ativo     Boolean  @default(true)\n  createdAt DateTime @default(now())\n\n  pesagens Pesagem[]\n}\n\nmodel Corte {\n  id        String   @id\n  nome      String   @unique\n  imagem    String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  pesagens Pesagem[]\n}\n\nmodel Pesagem {\n  id          String   @id @default(uuid())\n  peso        Float\n  tipoPesagem String // \"inicial\" ou \"final\"\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relações\n  corte   Corte  @relation(fields: [corteId], references: [id])\n  corteId String\n\n  operador          Operador @relation(fields: [operadorMatricula], references: [matricula])\n  operadorMatricula Int\n}\n",
-  "inlineSchemaHash": "99920c6b1f6813fd8fe5565073a01eea94ae9d780e57db9c61b661db89811fbb",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/lib/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Operador {\n  matricula Int      @id\n  nome      String\n  valor     Decimal\n  ativo     Boolean  @default(true)\n  createdAt DateTime @default(now())\n\n  pesagens Pesagem[]\n}\n\nmodel Corte {\n  id        String   @id\n  nome      String   @unique\n  imagem    String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  pesagens Pesagem[]\n}\n\nmodel Pesagem {\n  id          String   @id @default(uuid())\n  peso        Float\n  tipoPesagem String // \"inicial\" ou \"final\"\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relações\n  corte   Corte  @relation(fields: [corteId], references: [id])\n  corteId String\n\n  operador          Operador @relation(fields: [operadorMatricula], references: [matricula])\n  operadorMatricula Int\n}\n\nmodel Especie {\n  id   String @id @default(uuid())\n  nome String\n\n  faixas EspecieFaixaPeso[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([nome])\n}\n\nmodel EspecieFaixaPeso {\n  id String @id @default(uuid())\n\n  especie   Especie @relation(fields: [especieId], references: [id])\n  especieId String\n\n  pesoMin Decimal\n  pesoMax Decimal\n\n  valoresFornecedor FornecedorValorEspecie[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([especieId, pesoMin, pesoMax])\n}\n\nmodel Fornecedor {\n  id      String @id @default(uuid())\n  nome    String\n  fazenda String\n\n  valores FornecedorValorEspecie[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([nome, fazenda])\n}\n\nmodel FornecedorValorEspecie {\n  id String @id @default(uuid())\n\n  fornecedor   Fornecedor @relation(fields: [fornecedorId], references: [id])\n  fornecedorId String\n\n  faixaPeso   EspecieFaixaPeso @relation(fields: [faixaPesoId], references: [id])\n  faixaPesoId String\n\n  valorKg Decimal\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([fornecedorId, faixaPesoId])\n}\n",
+  "inlineSchemaHash": "a8ce00c16459fa6d990ce41c6ef1412bfd15fb33edf867b49140c58ea2ceca8c",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Operador\":{\"fields\":[{\"name\":\"matricula\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"valor\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"ativo\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"pesagens\",\"kind\":\"object\",\"type\":\"Pesagem\",\"relationName\":\"OperadorToPesagem\"}],\"dbName\":null},\"Corte\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"imagem\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"pesagens\",\"kind\":\"object\",\"type\":\"Pesagem\",\"relationName\":\"CorteToPesagem\"}],\"dbName\":null},\"Pesagem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"peso\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"tipoPesagem\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"corte\",\"kind\":\"object\",\"type\":\"Corte\",\"relationName\":\"CorteToPesagem\"},{\"name\":\"corteId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"operador\",\"kind\":\"object\",\"type\":\"Operador\",\"relationName\":\"OperadorToPesagem\"},{\"name\":\"operadorMatricula\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Operador\":{\"fields\":[{\"name\":\"matricula\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"valor\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"ativo\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"pesagens\",\"kind\":\"object\",\"type\":\"Pesagem\",\"relationName\":\"OperadorToPesagem\"}],\"dbName\":null},\"Corte\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"imagem\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"pesagens\",\"kind\":\"object\",\"type\":\"Pesagem\",\"relationName\":\"CorteToPesagem\"}],\"dbName\":null},\"Pesagem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"peso\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"tipoPesagem\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"corte\",\"kind\":\"object\",\"type\":\"Corte\",\"relationName\":\"CorteToPesagem\"},{\"name\":\"corteId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"operador\",\"kind\":\"object\",\"type\":\"Operador\",\"relationName\":\"OperadorToPesagem\"},{\"name\":\"operadorMatricula\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null},\"Especie\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"faixas\",\"kind\":\"object\",\"type\":\"EspecieFaixaPeso\",\"relationName\":\"EspecieToEspecieFaixaPeso\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"EspecieFaixaPeso\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"especie\",\"kind\":\"object\",\"type\":\"Especie\",\"relationName\":\"EspecieToEspecieFaixaPeso\"},{\"name\":\"especieId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pesoMin\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"pesoMax\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"valoresFornecedor\",\"kind\":\"object\",\"type\":\"FornecedorValorEspecie\",\"relationName\":\"EspecieFaixaPesoToFornecedorValorEspecie\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Fornecedor\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nome\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fazenda\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"valores\",\"kind\":\"object\",\"type\":\"FornecedorValorEspecie\",\"relationName\":\"FornecedorToFornecedorValorEspecie\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"FornecedorValorEspecie\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fornecedor\",\"kind\":\"object\",\"type\":\"Fornecedor\",\"relationName\":\"FornecedorToFornecedorValorEspecie\"},{\"name\":\"fornecedorId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"faixaPeso\",\"kind\":\"object\",\"type\":\"EspecieFaixaPeso\",\"relationName\":\"EspecieFaixaPesoToFornecedorValorEspecie\"},{\"name\":\"faixaPesoId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"valorKg\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

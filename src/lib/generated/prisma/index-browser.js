@@ -144,6 +144,39 @@ exports.Prisma.PesagemScalarFieldEnum = {
   operadorMatricula: 'operadorMatricula'
 };
 
+exports.Prisma.EspecieScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EspecieFaixaPesoScalarFieldEnum = {
+  id: 'id',
+  especieId: 'especieId',
+  pesoMin: 'pesoMin',
+  pesoMax: 'pesoMax',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FornecedorScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  fazenda: 'fazenda',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FornecedorValorEspecieScalarFieldEnum = {
+  id: 'id',
+  fornecedorId: 'fornecedorId',
+  faixaPesoId: 'faixaPesoId',
+  valorKg: 'valorKg',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -158,7 +191,11 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   Operador: 'Operador',
   Corte: 'Corte',
-  Pesagem: 'Pesagem'
+  Pesagem: 'Pesagem',
+  Especie: 'Especie',
+  EspecieFaixaPeso: 'EspecieFaixaPeso',
+  Fornecedor: 'Fornecedor',
+  FornecedorValorEspecie: 'FornecedorValorEspecie'
 };
 
 /**

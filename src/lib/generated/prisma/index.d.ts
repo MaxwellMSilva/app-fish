@@ -28,6 +28,26 @@ export type Corte = $Result.DefaultSelection<Prisma.$CortePayload>
  * 
  */
 export type Pesagem = $Result.DefaultSelection<Prisma.$PesagemPayload>
+/**
+ * Model Especie
+ * 
+ */
+export type Especie = $Result.DefaultSelection<Prisma.$EspeciePayload>
+/**
+ * Model EspecieFaixaPeso
+ * 
+ */
+export type EspecieFaixaPeso = $Result.DefaultSelection<Prisma.$EspecieFaixaPesoPayload>
+/**
+ * Model Fornecedor
+ * 
+ */
+export type Fornecedor = $Result.DefaultSelection<Prisma.$FornecedorPayload>
+/**
+ * Model FornecedorValorEspecie
+ * 
+ */
+export type FornecedorValorEspecie = $Result.DefaultSelection<Prisma.$FornecedorValorEspeciePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -176,6 +196,46 @@ export class PrismaClient<
     * ```
     */
   get pesagem(): Prisma.PesagemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.especie`: Exposes CRUD operations for the **Especie** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Especies
+    * const especies = await prisma.especie.findMany()
+    * ```
+    */
+  get especie(): Prisma.EspecieDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.especieFaixaPeso`: Exposes CRUD operations for the **EspecieFaixaPeso** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EspecieFaixaPesos
+    * const especieFaixaPesos = await prisma.especieFaixaPeso.findMany()
+    * ```
+    */
+  get especieFaixaPeso(): Prisma.EspecieFaixaPesoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fornecedor`: Exposes CRUD operations for the **Fornecedor** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Fornecedors
+    * const fornecedors = await prisma.fornecedor.findMany()
+    * ```
+    */
+  get fornecedor(): Prisma.FornecedorDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fornecedorValorEspecie`: Exposes CRUD operations for the **FornecedorValorEspecie** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FornecedorValorEspecies
+    * const fornecedorValorEspecies = await prisma.fornecedorValorEspecie.findMany()
+    * ```
+    */
+  get fornecedorValorEspecie(): Prisma.FornecedorValorEspecieDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -619,7 +679,11 @@ export namespace Prisma {
   export const ModelName: {
     Operador: 'Operador',
     Corte: 'Corte',
-    Pesagem: 'Pesagem'
+    Pesagem: 'Pesagem',
+    Especie: 'Especie',
+    EspecieFaixaPeso: 'EspecieFaixaPeso',
+    Fornecedor: 'Fornecedor',
+    FornecedorValorEspecie: 'FornecedorValorEspecie'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -638,7 +702,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "operador" | "corte" | "pesagem"
+      modelProps: "operador" | "corte" | "pesagem" | "especie" | "especieFaixaPeso" | "fornecedor" | "fornecedorValorEspecie"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -864,6 +928,302 @@ export namespace Prisma {
           }
         }
       }
+      Especie: {
+        payload: Prisma.$EspeciePayload<ExtArgs>
+        fields: Prisma.EspecieFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EspecieFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspeciePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EspecieFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspeciePayload>
+          }
+          findFirst: {
+            args: Prisma.EspecieFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspeciePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EspecieFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspeciePayload>
+          }
+          findMany: {
+            args: Prisma.EspecieFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspeciePayload>[]
+          }
+          create: {
+            args: Prisma.EspecieCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspeciePayload>
+          }
+          createMany: {
+            args: Prisma.EspecieCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EspecieCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspeciePayload>[]
+          }
+          delete: {
+            args: Prisma.EspecieDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspeciePayload>
+          }
+          update: {
+            args: Prisma.EspecieUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspeciePayload>
+          }
+          deleteMany: {
+            args: Prisma.EspecieDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EspecieUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EspecieUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspeciePayload>[]
+          }
+          upsert: {
+            args: Prisma.EspecieUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspeciePayload>
+          }
+          aggregate: {
+            args: Prisma.EspecieAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEspecie>
+          }
+          groupBy: {
+            args: Prisma.EspecieGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EspecieGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EspecieCountArgs<ExtArgs>
+            result: $Utils.Optional<EspecieCountAggregateOutputType> | number
+          }
+        }
+      }
+      EspecieFaixaPeso: {
+        payload: Prisma.$EspecieFaixaPesoPayload<ExtArgs>
+        fields: Prisma.EspecieFaixaPesoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EspecieFaixaPesoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspecieFaixaPesoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EspecieFaixaPesoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspecieFaixaPesoPayload>
+          }
+          findFirst: {
+            args: Prisma.EspecieFaixaPesoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspecieFaixaPesoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EspecieFaixaPesoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspecieFaixaPesoPayload>
+          }
+          findMany: {
+            args: Prisma.EspecieFaixaPesoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspecieFaixaPesoPayload>[]
+          }
+          create: {
+            args: Prisma.EspecieFaixaPesoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspecieFaixaPesoPayload>
+          }
+          createMany: {
+            args: Prisma.EspecieFaixaPesoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EspecieFaixaPesoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspecieFaixaPesoPayload>[]
+          }
+          delete: {
+            args: Prisma.EspecieFaixaPesoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspecieFaixaPesoPayload>
+          }
+          update: {
+            args: Prisma.EspecieFaixaPesoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspecieFaixaPesoPayload>
+          }
+          deleteMany: {
+            args: Prisma.EspecieFaixaPesoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EspecieFaixaPesoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EspecieFaixaPesoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspecieFaixaPesoPayload>[]
+          }
+          upsert: {
+            args: Prisma.EspecieFaixaPesoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EspecieFaixaPesoPayload>
+          }
+          aggregate: {
+            args: Prisma.EspecieFaixaPesoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEspecieFaixaPeso>
+          }
+          groupBy: {
+            args: Prisma.EspecieFaixaPesoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EspecieFaixaPesoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EspecieFaixaPesoCountArgs<ExtArgs>
+            result: $Utils.Optional<EspecieFaixaPesoCountAggregateOutputType> | number
+          }
+        }
+      }
+      Fornecedor: {
+        payload: Prisma.$FornecedorPayload<ExtArgs>
+        fields: Prisma.FornecedorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FornecedorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FornecedorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          findFirst: {
+            args: Prisma.FornecedorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FornecedorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          findMany: {
+            args: Prisma.FornecedorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>[]
+          }
+          create: {
+            args: Prisma.FornecedorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          createMany: {
+            args: Prisma.FornecedorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FornecedorCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>[]
+          }
+          delete: {
+            args: Prisma.FornecedorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          update: {
+            args: Prisma.FornecedorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          deleteMany: {
+            args: Prisma.FornecedorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FornecedorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FornecedorUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>[]
+          }
+          upsert: {
+            args: Prisma.FornecedorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          aggregate: {
+            args: Prisma.FornecedorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFornecedor>
+          }
+          groupBy: {
+            args: Prisma.FornecedorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FornecedorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FornecedorCountArgs<ExtArgs>
+            result: $Utils.Optional<FornecedorCountAggregateOutputType> | number
+          }
+        }
+      }
+      FornecedorValorEspecie: {
+        payload: Prisma.$FornecedorValorEspeciePayload<ExtArgs>
+        fields: Prisma.FornecedorValorEspecieFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FornecedorValorEspecieFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorValorEspeciePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FornecedorValorEspecieFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorValorEspeciePayload>
+          }
+          findFirst: {
+            args: Prisma.FornecedorValorEspecieFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorValorEspeciePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FornecedorValorEspecieFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorValorEspeciePayload>
+          }
+          findMany: {
+            args: Prisma.FornecedorValorEspecieFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorValorEspeciePayload>[]
+          }
+          create: {
+            args: Prisma.FornecedorValorEspecieCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorValorEspeciePayload>
+          }
+          createMany: {
+            args: Prisma.FornecedorValorEspecieCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FornecedorValorEspecieCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorValorEspeciePayload>[]
+          }
+          delete: {
+            args: Prisma.FornecedorValorEspecieDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorValorEspeciePayload>
+          }
+          update: {
+            args: Prisma.FornecedorValorEspecieUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorValorEspeciePayload>
+          }
+          deleteMany: {
+            args: Prisma.FornecedorValorEspecieDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FornecedorValorEspecieUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FornecedorValorEspecieUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorValorEspeciePayload>[]
+          }
+          upsert: {
+            args: Prisma.FornecedorValorEspecieUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorValorEspeciePayload>
+          }
+          aggregate: {
+            args: Prisma.FornecedorValorEspecieAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFornecedorValorEspecie>
+          }
+          groupBy: {
+            args: Prisma.FornecedorValorEspecieGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FornecedorValorEspecieGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FornecedorValorEspecieCountArgs<ExtArgs>
+            result: $Utils.Optional<FornecedorValorEspecieCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -963,6 +1323,10 @@ export namespace Prisma {
     operador?: OperadorOmit
     corte?: CorteOmit
     pesagem?: PesagemOmit
+    especie?: EspecieOmit
+    especieFaixaPeso?: EspecieFaixaPesoOmit
+    fornecedor?: FornecedorOmit
+    fornecedorValorEspecie?: FornecedorValorEspecieOmit
   }
 
   /* Types for Logging */
@@ -1097,6 +1461,99 @@ export namespace Prisma {
    */
   export type CorteCountOutputTypeCountPesagensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PesagemWhereInput
+  }
+
+
+  /**
+   * Count Type EspecieCountOutputType
+   */
+
+  export type EspecieCountOutputType = {
+    faixas: number
+  }
+
+  export type EspecieCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    faixas?: boolean | EspecieCountOutputTypeCountFaixasArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EspecieCountOutputType without action
+   */
+  export type EspecieCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieCountOutputType
+     */
+    select?: EspecieCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EspecieCountOutputType without action
+   */
+  export type EspecieCountOutputTypeCountFaixasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EspecieFaixaPesoWhereInput
+  }
+
+
+  /**
+   * Count Type EspecieFaixaPesoCountOutputType
+   */
+
+  export type EspecieFaixaPesoCountOutputType = {
+    valoresFornecedor: number
+  }
+
+  export type EspecieFaixaPesoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    valoresFornecedor?: boolean | EspecieFaixaPesoCountOutputTypeCountValoresFornecedorArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EspecieFaixaPesoCountOutputType without action
+   */
+  export type EspecieFaixaPesoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPesoCountOutputType
+     */
+    select?: EspecieFaixaPesoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EspecieFaixaPesoCountOutputType without action
+   */
+  export type EspecieFaixaPesoCountOutputTypeCountValoresFornecedorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FornecedorValorEspecieWhereInput
+  }
+
+
+  /**
+   * Count Type FornecedorCountOutputType
+   */
+
+  export type FornecedorCountOutputType = {
+    valores: number
+  }
+
+  export type FornecedorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    valores?: boolean | FornecedorCountOutputTypeCountValoresArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FornecedorCountOutputType without action
+   */
+  export type FornecedorCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorCountOutputType
+     */
+    select?: FornecedorCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FornecedorCountOutputType without action
+   */
+  export type FornecedorCountOutputTypeCountValoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FornecedorValorEspecieWhereInput
   }
 
 
@@ -4407,6 +4864,4377 @@ export namespace Prisma {
 
 
   /**
+   * Model Especie
+   */
+
+  export type AggregateEspecie = {
+    _count: EspecieCountAggregateOutputType | null
+    _min: EspecieMinAggregateOutputType | null
+    _max: EspecieMaxAggregateOutputType | null
+  }
+
+  export type EspecieMinAggregateOutputType = {
+    id: string | null
+    nome: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EspecieMaxAggregateOutputType = {
+    id: string | null
+    nome: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EspecieCountAggregateOutputType = {
+    id: number
+    nome: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type EspecieMinAggregateInputType = {
+    id?: true
+    nome?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EspecieMaxAggregateInputType = {
+    id?: true
+    nome?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EspecieCountAggregateInputType = {
+    id?: true
+    nome?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type EspecieAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Especie to aggregate.
+     */
+    where?: EspecieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Especies to fetch.
+     */
+    orderBy?: EspecieOrderByWithRelationInput | EspecieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EspecieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Especies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Especies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Especies
+    **/
+    _count?: true | EspecieCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EspecieMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EspecieMaxAggregateInputType
+  }
+
+  export type GetEspecieAggregateType<T extends EspecieAggregateArgs> = {
+        [P in keyof T & keyof AggregateEspecie]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEspecie[P]>
+      : GetScalarType<T[P], AggregateEspecie[P]>
+  }
+
+
+
+
+  export type EspecieGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EspecieWhereInput
+    orderBy?: EspecieOrderByWithAggregationInput | EspecieOrderByWithAggregationInput[]
+    by: EspecieScalarFieldEnum[] | EspecieScalarFieldEnum
+    having?: EspecieScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EspecieCountAggregateInputType | true
+    _min?: EspecieMinAggregateInputType
+    _max?: EspecieMaxAggregateInputType
+  }
+
+  export type EspecieGroupByOutputType = {
+    id: string
+    nome: string
+    createdAt: Date
+    updatedAt: Date
+    _count: EspecieCountAggregateOutputType | null
+    _min: EspecieMinAggregateOutputType | null
+    _max: EspecieMaxAggregateOutputType | null
+  }
+
+  type GetEspecieGroupByPayload<T extends EspecieGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EspecieGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EspecieGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EspecieGroupByOutputType[P]>
+            : GetScalarType<T[P], EspecieGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EspecieSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    faixas?: boolean | Especie$faixasArgs<ExtArgs>
+    _count?: boolean | EspecieCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["especie"]>
+
+  export type EspecieSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["especie"]>
+
+  export type EspecieSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["especie"]>
+
+  export type EspecieSelectScalar = {
+    id?: boolean
+    nome?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type EspecieOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "createdAt" | "updatedAt", ExtArgs["result"]["especie"]>
+  export type EspecieInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    faixas?: boolean | Especie$faixasArgs<ExtArgs>
+    _count?: boolean | EspecieCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type EspecieIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type EspecieIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $EspeciePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Especie"
+    objects: {
+      faixas: Prisma.$EspecieFaixaPesoPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      nome: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["especie"]>
+    composites: {}
+  }
+
+  type EspecieGetPayload<S extends boolean | null | undefined | EspecieDefaultArgs> = $Result.GetResult<Prisma.$EspeciePayload, S>
+
+  type EspecieCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EspecieFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EspecieCountAggregateInputType | true
+    }
+
+  export interface EspecieDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Especie'], meta: { name: 'Especie' } }
+    /**
+     * Find zero or one Especie that matches the filter.
+     * @param {EspecieFindUniqueArgs} args - Arguments to find a Especie
+     * @example
+     * // Get one Especie
+     * const especie = await prisma.especie.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EspecieFindUniqueArgs>(args: SelectSubset<T, EspecieFindUniqueArgs<ExtArgs>>): Prisma__EspecieClient<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Especie that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EspecieFindUniqueOrThrowArgs} args - Arguments to find a Especie
+     * @example
+     * // Get one Especie
+     * const especie = await prisma.especie.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EspecieFindUniqueOrThrowArgs>(args: SelectSubset<T, EspecieFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EspecieClient<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Especie that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieFindFirstArgs} args - Arguments to find a Especie
+     * @example
+     * // Get one Especie
+     * const especie = await prisma.especie.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EspecieFindFirstArgs>(args?: SelectSubset<T, EspecieFindFirstArgs<ExtArgs>>): Prisma__EspecieClient<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Especie that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieFindFirstOrThrowArgs} args - Arguments to find a Especie
+     * @example
+     * // Get one Especie
+     * const especie = await prisma.especie.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EspecieFindFirstOrThrowArgs>(args?: SelectSubset<T, EspecieFindFirstOrThrowArgs<ExtArgs>>): Prisma__EspecieClient<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Especies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Especies
+     * const especies = await prisma.especie.findMany()
+     * 
+     * // Get first 10 Especies
+     * const especies = await prisma.especie.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const especieWithIdOnly = await prisma.especie.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EspecieFindManyArgs>(args?: SelectSubset<T, EspecieFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Especie.
+     * @param {EspecieCreateArgs} args - Arguments to create a Especie.
+     * @example
+     * // Create one Especie
+     * const Especie = await prisma.especie.create({
+     *   data: {
+     *     // ... data to create a Especie
+     *   }
+     * })
+     * 
+     */
+    create<T extends EspecieCreateArgs>(args: SelectSubset<T, EspecieCreateArgs<ExtArgs>>): Prisma__EspecieClient<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Especies.
+     * @param {EspecieCreateManyArgs} args - Arguments to create many Especies.
+     * @example
+     * // Create many Especies
+     * const especie = await prisma.especie.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EspecieCreateManyArgs>(args?: SelectSubset<T, EspecieCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Especies and returns the data saved in the database.
+     * @param {EspecieCreateManyAndReturnArgs} args - Arguments to create many Especies.
+     * @example
+     * // Create many Especies
+     * const especie = await prisma.especie.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Especies and only return the `id`
+     * const especieWithIdOnly = await prisma.especie.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EspecieCreateManyAndReturnArgs>(args?: SelectSubset<T, EspecieCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Especie.
+     * @param {EspecieDeleteArgs} args - Arguments to delete one Especie.
+     * @example
+     * // Delete one Especie
+     * const Especie = await prisma.especie.delete({
+     *   where: {
+     *     // ... filter to delete one Especie
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EspecieDeleteArgs>(args: SelectSubset<T, EspecieDeleteArgs<ExtArgs>>): Prisma__EspecieClient<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Especie.
+     * @param {EspecieUpdateArgs} args - Arguments to update one Especie.
+     * @example
+     * // Update one Especie
+     * const especie = await prisma.especie.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EspecieUpdateArgs>(args: SelectSubset<T, EspecieUpdateArgs<ExtArgs>>): Prisma__EspecieClient<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Especies.
+     * @param {EspecieDeleteManyArgs} args - Arguments to filter Especies to delete.
+     * @example
+     * // Delete a few Especies
+     * const { count } = await prisma.especie.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EspecieDeleteManyArgs>(args?: SelectSubset<T, EspecieDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Especies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Especies
+     * const especie = await prisma.especie.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EspecieUpdateManyArgs>(args: SelectSubset<T, EspecieUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Especies and returns the data updated in the database.
+     * @param {EspecieUpdateManyAndReturnArgs} args - Arguments to update many Especies.
+     * @example
+     * // Update many Especies
+     * const especie = await prisma.especie.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Especies and only return the `id`
+     * const especieWithIdOnly = await prisma.especie.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EspecieUpdateManyAndReturnArgs>(args: SelectSubset<T, EspecieUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Especie.
+     * @param {EspecieUpsertArgs} args - Arguments to update or create a Especie.
+     * @example
+     * // Update or create a Especie
+     * const especie = await prisma.especie.upsert({
+     *   create: {
+     *     // ... data to create a Especie
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Especie we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EspecieUpsertArgs>(args: SelectSubset<T, EspecieUpsertArgs<ExtArgs>>): Prisma__EspecieClient<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Especies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieCountArgs} args - Arguments to filter Especies to count.
+     * @example
+     * // Count the number of Especies
+     * const count = await prisma.especie.count({
+     *   where: {
+     *     // ... the filter for the Especies we want to count
+     *   }
+     * })
+    **/
+    count<T extends EspecieCountArgs>(
+      args?: Subset<T, EspecieCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EspecieCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Especie.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EspecieAggregateArgs>(args: Subset<T, EspecieAggregateArgs>): Prisma.PrismaPromise<GetEspecieAggregateType<T>>
+
+    /**
+     * Group by Especie.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EspecieGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EspecieGroupByArgs['orderBy'] }
+        : { orderBy?: EspecieGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EspecieGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEspecieGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Especie model
+   */
+  readonly fields: EspecieFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Especie.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EspecieClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    faixas<T extends Especie$faixasArgs<ExtArgs> = {}>(args?: Subset<T, Especie$faixasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Especie model
+   */
+  interface EspecieFieldRefs {
+    readonly id: FieldRef<"Especie", 'String'>
+    readonly nome: FieldRef<"Especie", 'String'>
+    readonly createdAt: FieldRef<"Especie", 'DateTime'>
+    readonly updatedAt: FieldRef<"Especie", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Especie findUnique
+   */
+  export type EspecieFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieInclude<ExtArgs> | null
+    /**
+     * Filter, which Especie to fetch.
+     */
+    where: EspecieWhereUniqueInput
+  }
+
+  /**
+   * Especie findUniqueOrThrow
+   */
+  export type EspecieFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieInclude<ExtArgs> | null
+    /**
+     * Filter, which Especie to fetch.
+     */
+    where: EspecieWhereUniqueInput
+  }
+
+  /**
+   * Especie findFirst
+   */
+  export type EspecieFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieInclude<ExtArgs> | null
+    /**
+     * Filter, which Especie to fetch.
+     */
+    where?: EspecieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Especies to fetch.
+     */
+    orderBy?: EspecieOrderByWithRelationInput | EspecieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Especies.
+     */
+    cursor?: EspecieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Especies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Especies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Especies.
+     */
+    distinct?: EspecieScalarFieldEnum | EspecieScalarFieldEnum[]
+  }
+
+  /**
+   * Especie findFirstOrThrow
+   */
+  export type EspecieFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieInclude<ExtArgs> | null
+    /**
+     * Filter, which Especie to fetch.
+     */
+    where?: EspecieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Especies to fetch.
+     */
+    orderBy?: EspecieOrderByWithRelationInput | EspecieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Especies.
+     */
+    cursor?: EspecieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Especies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Especies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Especies.
+     */
+    distinct?: EspecieScalarFieldEnum | EspecieScalarFieldEnum[]
+  }
+
+  /**
+   * Especie findMany
+   */
+  export type EspecieFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieInclude<ExtArgs> | null
+    /**
+     * Filter, which Especies to fetch.
+     */
+    where?: EspecieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Especies to fetch.
+     */
+    orderBy?: EspecieOrderByWithRelationInput | EspecieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Especies.
+     */
+    cursor?: EspecieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Especies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Especies.
+     */
+    skip?: number
+    distinct?: EspecieScalarFieldEnum | EspecieScalarFieldEnum[]
+  }
+
+  /**
+   * Especie create
+   */
+  export type EspecieCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Especie.
+     */
+    data: XOR<EspecieCreateInput, EspecieUncheckedCreateInput>
+  }
+
+  /**
+   * Especie createMany
+   */
+  export type EspecieCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Especies.
+     */
+    data: EspecieCreateManyInput | EspecieCreateManyInput[]
+  }
+
+  /**
+   * Especie createManyAndReturn
+   */
+  export type EspecieCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * The data used to create many Especies.
+     */
+    data: EspecieCreateManyInput | EspecieCreateManyInput[]
+  }
+
+  /**
+   * Especie update
+   */
+  export type EspecieUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Especie.
+     */
+    data: XOR<EspecieUpdateInput, EspecieUncheckedUpdateInput>
+    /**
+     * Choose, which Especie to update.
+     */
+    where: EspecieWhereUniqueInput
+  }
+
+  /**
+   * Especie updateMany
+   */
+  export type EspecieUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Especies.
+     */
+    data: XOR<EspecieUpdateManyMutationInput, EspecieUncheckedUpdateManyInput>
+    /**
+     * Filter which Especies to update
+     */
+    where?: EspecieWhereInput
+    /**
+     * Limit how many Especies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Especie updateManyAndReturn
+   */
+  export type EspecieUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * The data used to update Especies.
+     */
+    data: XOR<EspecieUpdateManyMutationInput, EspecieUncheckedUpdateManyInput>
+    /**
+     * Filter which Especies to update
+     */
+    where?: EspecieWhereInput
+    /**
+     * Limit how many Especies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Especie upsert
+   */
+  export type EspecieUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Especie to update in case it exists.
+     */
+    where: EspecieWhereUniqueInput
+    /**
+     * In case the Especie found by the `where` argument doesn't exist, create a new Especie with this data.
+     */
+    create: XOR<EspecieCreateInput, EspecieUncheckedCreateInput>
+    /**
+     * In case the Especie was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EspecieUpdateInput, EspecieUncheckedUpdateInput>
+  }
+
+  /**
+   * Especie delete
+   */
+  export type EspecieDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieInclude<ExtArgs> | null
+    /**
+     * Filter which Especie to delete.
+     */
+    where: EspecieWhereUniqueInput
+  }
+
+  /**
+   * Especie deleteMany
+   */
+  export type EspecieDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Especies to delete
+     */
+    where?: EspecieWhereInput
+    /**
+     * Limit how many Especies to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Especie.faixas
+   */
+  export type Especie$faixasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoInclude<ExtArgs> | null
+    where?: EspecieFaixaPesoWhereInput
+    orderBy?: EspecieFaixaPesoOrderByWithRelationInput | EspecieFaixaPesoOrderByWithRelationInput[]
+    cursor?: EspecieFaixaPesoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EspecieFaixaPesoScalarFieldEnum | EspecieFaixaPesoScalarFieldEnum[]
+  }
+
+  /**
+   * Especie without action
+   */
+  export type EspecieDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Especie
+     */
+    select?: EspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Especie
+     */
+    omit?: EspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EspecieFaixaPeso
+   */
+
+  export type AggregateEspecieFaixaPeso = {
+    _count: EspecieFaixaPesoCountAggregateOutputType | null
+    _avg: EspecieFaixaPesoAvgAggregateOutputType | null
+    _sum: EspecieFaixaPesoSumAggregateOutputType | null
+    _min: EspecieFaixaPesoMinAggregateOutputType | null
+    _max: EspecieFaixaPesoMaxAggregateOutputType | null
+  }
+
+  export type EspecieFaixaPesoAvgAggregateOutputType = {
+    pesoMin: Decimal | null
+    pesoMax: Decimal | null
+  }
+
+  export type EspecieFaixaPesoSumAggregateOutputType = {
+    pesoMin: Decimal | null
+    pesoMax: Decimal | null
+  }
+
+  export type EspecieFaixaPesoMinAggregateOutputType = {
+    id: string | null
+    especieId: string | null
+    pesoMin: Decimal | null
+    pesoMax: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EspecieFaixaPesoMaxAggregateOutputType = {
+    id: string | null
+    especieId: string | null
+    pesoMin: Decimal | null
+    pesoMax: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EspecieFaixaPesoCountAggregateOutputType = {
+    id: number
+    especieId: number
+    pesoMin: number
+    pesoMax: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type EspecieFaixaPesoAvgAggregateInputType = {
+    pesoMin?: true
+    pesoMax?: true
+  }
+
+  export type EspecieFaixaPesoSumAggregateInputType = {
+    pesoMin?: true
+    pesoMax?: true
+  }
+
+  export type EspecieFaixaPesoMinAggregateInputType = {
+    id?: true
+    especieId?: true
+    pesoMin?: true
+    pesoMax?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EspecieFaixaPesoMaxAggregateInputType = {
+    id?: true
+    especieId?: true
+    pesoMin?: true
+    pesoMax?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EspecieFaixaPesoCountAggregateInputType = {
+    id?: true
+    especieId?: true
+    pesoMin?: true
+    pesoMax?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type EspecieFaixaPesoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EspecieFaixaPeso to aggregate.
+     */
+    where?: EspecieFaixaPesoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EspecieFaixaPesos to fetch.
+     */
+    orderBy?: EspecieFaixaPesoOrderByWithRelationInput | EspecieFaixaPesoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EspecieFaixaPesoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EspecieFaixaPesos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EspecieFaixaPesos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EspecieFaixaPesos
+    **/
+    _count?: true | EspecieFaixaPesoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EspecieFaixaPesoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EspecieFaixaPesoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EspecieFaixaPesoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EspecieFaixaPesoMaxAggregateInputType
+  }
+
+  export type GetEspecieFaixaPesoAggregateType<T extends EspecieFaixaPesoAggregateArgs> = {
+        [P in keyof T & keyof AggregateEspecieFaixaPeso]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEspecieFaixaPeso[P]>
+      : GetScalarType<T[P], AggregateEspecieFaixaPeso[P]>
+  }
+
+
+
+
+  export type EspecieFaixaPesoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EspecieFaixaPesoWhereInput
+    orderBy?: EspecieFaixaPesoOrderByWithAggregationInput | EspecieFaixaPesoOrderByWithAggregationInput[]
+    by: EspecieFaixaPesoScalarFieldEnum[] | EspecieFaixaPesoScalarFieldEnum
+    having?: EspecieFaixaPesoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EspecieFaixaPesoCountAggregateInputType | true
+    _avg?: EspecieFaixaPesoAvgAggregateInputType
+    _sum?: EspecieFaixaPesoSumAggregateInputType
+    _min?: EspecieFaixaPesoMinAggregateInputType
+    _max?: EspecieFaixaPesoMaxAggregateInputType
+  }
+
+  export type EspecieFaixaPesoGroupByOutputType = {
+    id: string
+    especieId: string
+    pesoMin: Decimal
+    pesoMax: Decimal
+    createdAt: Date
+    updatedAt: Date
+    _count: EspecieFaixaPesoCountAggregateOutputType | null
+    _avg: EspecieFaixaPesoAvgAggregateOutputType | null
+    _sum: EspecieFaixaPesoSumAggregateOutputType | null
+    _min: EspecieFaixaPesoMinAggregateOutputType | null
+    _max: EspecieFaixaPesoMaxAggregateOutputType | null
+  }
+
+  type GetEspecieFaixaPesoGroupByPayload<T extends EspecieFaixaPesoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EspecieFaixaPesoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EspecieFaixaPesoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EspecieFaixaPesoGroupByOutputType[P]>
+            : GetScalarType<T[P], EspecieFaixaPesoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EspecieFaixaPesoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    especieId?: boolean
+    pesoMin?: boolean
+    pesoMax?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+    valoresFornecedor?: boolean | EspecieFaixaPeso$valoresFornecedorArgs<ExtArgs>
+    _count?: boolean | EspecieFaixaPesoCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["especieFaixaPeso"]>
+
+  export type EspecieFaixaPesoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    especieId?: boolean
+    pesoMin?: boolean
+    pesoMax?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["especieFaixaPeso"]>
+
+  export type EspecieFaixaPesoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    especieId?: boolean
+    pesoMin?: boolean
+    pesoMax?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["especieFaixaPeso"]>
+
+  export type EspecieFaixaPesoSelectScalar = {
+    id?: boolean
+    especieId?: boolean
+    pesoMin?: boolean
+    pesoMax?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type EspecieFaixaPesoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "especieId" | "pesoMin" | "pesoMax" | "createdAt" | "updatedAt", ExtArgs["result"]["especieFaixaPeso"]>
+  export type EspecieFaixaPesoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+    valoresFornecedor?: boolean | EspecieFaixaPeso$valoresFornecedorArgs<ExtArgs>
+    _count?: boolean | EspecieFaixaPesoCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type EspecieFaixaPesoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+  }
+  export type EspecieFaixaPesoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+  }
+
+  export type $EspecieFaixaPesoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EspecieFaixaPeso"
+    objects: {
+      especie: Prisma.$EspeciePayload<ExtArgs>
+      valoresFornecedor: Prisma.$FornecedorValorEspeciePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      especieId: string
+      pesoMin: Prisma.Decimal
+      pesoMax: Prisma.Decimal
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["especieFaixaPeso"]>
+    composites: {}
+  }
+
+  type EspecieFaixaPesoGetPayload<S extends boolean | null | undefined | EspecieFaixaPesoDefaultArgs> = $Result.GetResult<Prisma.$EspecieFaixaPesoPayload, S>
+
+  type EspecieFaixaPesoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EspecieFaixaPesoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EspecieFaixaPesoCountAggregateInputType | true
+    }
+
+  export interface EspecieFaixaPesoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EspecieFaixaPeso'], meta: { name: 'EspecieFaixaPeso' } }
+    /**
+     * Find zero or one EspecieFaixaPeso that matches the filter.
+     * @param {EspecieFaixaPesoFindUniqueArgs} args - Arguments to find a EspecieFaixaPeso
+     * @example
+     * // Get one EspecieFaixaPeso
+     * const especieFaixaPeso = await prisma.especieFaixaPeso.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EspecieFaixaPesoFindUniqueArgs>(args: SelectSubset<T, EspecieFaixaPesoFindUniqueArgs<ExtArgs>>): Prisma__EspecieFaixaPesoClient<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EspecieFaixaPeso that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EspecieFaixaPesoFindUniqueOrThrowArgs} args - Arguments to find a EspecieFaixaPeso
+     * @example
+     * // Get one EspecieFaixaPeso
+     * const especieFaixaPeso = await prisma.especieFaixaPeso.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EspecieFaixaPesoFindUniqueOrThrowArgs>(args: SelectSubset<T, EspecieFaixaPesoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EspecieFaixaPesoClient<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EspecieFaixaPeso that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieFaixaPesoFindFirstArgs} args - Arguments to find a EspecieFaixaPeso
+     * @example
+     * // Get one EspecieFaixaPeso
+     * const especieFaixaPeso = await prisma.especieFaixaPeso.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EspecieFaixaPesoFindFirstArgs>(args?: SelectSubset<T, EspecieFaixaPesoFindFirstArgs<ExtArgs>>): Prisma__EspecieFaixaPesoClient<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EspecieFaixaPeso that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieFaixaPesoFindFirstOrThrowArgs} args - Arguments to find a EspecieFaixaPeso
+     * @example
+     * // Get one EspecieFaixaPeso
+     * const especieFaixaPeso = await prisma.especieFaixaPeso.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EspecieFaixaPesoFindFirstOrThrowArgs>(args?: SelectSubset<T, EspecieFaixaPesoFindFirstOrThrowArgs<ExtArgs>>): Prisma__EspecieFaixaPesoClient<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EspecieFaixaPesos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieFaixaPesoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EspecieFaixaPesos
+     * const especieFaixaPesos = await prisma.especieFaixaPeso.findMany()
+     * 
+     * // Get first 10 EspecieFaixaPesos
+     * const especieFaixaPesos = await prisma.especieFaixaPeso.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const especieFaixaPesoWithIdOnly = await prisma.especieFaixaPeso.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EspecieFaixaPesoFindManyArgs>(args?: SelectSubset<T, EspecieFaixaPesoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EspecieFaixaPeso.
+     * @param {EspecieFaixaPesoCreateArgs} args - Arguments to create a EspecieFaixaPeso.
+     * @example
+     * // Create one EspecieFaixaPeso
+     * const EspecieFaixaPeso = await prisma.especieFaixaPeso.create({
+     *   data: {
+     *     // ... data to create a EspecieFaixaPeso
+     *   }
+     * })
+     * 
+     */
+    create<T extends EspecieFaixaPesoCreateArgs>(args: SelectSubset<T, EspecieFaixaPesoCreateArgs<ExtArgs>>): Prisma__EspecieFaixaPesoClient<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EspecieFaixaPesos.
+     * @param {EspecieFaixaPesoCreateManyArgs} args - Arguments to create many EspecieFaixaPesos.
+     * @example
+     * // Create many EspecieFaixaPesos
+     * const especieFaixaPeso = await prisma.especieFaixaPeso.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EspecieFaixaPesoCreateManyArgs>(args?: SelectSubset<T, EspecieFaixaPesoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EspecieFaixaPesos and returns the data saved in the database.
+     * @param {EspecieFaixaPesoCreateManyAndReturnArgs} args - Arguments to create many EspecieFaixaPesos.
+     * @example
+     * // Create many EspecieFaixaPesos
+     * const especieFaixaPeso = await prisma.especieFaixaPeso.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EspecieFaixaPesos and only return the `id`
+     * const especieFaixaPesoWithIdOnly = await prisma.especieFaixaPeso.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EspecieFaixaPesoCreateManyAndReturnArgs>(args?: SelectSubset<T, EspecieFaixaPesoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EspecieFaixaPeso.
+     * @param {EspecieFaixaPesoDeleteArgs} args - Arguments to delete one EspecieFaixaPeso.
+     * @example
+     * // Delete one EspecieFaixaPeso
+     * const EspecieFaixaPeso = await prisma.especieFaixaPeso.delete({
+     *   where: {
+     *     // ... filter to delete one EspecieFaixaPeso
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EspecieFaixaPesoDeleteArgs>(args: SelectSubset<T, EspecieFaixaPesoDeleteArgs<ExtArgs>>): Prisma__EspecieFaixaPesoClient<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EspecieFaixaPeso.
+     * @param {EspecieFaixaPesoUpdateArgs} args - Arguments to update one EspecieFaixaPeso.
+     * @example
+     * // Update one EspecieFaixaPeso
+     * const especieFaixaPeso = await prisma.especieFaixaPeso.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EspecieFaixaPesoUpdateArgs>(args: SelectSubset<T, EspecieFaixaPesoUpdateArgs<ExtArgs>>): Prisma__EspecieFaixaPesoClient<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EspecieFaixaPesos.
+     * @param {EspecieFaixaPesoDeleteManyArgs} args - Arguments to filter EspecieFaixaPesos to delete.
+     * @example
+     * // Delete a few EspecieFaixaPesos
+     * const { count } = await prisma.especieFaixaPeso.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EspecieFaixaPesoDeleteManyArgs>(args?: SelectSubset<T, EspecieFaixaPesoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EspecieFaixaPesos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieFaixaPesoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EspecieFaixaPesos
+     * const especieFaixaPeso = await prisma.especieFaixaPeso.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EspecieFaixaPesoUpdateManyArgs>(args: SelectSubset<T, EspecieFaixaPesoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EspecieFaixaPesos and returns the data updated in the database.
+     * @param {EspecieFaixaPesoUpdateManyAndReturnArgs} args - Arguments to update many EspecieFaixaPesos.
+     * @example
+     * // Update many EspecieFaixaPesos
+     * const especieFaixaPeso = await prisma.especieFaixaPeso.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EspecieFaixaPesos and only return the `id`
+     * const especieFaixaPesoWithIdOnly = await prisma.especieFaixaPeso.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EspecieFaixaPesoUpdateManyAndReturnArgs>(args: SelectSubset<T, EspecieFaixaPesoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EspecieFaixaPeso.
+     * @param {EspecieFaixaPesoUpsertArgs} args - Arguments to update or create a EspecieFaixaPeso.
+     * @example
+     * // Update or create a EspecieFaixaPeso
+     * const especieFaixaPeso = await prisma.especieFaixaPeso.upsert({
+     *   create: {
+     *     // ... data to create a EspecieFaixaPeso
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EspecieFaixaPeso we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EspecieFaixaPesoUpsertArgs>(args: SelectSubset<T, EspecieFaixaPesoUpsertArgs<ExtArgs>>): Prisma__EspecieFaixaPesoClient<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EspecieFaixaPesos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieFaixaPesoCountArgs} args - Arguments to filter EspecieFaixaPesos to count.
+     * @example
+     * // Count the number of EspecieFaixaPesos
+     * const count = await prisma.especieFaixaPeso.count({
+     *   where: {
+     *     // ... the filter for the EspecieFaixaPesos we want to count
+     *   }
+     * })
+    **/
+    count<T extends EspecieFaixaPesoCountArgs>(
+      args?: Subset<T, EspecieFaixaPesoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EspecieFaixaPesoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EspecieFaixaPeso.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieFaixaPesoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EspecieFaixaPesoAggregateArgs>(args: Subset<T, EspecieFaixaPesoAggregateArgs>): Prisma.PrismaPromise<GetEspecieFaixaPesoAggregateType<T>>
+
+    /**
+     * Group by EspecieFaixaPeso.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EspecieFaixaPesoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EspecieFaixaPesoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EspecieFaixaPesoGroupByArgs['orderBy'] }
+        : { orderBy?: EspecieFaixaPesoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EspecieFaixaPesoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEspecieFaixaPesoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EspecieFaixaPeso model
+   */
+  readonly fields: EspecieFaixaPesoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EspecieFaixaPeso.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EspecieFaixaPesoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    especie<T extends EspecieDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EspecieDefaultArgs<ExtArgs>>): Prisma__EspecieClient<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    valoresFornecedor<T extends EspecieFaixaPeso$valoresFornecedorArgs<ExtArgs> = {}>(args?: Subset<T, EspecieFaixaPeso$valoresFornecedorArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EspecieFaixaPeso model
+   */
+  interface EspecieFaixaPesoFieldRefs {
+    readonly id: FieldRef<"EspecieFaixaPeso", 'String'>
+    readonly especieId: FieldRef<"EspecieFaixaPeso", 'String'>
+    readonly pesoMin: FieldRef<"EspecieFaixaPeso", 'Decimal'>
+    readonly pesoMax: FieldRef<"EspecieFaixaPeso", 'Decimal'>
+    readonly createdAt: FieldRef<"EspecieFaixaPeso", 'DateTime'>
+    readonly updatedAt: FieldRef<"EspecieFaixaPeso", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EspecieFaixaPeso findUnique
+   */
+  export type EspecieFaixaPesoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoInclude<ExtArgs> | null
+    /**
+     * Filter, which EspecieFaixaPeso to fetch.
+     */
+    where: EspecieFaixaPesoWhereUniqueInput
+  }
+
+  /**
+   * EspecieFaixaPeso findUniqueOrThrow
+   */
+  export type EspecieFaixaPesoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoInclude<ExtArgs> | null
+    /**
+     * Filter, which EspecieFaixaPeso to fetch.
+     */
+    where: EspecieFaixaPesoWhereUniqueInput
+  }
+
+  /**
+   * EspecieFaixaPeso findFirst
+   */
+  export type EspecieFaixaPesoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoInclude<ExtArgs> | null
+    /**
+     * Filter, which EspecieFaixaPeso to fetch.
+     */
+    where?: EspecieFaixaPesoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EspecieFaixaPesos to fetch.
+     */
+    orderBy?: EspecieFaixaPesoOrderByWithRelationInput | EspecieFaixaPesoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EspecieFaixaPesos.
+     */
+    cursor?: EspecieFaixaPesoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EspecieFaixaPesos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EspecieFaixaPesos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EspecieFaixaPesos.
+     */
+    distinct?: EspecieFaixaPesoScalarFieldEnum | EspecieFaixaPesoScalarFieldEnum[]
+  }
+
+  /**
+   * EspecieFaixaPeso findFirstOrThrow
+   */
+  export type EspecieFaixaPesoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoInclude<ExtArgs> | null
+    /**
+     * Filter, which EspecieFaixaPeso to fetch.
+     */
+    where?: EspecieFaixaPesoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EspecieFaixaPesos to fetch.
+     */
+    orderBy?: EspecieFaixaPesoOrderByWithRelationInput | EspecieFaixaPesoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EspecieFaixaPesos.
+     */
+    cursor?: EspecieFaixaPesoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EspecieFaixaPesos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EspecieFaixaPesos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EspecieFaixaPesos.
+     */
+    distinct?: EspecieFaixaPesoScalarFieldEnum | EspecieFaixaPesoScalarFieldEnum[]
+  }
+
+  /**
+   * EspecieFaixaPeso findMany
+   */
+  export type EspecieFaixaPesoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoInclude<ExtArgs> | null
+    /**
+     * Filter, which EspecieFaixaPesos to fetch.
+     */
+    where?: EspecieFaixaPesoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EspecieFaixaPesos to fetch.
+     */
+    orderBy?: EspecieFaixaPesoOrderByWithRelationInput | EspecieFaixaPesoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EspecieFaixaPesos.
+     */
+    cursor?: EspecieFaixaPesoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EspecieFaixaPesos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EspecieFaixaPesos.
+     */
+    skip?: number
+    distinct?: EspecieFaixaPesoScalarFieldEnum | EspecieFaixaPesoScalarFieldEnum[]
+  }
+
+  /**
+   * EspecieFaixaPeso create
+   */
+  export type EspecieFaixaPesoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EspecieFaixaPeso.
+     */
+    data: XOR<EspecieFaixaPesoCreateInput, EspecieFaixaPesoUncheckedCreateInput>
+  }
+
+  /**
+   * EspecieFaixaPeso createMany
+   */
+  export type EspecieFaixaPesoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EspecieFaixaPesos.
+     */
+    data: EspecieFaixaPesoCreateManyInput | EspecieFaixaPesoCreateManyInput[]
+  }
+
+  /**
+   * EspecieFaixaPeso createManyAndReturn
+   */
+  export type EspecieFaixaPesoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * The data used to create many EspecieFaixaPesos.
+     */
+    data: EspecieFaixaPesoCreateManyInput | EspecieFaixaPesoCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EspecieFaixaPeso update
+   */
+  export type EspecieFaixaPesoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EspecieFaixaPeso.
+     */
+    data: XOR<EspecieFaixaPesoUpdateInput, EspecieFaixaPesoUncheckedUpdateInput>
+    /**
+     * Choose, which EspecieFaixaPeso to update.
+     */
+    where: EspecieFaixaPesoWhereUniqueInput
+  }
+
+  /**
+   * EspecieFaixaPeso updateMany
+   */
+  export type EspecieFaixaPesoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EspecieFaixaPesos.
+     */
+    data: XOR<EspecieFaixaPesoUpdateManyMutationInput, EspecieFaixaPesoUncheckedUpdateManyInput>
+    /**
+     * Filter which EspecieFaixaPesos to update
+     */
+    where?: EspecieFaixaPesoWhereInput
+    /**
+     * Limit how many EspecieFaixaPesos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EspecieFaixaPeso updateManyAndReturn
+   */
+  export type EspecieFaixaPesoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * The data used to update EspecieFaixaPesos.
+     */
+    data: XOR<EspecieFaixaPesoUpdateManyMutationInput, EspecieFaixaPesoUncheckedUpdateManyInput>
+    /**
+     * Filter which EspecieFaixaPesos to update
+     */
+    where?: EspecieFaixaPesoWhereInput
+    /**
+     * Limit how many EspecieFaixaPesos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EspecieFaixaPeso upsert
+   */
+  export type EspecieFaixaPesoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EspecieFaixaPeso to update in case it exists.
+     */
+    where: EspecieFaixaPesoWhereUniqueInput
+    /**
+     * In case the EspecieFaixaPeso found by the `where` argument doesn't exist, create a new EspecieFaixaPeso with this data.
+     */
+    create: XOR<EspecieFaixaPesoCreateInput, EspecieFaixaPesoUncheckedCreateInput>
+    /**
+     * In case the EspecieFaixaPeso was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EspecieFaixaPesoUpdateInput, EspecieFaixaPesoUncheckedUpdateInput>
+  }
+
+  /**
+   * EspecieFaixaPeso delete
+   */
+  export type EspecieFaixaPesoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoInclude<ExtArgs> | null
+    /**
+     * Filter which EspecieFaixaPeso to delete.
+     */
+    where: EspecieFaixaPesoWhereUniqueInput
+  }
+
+  /**
+   * EspecieFaixaPeso deleteMany
+   */
+  export type EspecieFaixaPesoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EspecieFaixaPesos to delete
+     */
+    where?: EspecieFaixaPesoWhereInput
+    /**
+     * Limit how many EspecieFaixaPesos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EspecieFaixaPeso.valoresFornecedor
+   */
+  export type EspecieFaixaPeso$valoresFornecedorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+    where?: FornecedorValorEspecieWhereInput
+    orderBy?: FornecedorValorEspecieOrderByWithRelationInput | FornecedorValorEspecieOrderByWithRelationInput[]
+    cursor?: FornecedorValorEspecieWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FornecedorValorEspecieScalarFieldEnum | FornecedorValorEspecieScalarFieldEnum[]
+  }
+
+  /**
+   * EspecieFaixaPeso without action
+   */
+  export type EspecieFaixaPesoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EspecieFaixaPeso
+     */
+    select?: EspecieFaixaPesoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EspecieFaixaPeso
+     */
+    omit?: EspecieFaixaPesoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EspecieFaixaPesoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Fornecedor
+   */
+
+  export type AggregateFornecedor = {
+    _count: FornecedorCountAggregateOutputType | null
+    _min: FornecedorMinAggregateOutputType | null
+    _max: FornecedorMaxAggregateOutputType | null
+  }
+
+  export type FornecedorMinAggregateOutputType = {
+    id: string | null
+    nome: string | null
+    fazenda: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FornecedorMaxAggregateOutputType = {
+    id: string | null
+    nome: string | null
+    fazenda: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FornecedorCountAggregateOutputType = {
+    id: number
+    nome: number
+    fazenda: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FornecedorMinAggregateInputType = {
+    id?: true
+    nome?: true
+    fazenda?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FornecedorMaxAggregateInputType = {
+    id?: true
+    nome?: true
+    fazenda?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FornecedorCountAggregateInputType = {
+    id?: true
+    nome?: true
+    fazenda?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FornecedorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Fornecedor to aggregate.
+     */
+    where?: FornecedorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fornecedors to fetch.
+     */
+    orderBy?: FornecedorOrderByWithRelationInput | FornecedorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FornecedorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fornecedors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fornecedors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Fornecedors
+    **/
+    _count?: true | FornecedorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FornecedorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FornecedorMaxAggregateInputType
+  }
+
+  export type GetFornecedorAggregateType<T extends FornecedorAggregateArgs> = {
+        [P in keyof T & keyof AggregateFornecedor]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFornecedor[P]>
+      : GetScalarType<T[P], AggregateFornecedor[P]>
+  }
+
+
+
+
+  export type FornecedorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FornecedorWhereInput
+    orderBy?: FornecedorOrderByWithAggregationInput | FornecedorOrderByWithAggregationInput[]
+    by: FornecedorScalarFieldEnum[] | FornecedorScalarFieldEnum
+    having?: FornecedorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FornecedorCountAggregateInputType | true
+    _min?: FornecedorMinAggregateInputType
+    _max?: FornecedorMaxAggregateInputType
+  }
+
+  export type FornecedorGroupByOutputType = {
+    id: string
+    nome: string
+    fazenda: string
+    createdAt: Date
+    updatedAt: Date
+    _count: FornecedorCountAggregateOutputType | null
+    _min: FornecedorMinAggregateOutputType | null
+    _max: FornecedorMaxAggregateOutputType | null
+  }
+
+  type GetFornecedorGroupByPayload<T extends FornecedorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FornecedorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FornecedorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FornecedorGroupByOutputType[P]>
+            : GetScalarType<T[P], FornecedorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FornecedorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    fazenda?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    valores?: boolean | Fornecedor$valoresArgs<ExtArgs>
+    _count?: boolean | FornecedorCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fornecedor"]>
+
+  export type FornecedorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    fazenda?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["fornecedor"]>
+
+  export type FornecedorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    fazenda?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["fornecedor"]>
+
+  export type FornecedorSelectScalar = {
+    id?: boolean
+    nome?: boolean
+    fazenda?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FornecedorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "fazenda" | "createdAt" | "updatedAt", ExtArgs["result"]["fornecedor"]>
+  export type FornecedorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    valores?: boolean | Fornecedor$valoresArgs<ExtArgs>
+    _count?: boolean | FornecedorCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FornecedorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type FornecedorIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $FornecedorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Fornecedor"
+    objects: {
+      valores: Prisma.$FornecedorValorEspeciePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      nome: string
+      fazenda: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["fornecedor"]>
+    composites: {}
+  }
+
+  type FornecedorGetPayload<S extends boolean | null | undefined | FornecedorDefaultArgs> = $Result.GetResult<Prisma.$FornecedorPayload, S>
+
+  type FornecedorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FornecedorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FornecedorCountAggregateInputType | true
+    }
+
+  export interface FornecedorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Fornecedor'], meta: { name: 'Fornecedor' } }
+    /**
+     * Find zero or one Fornecedor that matches the filter.
+     * @param {FornecedorFindUniqueArgs} args - Arguments to find a Fornecedor
+     * @example
+     * // Get one Fornecedor
+     * const fornecedor = await prisma.fornecedor.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FornecedorFindUniqueArgs>(args: SelectSubset<T, FornecedorFindUniqueArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Fornecedor that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FornecedorFindUniqueOrThrowArgs} args - Arguments to find a Fornecedor
+     * @example
+     * // Get one Fornecedor
+     * const fornecedor = await prisma.fornecedor.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FornecedorFindUniqueOrThrowArgs>(args: SelectSubset<T, FornecedorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Fornecedor that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorFindFirstArgs} args - Arguments to find a Fornecedor
+     * @example
+     * // Get one Fornecedor
+     * const fornecedor = await prisma.fornecedor.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FornecedorFindFirstArgs>(args?: SelectSubset<T, FornecedorFindFirstArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Fornecedor that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorFindFirstOrThrowArgs} args - Arguments to find a Fornecedor
+     * @example
+     * // Get one Fornecedor
+     * const fornecedor = await prisma.fornecedor.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FornecedorFindFirstOrThrowArgs>(args?: SelectSubset<T, FornecedorFindFirstOrThrowArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Fornecedors that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Fornecedors
+     * const fornecedors = await prisma.fornecedor.findMany()
+     * 
+     * // Get first 10 Fornecedors
+     * const fornecedors = await prisma.fornecedor.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fornecedorWithIdOnly = await prisma.fornecedor.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FornecedorFindManyArgs>(args?: SelectSubset<T, FornecedorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Fornecedor.
+     * @param {FornecedorCreateArgs} args - Arguments to create a Fornecedor.
+     * @example
+     * // Create one Fornecedor
+     * const Fornecedor = await prisma.fornecedor.create({
+     *   data: {
+     *     // ... data to create a Fornecedor
+     *   }
+     * })
+     * 
+     */
+    create<T extends FornecedorCreateArgs>(args: SelectSubset<T, FornecedorCreateArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Fornecedors.
+     * @param {FornecedorCreateManyArgs} args - Arguments to create many Fornecedors.
+     * @example
+     * // Create many Fornecedors
+     * const fornecedor = await prisma.fornecedor.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FornecedorCreateManyArgs>(args?: SelectSubset<T, FornecedorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Fornecedors and returns the data saved in the database.
+     * @param {FornecedorCreateManyAndReturnArgs} args - Arguments to create many Fornecedors.
+     * @example
+     * // Create many Fornecedors
+     * const fornecedor = await prisma.fornecedor.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Fornecedors and only return the `id`
+     * const fornecedorWithIdOnly = await prisma.fornecedor.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FornecedorCreateManyAndReturnArgs>(args?: SelectSubset<T, FornecedorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Fornecedor.
+     * @param {FornecedorDeleteArgs} args - Arguments to delete one Fornecedor.
+     * @example
+     * // Delete one Fornecedor
+     * const Fornecedor = await prisma.fornecedor.delete({
+     *   where: {
+     *     // ... filter to delete one Fornecedor
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FornecedorDeleteArgs>(args: SelectSubset<T, FornecedorDeleteArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Fornecedor.
+     * @param {FornecedorUpdateArgs} args - Arguments to update one Fornecedor.
+     * @example
+     * // Update one Fornecedor
+     * const fornecedor = await prisma.fornecedor.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FornecedorUpdateArgs>(args: SelectSubset<T, FornecedorUpdateArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Fornecedors.
+     * @param {FornecedorDeleteManyArgs} args - Arguments to filter Fornecedors to delete.
+     * @example
+     * // Delete a few Fornecedors
+     * const { count } = await prisma.fornecedor.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FornecedorDeleteManyArgs>(args?: SelectSubset<T, FornecedorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Fornecedors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Fornecedors
+     * const fornecedor = await prisma.fornecedor.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FornecedorUpdateManyArgs>(args: SelectSubset<T, FornecedorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Fornecedors and returns the data updated in the database.
+     * @param {FornecedorUpdateManyAndReturnArgs} args - Arguments to update many Fornecedors.
+     * @example
+     * // Update many Fornecedors
+     * const fornecedor = await prisma.fornecedor.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Fornecedors and only return the `id`
+     * const fornecedorWithIdOnly = await prisma.fornecedor.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FornecedorUpdateManyAndReturnArgs>(args: SelectSubset<T, FornecedorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Fornecedor.
+     * @param {FornecedorUpsertArgs} args - Arguments to update or create a Fornecedor.
+     * @example
+     * // Update or create a Fornecedor
+     * const fornecedor = await prisma.fornecedor.upsert({
+     *   create: {
+     *     // ... data to create a Fornecedor
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Fornecedor we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FornecedorUpsertArgs>(args: SelectSubset<T, FornecedorUpsertArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Fornecedors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorCountArgs} args - Arguments to filter Fornecedors to count.
+     * @example
+     * // Count the number of Fornecedors
+     * const count = await prisma.fornecedor.count({
+     *   where: {
+     *     // ... the filter for the Fornecedors we want to count
+     *   }
+     * })
+    **/
+    count<T extends FornecedorCountArgs>(
+      args?: Subset<T, FornecedorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FornecedorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Fornecedor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FornecedorAggregateArgs>(args: Subset<T, FornecedorAggregateArgs>): Prisma.PrismaPromise<GetFornecedorAggregateType<T>>
+
+    /**
+     * Group by Fornecedor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FornecedorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FornecedorGroupByArgs['orderBy'] }
+        : { orderBy?: FornecedorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FornecedorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFornecedorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Fornecedor model
+   */
+  readonly fields: FornecedorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Fornecedor.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FornecedorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    valores<T extends Fornecedor$valoresArgs<ExtArgs> = {}>(args?: Subset<T, Fornecedor$valoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Fornecedor model
+   */
+  interface FornecedorFieldRefs {
+    readonly id: FieldRef<"Fornecedor", 'String'>
+    readonly nome: FieldRef<"Fornecedor", 'String'>
+    readonly fazenda: FieldRef<"Fornecedor", 'String'>
+    readonly createdAt: FieldRef<"Fornecedor", 'DateTime'>
+    readonly updatedAt: FieldRef<"Fornecedor", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Fornecedor findUnique
+   */
+  export type FornecedorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter, which Fornecedor to fetch.
+     */
+    where: FornecedorWhereUniqueInput
+  }
+
+  /**
+   * Fornecedor findUniqueOrThrow
+   */
+  export type FornecedorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter, which Fornecedor to fetch.
+     */
+    where: FornecedorWhereUniqueInput
+  }
+
+  /**
+   * Fornecedor findFirst
+   */
+  export type FornecedorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter, which Fornecedor to fetch.
+     */
+    where?: FornecedorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fornecedors to fetch.
+     */
+    orderBy?: FornecedorOrderByWithRelationInput | FornecedorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Fornecedors.
+     */
+    cursor?: FornecedorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fornecedors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fornecedors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Fornecedors.
+     */
+    distinct?: FornecedorScalarFieldEnum | FornecedorScalarFieldEnum[]
+  }
+
+  /**
+   * Fornecedor findFirstOrThrow
+   */
+  export type FornecedorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter, which Fornecedor to fetch.
+     */
+    where?: FornecedorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fornecedors to fetch.
+     */
+    orderBy?: FornecedorOrderByWithRelationInput | FornecedorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Fornecedors.
+     */
+    cursor?: FornecedorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fornecedors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fornecedors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Fornecedors.
+     */
+    distinct?: FornecedorScalarFieldEnum | FornecedorScalarFieldEnum[]
+  }
+
+  /**
+   * Fornecedor findMany
+   */
+  export type FornecedorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter, which Fornecedors to fetch.
+     */
+    where?: FornecedorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fornecedors to fetch.
+     */
+    orderBy?: FornecedorOrderByWithRelationInput | FornecedorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Fornecedors.
+     */
+    cursor?: FornecedorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fornecedors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fornecedors.
+     */
+    skip?: number
+    distinct?: FornecedorScalarFieldEnum | FornecedorScalarFieldEnum[]
+  }
+
+  /**
+   * Fornecedor create
+   */
+  export type FornecedorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Fornecedor.
+     */
+    data: XOR<FornecedorCreateInput, FornecedorUncheckedCreateInput>
+  }
+
+  /**
+   * Fornecedor createMany
+   */
+  export type FornecedorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Fornecedors.
+     */
+    data: FornecedorCreateManyInput | FornecedorCreateManyInput[]
+  }
+
+  /**
+   * Fornecedor createManyAndReturn
+   */
+  export type FornecedorCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * The data used to create many Fornecedors.
+     */
+    data: FornecedorCreateManyInput | FornecedorCreateManyInput[]
+  }
+
+  /**
+   * Fornecedor update
+   */
+  export type FornecedorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Fornecedor.
+     */
+    data: XOR<FornecedorUpdateInput, FornecedorUncheckedUpdateInput>
+    /**
+     * Choose, which Fornecedor to update.
+     */
+    where: FornecedorWhereUniqueInput
+  }
+
+  /**
+   * Fornecedor updateMany
+   */
+  export type FornecedorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Fornecedors.
+     */
+    data: XOR<FornecedorUpdateManyMutationInput, FornecedorUncheckedUpdateManyInput>
+    /**
+     * Filter which Fornecedors to update
+     */
+    where?: FornecedorWhereInput
+    /**
+     * Limit how many Fornecedors to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Fornecedor updateManyAndReturn
+   */
+  export type FornecedorUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * The data used to update Fornecedors.
+     */
+    data: XOR<FornecedorUpdateManyMutationInput, FornecedorUncheckedUpdateManyInput>
+    /**
+     * Filter which Fornecedors to update
+     */
+    where?: FornecedorWhereInput
+    /**
+     * Limit how many Fornecedors to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Fornecedor upsert
+   */
+  export type FornecedorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Fornecedor to update in case it exists.
+     */
+    where: FornecedorWhereUniqueInput
+    /**
+     * In case the Fornecedor found by the `where` argument doesn't exist, create a new Fornecedor with this data.
+     */
+    create: XOR<FornecedorCreateInput, FornecedorUncheckedCreateInput>
+    /**
+     * In case the Fornecedor was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FornecedorUpdateInput, FornecedorUncheckedUpdateInput>
+  }
+
+  /**
+   * Fornecedor delete
+   */
+  export type FornecedorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter which Fornecedor to delete.
+     */
+    where: FornecedorWhereUniqueInput
+  }
+
+  /**
+   * Fornecedor deleteMany
+   */
+  export type FornecedorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Fornecedors to delete
+     */
+    where?: FornecedorWhereInput
+    /**
+     * Limit how many Fornecedors to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Fornecedor.valores
+   */
+  export type Fornecedor$valoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+    where?: FornecedorValorEspecieWhereInput
+    orderBy?: FornecedorValorEspecieOrderByWithRelationInput | FornecedorValorEspecieOrderByWithRelationInput[]
+    cursor?: FornecedorValorEspecieWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FornecedorValorEspecieScalarFieldEnum | FornecedorValorEspecieScalarFieldEnum[]
+  }
+
+  /**
+   * Fornecedor without action
+   */
+  export type FornecedorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FornecedorValorEspecie
+   */
+
+  export type AggregateFornecedorValorEspecie = {
+    _count: FornecedorValorEspecieCountAggregateOutputType | null
+    _avg: FornecedorValorEspecieAvgAggregateOutputType | null
+    _sum: FornecedorValorEspecieSumAggregateOutputType | null
+    _min: FornecedorValorEspecieMinAggregateOutputType | null
+    _max: FornecedorValorEspecieMaxAggregateOutputType | null
+  }
+
+  export type FornecedorValorEspecieAvgAggregateOutputType = {
+    valorKg: Decimal | null
+  }
+
+  export type FornecedorValorEspecieSumAggregateOutputType = {
+    valorKg: Decimal | null
+  }
+
+  export type FornecedorValorEspecieMinAggregateOutputType = {
+    id: string | null
+    fornecedorId: string | null
+    faixaPesoId: string | null
+    valorKg: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FornecedorValorEspecieMaxAggregateOutputType = {
+    id: string | null
+    fornecedorId: string | null
+    faixaPesoId: string | null
+    valorKg: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FornecedorValorEspecieCountAggregateOutputType = {
+    id: number
+    fornecedorId: number
+    faixaPesoId: number
+    valorKg: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FornecedorValorEspecieAvgAggregateInputType = {
+    valorKg?: true
+  }
+
+  export type FornecedorValorEspecieSumAggregateInputType = {
+    valorKg?: true
+  }
+
+  export type FornecedorValorEspecieMinAggregateInputType = {
+    id?: true
+    fornecedorId?: true
+    faixaPesoId?: true
+    valorKg?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FornecedorValorEspecieMaxAggregateInputType = {
+    id?: true
+    fornecedorId?: true
+    faixaPesoId?: true
+    valorKg?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FornecedorValorEspecieCountAggregateInputType = {
+    id?: true
+    fornecedorId?: true
+    faixaPesoId?: true
+    valorKg?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FornecedorValorEspecieAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FornecedorValorEspecie to aggregate.
+     */
+    where?: FornecedorValorEspecieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FornecedorValorEspecies to fetch.
+     */
+    orderBy?: FornecedorValorEspecieOrderByWithRelationInput | FornecedorValorEspecieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FornecedorValorEspecieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FornecedorValorEspecies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FornecedorValorEspecies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FornecedorValorEspecies
+    **/
+    _count?: true | FornecedorValorEspecieCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FornecedorValorEspecieAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FornecedorValorEspecieSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FornecedorValorEspecieMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FornecedorValorEspecieMaxAggregateInputType
+  }
+
+  export type GetFornecedorValorEspecieAggregateType<T extends FornecedorValorEspecieAggregateArgs> = {
+        [P in keyof T & keyof AggregateFornecedorValorEspecie]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFornecedorValorEspecie[P]>
+      : GetScalarType<T[P], AggregateFornecedorValorEspecie[P]>
+  }
+
+
+
+
+  export type FornecedorValorEspecieGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FornecedorValorEspecieWhereInput
+    orderBy?: FornecedorValorEspecieOrderByWithAggregationInput | FornecedorValorEspecieOrderByWithAggregationInput[]
+    by: FornecedorValorEspecieScalarFieldEnum[] | FornecedorValorEspecieScalarFieldEnum
+    having?: FornecedorValorEspecieScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FornecedorValorEspecieCountAggregateInputType | true
+    _avg?: FornecedorValorEspecieAvgAggregateInputType
+    _sum?: FornecedorValorEspecieSumAggregateInputType
+    _min?: FornecedorValorEspecieMinAggregateInputType
+    _max?: FornecedorValorEspecieMaxAggregateInputType
+  }
+
+  export type FornecedorValorEspecieGroupByOutputType = {
+    id: string
+    fornecedorId: string
+    faixaPesoId: string
+    valorKg: Decimal
+    createdAt: Date
+    updatedAt: Date
+    _count: FornecedorValorEspecieCountAggregateOutputType | null
+    _avg: FornecedorValorEspecieAvgAggregateOutputType | null
+    _sum: FornecedorValorEspecieSumAggregateOutputType | null
+    _min: FornecedorValorEspecieMinAggregateOutputType | null
+    _max: FornecedorValorEspecieMaxAggregateOutputType | null
+  }
+
+  type GetFornecedorValorEspecieGroupByPayload<T extends FornecedorValorEspecieGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FornecedorValorEspecieGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FornecedorValorEspecieGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FornecedorValorEspecieGroupByOutputType[P]>
+            : GetScalarType<T[P], FornecedorValorEspecieGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FornecedorValorEspecieSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fornecedorId?: boolean
+    faixaPesoId?: boolean
+    valorKg?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fornecedorValorEspecie"]>
+
+  export type FornecedorValorEspecieSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fornecedorId?: boolean
+    faixaPesoId?: boolean
+    valorKg?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fornecedorValorEspecie"]>
+
+  export type FornecedorValorEspecieSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fornecedorId?: boolean
+    faixaPesoId?: boolean
+    valorKg?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fornecedorValorEspecie"]>
+
+  export type FornecedorValorEspecieSelectScalar = {
+    id?: boolean
+    fornecedorId?: boolean
+    faixaPesoId?: boolean
+    valorKg?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FornecedorValorEspecieOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fornecedorId" | "faixaPesoId" | "valorKg" | "createdAt" | "updatedAt", ExtArgs["result"]["fornecedorValorEspecie"]>
+  export type FornecedorValorEspecieInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }
+  export type FornecedorValorEspecieIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }
+  export type FornecedorValorEspecieIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }
+
+  export type $FornecedorValorEspeciePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FornecedorValorEspecie"
+    objects: {
+      fornecedor: Prisma.$FornecedorPayload<ExtArgs>
+      faixaPeso: Prisma.$EspecieFaixaPesoPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fornecedorId: string
+      faixaPesoId: string
+      valorKg: Prisma.Decimal
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["fornecedorValorEspecie"]>
+    composites: {}
+  }
+
+  type FornecedorValorEspecieGetPayload<S extends boolean | null | undefined | FornecedorValorEspecieDefaultArgs> = $Result.GetResult<Prisma.$FornecedorValorEspeciePayload, S>
+
+  type FornecedorValorEspecieCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FornecedorValorEspecieFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FornecedorValorEspecieCountAggregateInputType | true
+    }
+
+  export interface FornecedorValorEspecieDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FornecedorValorEspecie'], meta: { name: 'FornecedorValorEspecie' } }
+    /**
+     * Find zero or one FornecedorValorEspecie that matches the filter.
+     * @param {FornecedorValorEspecieFindUniqueArgs} args - Arguments to find a FornecedorValorEspecie
+     * @example
+     * // Get one FornecedorValorEspecie
+     * const fornecedorValorEspecie = await prisma.fornecedorValorEspecie.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FornecedorValorEspecieFindUniqueArgs>(args: SelectSubset<T, FornecedorValorEspecieFindUniqueArgs<ExtArgs>>): Prisma__FornecedorValorEspecieClient<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FornecedorValorEspecie that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FornecedorValorEspecieFindUniqueOrThrowArgs} args - Arguments to find a FornecedorValorEspecie
+     * @example
+     * // Get one FornecedorValorEspecie
+     * const fornecedorValorEspecie = await prisma.fornecedorValorEspecie.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FornecedorValorEspecieFindUniqueOrThrowArgs>(args: SelectSubset<T, FornecedorValorEspecieFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FornecedorValorEspecieClient<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FornecedorValorEspecie that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorValorEspecieFindFirstArgs} args - Arguments to find a FornecedorValorEspecie
+     * @example
+     * // Get one FornecedorValorEspecie
+     * const fornecedorValorEspecie = await prisma.fornecedorValorEspecie.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FornecedorValorEspecieFindFirstArgs>(args?: SelectSubset<T, FornecedorValorEspecieFindFirstArgs<ExtArgs>>): Prisma__FornecedorValorEspecieClient<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FornecedorValorEspecie that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorValorEspecieFindFirstOrThrowArgs} args - Arguments to find a FornecedorValorEspecie
+     * @example
+     * // Get one FornecedorValorEspecie
+     * const fornecedorValorEspecie = await prisma.fornecedorValorEspecie.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FornecedorValorEspecieFindFirstOrThrowArgs>(args?: SelectSubset<T, FornecedorValorEspecieFindFirstOrThrowArgs<ExtArgs>>): Prisma__FornecedorValorEspecieClient<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FornecedorValorEspecies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorValorEspecieFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FornecedorValorEspecies
+     * const fornecedorValorEspecies = await prisma.fornecedorValorEspecie.findMany()
+     * 
+     * // Get first 10 FornecedorValorEspecies
+     * const fornecedorValorEspecies = await prisma.fornecedorValorEspecie.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fornecedorValorEspecieWithIdOnly = await prisma.fornecedorValorEspecie.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FornecedorValorEspecieFindManyArgs>(args?: SelectSubset<T, FornecedorValorEspecieFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FornecedorValorEspecie.
+     * @param {FornecedorValorEspecieCreateArgs} args - Arguments to create a FornecedorValorEspecie.
+     * @example
+     * // Create one FornecedorValorEspecie
+     * const FornecedorValorEspecie = await prisma.fornecedorValorEspecie.create({
+     *   data: {
+     *     // ... data to create a FornecedorValorEspecie
+     *   }
+     * })
+     * 
+     */
+    create<T extends FornecedorValorEspecieCreateArgs>(args: SelectSubset<T, FornecedorValorEspecieCreateArgs<ExtArgs>>): Prisma__FornecedorValorEspecieClient<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FornecedorValorEspecies.
+     * @param {FornecedorValorEspecieCreateManyArgs} args - Arguments to create many FornecedorValorEspecies.
+     * @example
+     * // Create many FornecedorValorEspecies
+     * const fornecedorValorEspecie = await prisma.fornecedorValorEspecie.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FornecedorValorEspecieCreateManyArgs>(args?: SelectSubset<T, FornecedorValorEspecieCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FornecedorValorEspecies and returns the data saved in the database.
+     * @param {FornecedorValorEspecieCreateManyAndReturnArgs} args - Arguments to create many FornecedorValorEspecies.
+     * @example
+     * // Create many FornecedorValorEspecies
+     * const fornecedorValorEspecie = await prisma.fornecedorValorEspecie.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FornecedorValorEspecies and only return the `id`
+     * const fornecedorValorEspecieWithIdOnly = await prisma.fornecedorValorEspecie.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FornecedorValorEspecieCreateManyAndReturnArgs>(args?: SelectSubset<T, FornecedorValorEspecieCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FornecedorValorEspecie.
+     * @param {FornecedorValorEspecieDeleteArgs} args - Arguments to delete one FornecedorValorEspecie.
+     * @example
+     * // Delete one FornecedorValorEspecie
+     * const FornecedorValorEspecie = await prisma.fornecedorValorEspecie.delete({
+     *   where: {
+     *     // ... filter to delete one FornecedorValorEspecie
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FornecedorValorEspecieDeleteArgs>(args: SelectSubset<T, FornecedorValorEspecieDeleteArgs<ExtArgs>>): Prisma__FornecedorValorEspecieClient<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FornecedorValorEspecie.
+     * @param {FornecedorValorEspecieUpdateArgs} args - Arguments to update one FornecedorValorEspecie.
+     * @example
+     * // Update one FornecedorValorEspecie
+     * const fornecedorValorEspecie = await prisma.fornecedorValorEspecie.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FornecedorValorEspecieUpdateArgs>(args: SelectSubset<T, FornecedorValorEspecieUpdateArgs<ExtArgs>>): Prisma__FornecedorValorEspecieClient<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FornecedorValorEspecies.
+     * @param {FornecedorValorEspecieDeleteManyArgs} args - Arguments to filter FornecedorValorEspecies to delete.
+     * @example
+     * // Delete a few FornecedorValorEspecies
+     * const { count } = await prisma.fornecedorValorEspecie.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FornecedorValorEspecieDeleteManyArgs>(args?: SelectSubset<T, FornecedorValorEspecieDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FornecedorValorEspecies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorValorEspecieUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FornecedorValorEspecies
+     * const fornecedorValorEspecie = await prisma.fornecedorValorEspecie.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FornecedorValorEspecieUpdateManyArgs>(args: SelectSubset<T, FornecedorValorEspecieUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FornecedorValorEspecies and returns the data updated in the database.
+     * @param {FornecedorValorEspecieUpdateManyAndReturnArgs} args - Arguments to update many FornecedorValorEspecies.
+     * @example
+     * // Update many FornecedorValorEspecies
+     * const fornecedorValorEspecie = await prisma.fornecedorValorEspecie.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FornecedorValorEspecies and only return the `id`
+     * const fornecedorValorEspecieWithIdOnly = await prisma.fornecedorValorEspecie.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FornecedorValorEspecieUpdateManyAndReturnArgs>(args: SelectSubset<T, FornecedorValorEspecieUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FornecedorValorEspecie.
+     * @param {FornecedorValorEspecieUpsertArgs} args - Arguments to update or create a FornecedorValorEspecie.
+     * @example
+     * // Update or create a FornecedorValorEspecie
+     * const fornecedorValorEspecie = await prisma.fornecedorValorEspecie.upsert({
+     *   create: {
+     *     // ... data to create a FornecedorValorEspecie
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FornecedorValorEspecie we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FornecedorValorEspecieUpsertArgs>(args: SelectSubset<T, FornecedorValorEspecieUpsertArgs<ExtArgs>>): Prisma__FornecedorValorEspecieClient<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FornecedorValorEspecies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorValorEspecieCountArgs} args - Arguments to filter FornecedorValorEspecies to count.
+     * @example
+     * // Count the number of FornecedorValorEspecies
+     * const count = await prisma.fornecedorValorEspecie.count({
+     *   where: {
+     *     // ... the filter for the FornecedorValorEspecies we want to count
+     *   }
+     * })
+    **/
+    count<T extends FornecedorValorEspecieCountArgs>(
+      args?: Subset<T, FornecedorValorEspecieCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FornecedorValorEspecieCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FornecedorValorEspecie.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorValorEspecieAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FornecedorValorEspecieAggregateArgs>(args: Subset<T, FornecedorValorEspecieAggregateArgs>): Prisma.PrismaPromise<GetFornecedorValorEspecieAggregateType<T>>
+
+    /**
+     * Group by FornecedorValorEspecie.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorValorEspecieGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FornecedorValorEspecieGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FornecedorValorEspecieGroupByArgs['orderBy'] }
+        : { orderBy?: FornecedorValorEspecieGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FornecedorValorEspecieGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFornecedorValorEspecieGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FornecedorValorEspecie model
+   */
+  readonly fields: FornecedorValorEspecieFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FornecedorValorEspecie.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FornecedorValorEspecieClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    fornecedor<T extends FornecedorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FornecedorDefaultArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    faixaPeso<T extends EspecieFaixaPesoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EspecieFaixaPesoDefaultArgs<ExtArgs>>): Prisma__EspecieFaixaPesoClient<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FornecedorValorEspecie model
+   */
+  interface FornecedorValorEspecieFieldRefs {
+    readonly id: FieldRef<"FornecedorValorEspecie", 'String'>
+    readonly fornecedorId: FieldRef<"FornecedorValorEspecie", 'String'>
+    readonly faixaPesoId: FieldRef<"FornecedorValorEspecie", 'String'>
+    readonly valorKg: FieldRef<"FornecedorValorEspecie", 'Decimal'>
+    readonly createdAt: FieldRef<"FornecedorValorEspecie", 'DateTime'>
+    readonly updatedAt: FieldRef<"FornecedorValorEspecie", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FornecedorValorEspecie findUnique
+   */
+  export type FornecedorValorEspecieFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+    /**
+     * Filter, which FornecedorValorEspecie to fetch.
+     */
+    where: FornecedorValorEspecieWhereUniqueInput
+  }
+
+  /**
+   * FornecedorValorEspecie findUniqueOrThrow
+   */
+  export type FornecedorValorEspecieFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+    /**
+     * Filter, which FornecedorValorEspecie to fetch.
+     */
+    where: FornecedorValorEspecieWhereUniqueInput
+  }
+
+  /**
+   * FornecedorValorEspecie findFirst
+   */
+  export type FornecedorValorEspecieFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+    /**
+     * Filter, which FornecedorValorEspecie to fetch.
+     */
+    where?: FornecedorValorEspecieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FornecedorValorEspecies to fetch.
+     */
+    orderBy?: FornecedorValorEspecieOrderByWithRelationInput | FornecedorValorEspecieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FornecedorValorEspecies.
+     */
+    cursor?: FornecedorValorEspecieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FornecedorValorEspecies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FornecedorValorEspecies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FornecedorValorEspecies.
+     */
+    distinct?: FornecedorValorEspecieScalarFieldEnum | FornecedorValorEspecieScalarFieldEnum[]
+  }
+
+  /**
+   * FornecedorValorEspecie findFirstOrThrow
+   */
+  export type FornecedorValorEspecieFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+    /**
+     * Filter, which FornecedorValorEspecie to fetch.
+     */
+    where?: FornecedorValorEspecieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FornecedorValorEspecies to fetch.
+     */
+    orderBy?: FornecedorValorEspecieOrderByWithRelationInput | FornecedorValorEspecieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FornecedorValorEspecies.
+     */
+    cursor?: FornecedorValorEspecieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FornecedorValorEspecies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FornecedorValorEspecies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FornecedorValorEspecies.
+     */
+    distinct?: FornecedorValorEspecieScalarFieldEnum | FornecedorValorEspecieScalarFieldEnum[]
+  }
+
+  /**
+   * FornecedorValorEspecie findMany
+   */
+  export type FornecedorValorEspecieFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+    /**
+     * Filter, which FornecedorValorEspecies to fetch.
+     */
+    where?: FornecedorValorEspecieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FornecedorValorEspecies to fetch.
+     */
+    orderBy?: FornecedorValorEspecieOrderByWithRelationInput | FornecedorValorEspecieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FornecedorValorEspecies.
+     */
+    cursor?: FornecedorValorEspecieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FornecedorValorEspecies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FornecedorValorEspecies.
+     */
+    skip?: number
+    distinct?: FornecedorValorEspecieScalarFieldEnum | FornecedorValorEspecieScalarFieldEnum[]
+  }
+
+  /**
+   * FornecedorValorEspecie create
+   */
+  export type FornecedorValorEspecieCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FornecedorValorEspecie.
+     */
+    data: XOR<FornecedorValorEspecieCreateInput, FornecedorValorEspecieUncheckedCreateInput>
+  }
+
+  /**
+   * FornecedorValorEspecie createMany
+   */
+  export type FornecedorValorEspecieCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FornecedorValorEspecies.
+     */
+    data: FornecedorValorEspecieCreateManyInput | FornecedorValorEspecieCreateManyInput[]
+  }
+
+  /**
+   * FornecedorValorEspecie createManyAndReturn
+   */
+  export type FornecedorValorEspecieCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * The data used to create many FornecedorValorEspecies.
+     */
+    data: FornecedorValorEspecieCreateManyInput | FornecedorValorEspecieCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FornecedorValorEspecie update
+   */
+  export type FornecedorValorEspecieUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FornecedorValorEspecie.
+     */
+    data: XOR<FornecedorValorEspecieUpdateInput, FornecedorValorEspecieUncheckedUpdateInput>
+    /**
+     * Choose, which FornecedorValorEspecie to update.
+     */
+    where: FornecedorValorEspecieWhereUniqueInput
+  }
+
+  /**
+   * FornecedorValorEspecie updateMany
+   */
+  export type FornecedorValorEspecieUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FornecedorValorEspecies.
+     */
+    data: XOR<FornecedorValorEspecieUpdateManyMutationInput, FornecedorValorEspecieUncheckedUpdateManyInput>
+    /**
+     * Filter which FornecedorValorEspecies to update
+     */
+    where?: FornecedorValorEspecieWhereInput
+    /**
+     * Limit how many FornecedorValorEspecies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FornecedorValorEspecie updateManyAndReturn
+   */
+  export type FornecedorValorEspecieUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * The data used to update FornecedorValorEspecies.
+     */
+    data: XOR<FornecedorValorEspecieUpdateManyMutationInput, FornecedorValorEspecieUncheckedUpdateManyInput>
+    /**
+     * Filter which FornecedorValorEspecies to update
+     */
+    where?: FornecedorValorEspecieWhereInput
+    /**
+     * Limit how many FornecedorValorEspecies to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FornecedorValorEspecie upsert
+   */
+  export type FornecedorValorEspecieUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FornecedorValorEspecie to update in case it exists.
+     */
+    where: FornecedorValorEspecieWhereUniqueInput
+    /**
+     * In case the FornecedorValorEspecie found by the `where` argument doesn't exist, create a new FornecedorValorEspecie with this data.
+     */
+    create: XOR<FornecedorValorEspecieCreateInput, FornecedorValorEspecieUncheckedCreateInput>
+    /**
+     * In case the FornecedorValorEspecie was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FornecedorValorEspecieUpdateInput, FornecedorValorEspecieUncheckedUpdateInput>
+  }
+
+  /**
+   * FornecedorValorEspecie delete
+   */
+  export type FornecedorValorEspecieDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+    /**
+     * Filter which FornecedorValorEspecie to delete.
+     */
+    where: FornecedorValorEspecieWhereUniqueInput
+  }
+
+  /**
+   * FornecedorValorEspecie deleteMany
+   */
+  export type FornecedorValorEspecieDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FornecedorValorEspecies to delete
+     */
+    where?: FornecedorValorEspecieWhereInput
+    /**
+     * Limit how many FornecedorValorEspecies to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FornecedorValorEspecie without action
+   */
+  export type FornecedorValorEspecieDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorValorEspecie
+     */
+    select?: FornecedorValorEspecieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FornecedorValorEspecie
+     */
+    omit?: FornecedorValorEspecieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorValorEspecieInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4450,6 +9278,51 @@ export namespace Prisma {
   };
 
   export type PesagemScalarFieldEnum = (typeof PesagemScalarFieldEnum)[keyof typeof PesagemScalarFieldEnum]
+
+
+  export const EspecieScalarFieldEnum: {
+    id: 'id',
+    nome: 'nome',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type EspecieScalarFieldEnum = (typeof EspecieScalarFieldEnum)[keyof typeof EspecieScalarFieldEnum]
+
+
+  export const EspecieFaixaPesoScalarFieldEnum: {
+    id: 'id',
+    especieId: 'especieId',
+    pesoMin: 'pesoMin',
+    pesoMax: 'pesoMax',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type EspecieFaixaPesoScalarFieldEnum = (typeof EspecieFaixaPesoScalarFieldEnum)[keyof typeof EspecieFaixaPesoScalarFieldEnum]
+
+
+  export const FornecedorScalarFieldEnum: {
+    id: 'id',
+    nome: 'nome',
+    fazenda: 'fazenda',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FornecedorScalarFieldEnum = (typeof FornecedorScalarFieldEnum)[keyof typeof FornecedorScalarFieldEnum]
+
+
+  export const FornecedorValorEspecieScalarFieldEnum: {
+    id: 'id',
+    fornecedorId: 'fornecedorId',
+    faixaPesoId: 'faixaPesoId',
+    valorKg: 'valorKg',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FornecedorValorEspecieScalarFieldEnum = (typeof FornecedorValorEspecieScalarFieldEnum)[keyof typeof FornecedorValorEspecieScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4700,6 +9573,244 @@ export namespace Prisma {
     operadorMatricula?: IntWithAggregatesFilter<"Pesagem"> | number
   }
 
+  export type EspecieWhereInput = {
+    AND?: EspecieWhereInput | EspecieWhereInput[]
+    OR?: EspecieWhereInput[]
+    NOT?: EspecieWhereInput | EspecieWhereInput[]
+    id?: StringFilter<"Especie"> | string
+    nome?: StringFilter<"Especie"> | string
+    createdAt?: DateTimeFilter<"Especie"> | Date | string
+    updatedAt?: DateTimeFilter<"Especie"> | Date | string
+    faixas?: EspecieFaixaPesoListRelationFilter
+  }
+
+  export type EspecieOrderByWithRelationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    faixas?: EspecieFaixaPesoOrderByRelationAggregateInput
+  }
+
+  export type EspecieWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    nome?: string
+    AND?: EspecieWhereInput | EspecieWhereInput[]
+    OR?: EspecieWhereInput[]
+    NOT?: EspecieWhereInput | EspecieWhereInput[]
+    createdAt?: DateTimeFilter<"Especie"> | Date | string
+    updatedAt?: DateTimeFilter<"Especie"> | Date | string
+    faixas?: EspecieFaixaPesoListRelationFilter
+  }, "id" | "nome">
+
+  export type EspecieOrderByWithAggregationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: EspecieCountOrderByAggregateInput
+    _max?: EspecieMaxOrderByAggregateInput
+    _min?: EspecieMinOrderByAggregateInput
+  }
+
+  export type EspecieScalarWhereWithAggregatesInput = {
+    AND?: EspecieScalarWhereWithAggregatesInput | EspecieScalarWhereWithAggregatesInput[]
+    OR?: EspecieScalarWhereWithAggregatesInput[]
+    NOT?: EspecieScalarWhereWithAggregatesInput | EspecieScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Especie"> | string
+    nome?: StringWithAggregatesFilter<"Especie"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Especie"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Especie"> | Date | string
+  }
+
+  export type EspecieFaixaPesoWhereInput = {
+    AND?: EspecieFaixaPesoWhereInput | EspecieFaixaPesoWhereInput[]
+    OR?: EspecieFaixaPesoWhereInput[]
+    NOT?: EspecieFaixaPesoWhereInput | EspecieFaixaPesoWhereInput[]
+    id?: StringFilter<"EspecieFaixaPeso"> | string
+    especieId?: StringFilter<"EspecieFaixaPeso"> | string
+    pesoMin?: DecimalFilter<"EspecieFaixaPeso"> | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFilter<"EspecieFaixaPeso"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"EspecieFaixaPeso"> | Date | string
+    updatedAt?: DateTimeFilter<"EspecieFaixaPeso"> | Date | string
+    especie?: XOR<EspecieScalarRelationFilter, EspecieWhereInput>
+    valoresFornecedor?: FornecedorValorEspecieListRelationFilter
+  }
+
+  export type EspecieFaixaPesoOrderByWithRelationInput = {
+    id?: SortOrder
+    especieId?: SortOrder
+    pesoMin?: SortOrder
+    pesoMax?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    especie?: EspecieOrderByWithRelationInput
+    valoresFornecedor?: FornecedorValorEspecieOrderByRelationAggregateInput
+  }
+
+  export type EspecieFaixaPesoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    especieId_pesoMin_pesoMax?: EspecieFaixaPesoEspecieIdPesoMinPesoMaxCompoundUniqueInput
+    AND?: EspecieFaixaPesoWhereInput | EspecieFaixaPesoWhereInput[]
+    OR?: EspecieFaixaPesoWhereInput[]
+    NOT?: EspecieFaixaPesoWhereInput | EspecieFaixaPesoWhereInput[]
+    especieId?: StringFilter<"EspecieFaixaPeso"> | string
+    pesoMin?: DecimalFilter<"EspecieFaixaPeso"> | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFilter<"EspecieFaixaPeso"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"EspecieFaixaPeso"> | Date | string
+    updatedAt?: DateTimeFilter<"EspecieFaixaPeso"> | Date | string
+    especie?: XOR<EspecieScalarRelationFilter, EspecieWhereInput>
+    valoresFornecedor?: FornecedorValorEspecieListRelationFilter
+  }, "id" | "especieId_pesoMin_pesoMax">
+
+  export type EspecieFaixaPesoOrderByWithAggregationInput = {
+    id?: SortOrder
+    especieId?: SortOrder
+    pesoMin?: SortOrder
+    pesoMax?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: EspecieFaixaPesoCountOrderByAggregateInput
+    _avg?: EspecieFaixaPesoAvgOrderByAggregateInput
+    _max?: EspecieFaixaPesoMaxOrderByAggregateInput
+    _min?: EspecieFaixaPesoMinOrderByAggregateInput
+    _sum?: EspecieFaixaPesoSumOrderByAggregateInput
+  }
+
+  export type EspecieFaixaPesoScalarWhereWithAggregatesInput = {
+    AND?: EspecieFaixaPesoScalarWhereWithAggregatesInput | EspecieFaixaPesoScalarWhereWithAggregatesInput[]
+    OR?: EspecieFaixaPesoScalarWhereWithAggregatesInput[]
+    NOT?: EspecieFaixaPesoScalarWhereWithAggregatesInput | EspecieFaixaPesoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EspecieFaixaPeso"> | string
+    especieId?: StringWithAggregatesFilter<"EspecieFaixaPeso"> | string
+    pesoMin?: DecimalWithAggregatesFilter<"EspecieFaixaPeso"> | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalWithAggregatesFilter<"EspecieFaixaPeso"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeWithAggregatesFilter<"EspecieFaixaPeso"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EspecieFaixaPeso"> | Date | string
+  }
+
+  export type FornecedorWhereInput = {
+    AND?: FornecedorWhereInput | FornecedorWhereInput[]
+    OR?: FornecedorWhereInput[]
+    NOT?: FornecedorWhereInput | FornecedorWhereInput[]
+    id?: StringFilter<"Fornecedor"> | string
+    nome?: StringFilter<"Fornecedor"> | string
+    fazenda?: StringFilter<"Fornecedor"> | string
+    createdAt?: DateTimeFilter<"Fornecedor"> | Date | string
+    updatedAt?: DateTimeFilter<"Fornecedor"> | Date | string
+    valores?: FornecedorValorEspecieListRelationFilter
+  }
+
+  export type FornecedorOrderByWithRelationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    fazenda?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    valores?: FornecedorValorEspecieOrderByRelationAggregateInput
+  }
+
+  export type FornecedorWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    nome_fazenda?: FornecedorNomeFazendaCompoundUniqueInput
+    AND?: FornecedorWhereInput | FornecedorWhereInput[]
+    OR?: FornecedorWhereInput[]
+    NOT?: FornecedorWhereInput | FornecedorWhereInput[]
+    nome?: StringFilter<"Fornecedor"> | string
+    fazenda?: StringFilter<"Fornecedor"> | string
+    createdAt?: DateTimeFilter<"Fornecedor"> | Date | string
+    updatedAt?: DateTimeFilter<"Fornecedor"> | Date | string
+    valores?: FornecedorValorEspecieListRelationFilter
+  }, "id" | "nome_fazenda">
+
+  export type FornecedorOrderByWithAggregationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    fazenda?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FornecedorCountOrderByAggregateInput
+    _max?: FornecedorMaxOrderByAggregateInput
+    _min?: FornecedorMinOrderByAggregateInput
+  }
+
+  export type FornecedorScalarWhereWithAggregatesInput = {
+    AND?: FornecedorScalarWhereWithAggregatesInput | FornecedorScalarWhereWithAggregatesInput[]
+    OR?: FornecedorScalarWhereWithAggregatesInput[]
+    NOT?: FornecedorScalarWhereWithAggregatesInput | FornecedorScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Fornecedor"> | string
+    nome?: StringWithAggregatesFilter<"Fornecedor"> | string
+    fazenda?: StringWithAggregatesFilter<"Fornecedor"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Fornecedor"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Fornecedor"> | Date | string
+  }
+
+  export type FornecedorValorEspecieWhereInput = {
+    AND?: FornecedorValorEspecieWhereInput | FornecedorValorEspecieWhereInput[]
+    OR?: FornecedorValorEspecieWhereInput[]
+    NOT?: FornecedorValorEspecieWhereInput | FornecedorValorEspecieWhereInput[]
+    id?: StringFilter<"FornecedorValorEspecie"> | string
+    fornecedorId?: StringFilter<"FornecedorValorEspecie"> | string
+    faixaPesoId?: StringFilter<"FornecedorValorEspecie"> | string
+    valorKg?: DecimalFilter<"FornecedorValorEspecie"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"FornecedorValorEspecie"> | Date | string
+    updatedAt?: DateTimeFilter<"FornecedorValorEspecie"> | Date | string
+    fornecedor?: XOR<FornecedorScalarRelationFilter, FornecedorWhereInput>
+    faixaPeso?: XOR<EspecieFaixaPesoScalarRelationFilter, EspecieFaixaPesoWhereInput>
+  }
+
+  export type FornecedorValorEspecieOrderByWithRelationInput = {
+    id?: SortOrder
+    fornecedorId?: SortOrder
+    faixaPesoId?: SortOrder
+    valorKg?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    fornecedor?: FornecedorOrderByWithRelationInput
+    faixaPeso?: EspecieFaixaPesoOrderByWithRelationInput
+  }
+
+  export type FornecedorValorEspecieWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    fornecedorId_faixaPesoId?: FornecedorValorEspecieFornecedorIdFaixaPesoIdCompoundUniqueInput
+    AND?: FornecedorValorEspecieWhereInput | FornecedorValorEspecieWhereInput[]
+    OR?: FornecedorValorEspecieWhereInput[]
+    NOT?: FornecedorValorEspecieWhereInput | FornecedorValorEspecieWhereInput[]
+    fornecedorId?: StringFilter<"FornecedorValorEspecie"> | string
+    faixaPesoId?: StringFilter<"FornecedorValorEspecie"> | string
+    valorKg?: DecimalFilter<"FornecedorValorEspecie"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"FornecedorValorEspecie"> | Date | string
+    updatedAt?: DateTimeFilter<"FornecedorValorEspecie"> | Date | string
+    fornecedor?: XOR<FornecedorScalarRelationFilter, FornecedorWhereInput>
+    faixaPeso?: XOR<EspecieFaixaPesoScalarRelationFilter, EspecieFaixaPesoWhereInput>
+  }, "id" | "fornecedorId_faixaPesoId">
+
+  export type FornecedorValorEspecieOrderByWithAggregationInput = {
+    id?: SortOrder
+    fornecedorId?: SortOrder
+    faixaPesoId?: SortOrder
+    valorKg?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FornecedorValorEspecieCountOrderByAggregateInput
+    _avg?: FornecedorValorEspecieAvgOrderByAggregateInput
+    _max?: FornecedorValorEspecieMaxOrderByAggregateInput
+    _min?: FornecedorValorEspecieMinOrderByAggregateInput
+    _sum?: FornecedorValorEspecieSumOrderByAggregateInput
+  }
+
+  export type FornecedorValorEspecieScalarWhereWithAggregatesInput = {
+    AND?: FornecedorValorEspecieScalarWhereWithAggregatesInput | FornecedorValorEspecieScalarWhereWithAggregatesInput[]
+    OR?: FornecedorValorEspecieScalarWhereWithAggregatesInput[]
+    NOT?: FornecedorValorEspecieScalarWhereWithAggregatesInput | FornecedorValorEspecieScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FornecedorValorEspecie"> | string
+    fornecedorId?: StringWithAggregatesFilter<"FornecedorValorEspecie"> | string
+    faixaPesoId?: StringWithAggregatesFilter<"FornecedorValorEspecie"> | string
+    valorKg?: DecimalWithAggregatesFilter<"FornecedorValorEspecie"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeWithAggregatesFilter<"FornecedorValorEspecie"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FornecedorValorEspecie"> | Date | string
+  }
+
   export type OperadorCreateInput = {
     matricula: number
     nome: string
@@ -4886,6 +9997,246 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     corteId?: StringFieldUpdateOperationsInput | string
     operadorMatricula?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EspecieCreateInput = {
+    id?: string
+    nome: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    faixas?: EspecieFaixaPesoCreateNestedManyWithoutEspecieInput
+  }
+
+  export type EspecieUncheckedCreateInput = {
+    id?: string
+    nome: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    faixas?: EspecieFaixaPesoUncheckedCreateNestedManyWithoutEspecieInput
+  }
+
+  export type EspecieUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    faixas?: EspecieFaixaPesoUpdateManyWithoutEspecieNestedInput
+  }
+
+  export type EspecieUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    faixas?: EspecieFaixaPesoUncheckedUpdateManyWithoutEspecieNestedInput
+  }
+
+  export type EspecieCreateManyInput = {
+    id?: string
+    nome: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EspecieUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EspecieUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EspecieFaixaPesoCreateInput = {
+    id?: string
+    pesoMin: Decimal | DecimalJsLike | number | string
+    pesoMax: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    especie: EspecieCreateNestedOneWithoutFaixasInput
+    valoresFornecedor?: FornecedorValorEspecieCreateNestedManyWithoutFaixaPesoInput
+  }
+
+  export type EspecieFaixaPesoUncheckedCreateInput = {
+    id?: string
+    especieId: string
+    pesoMin: Decimal | DecimalJsLike | number | string
+    pesoMax: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    valoresFornecedor?: FornecedorValorEspecieUncheckedCreateNestedManyWithoutFaixaPesoInput
+  }
+
+  export type EspecieFaixaPesoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    especie?: EspecieUpdateOneRequiredWithoutFaixasNestedInput
+    valoresFornecedor?: FornecedorValorEspecieUpdateManyWithoutFaixaPesoNestedInput
+  }
+
+  export type EspecieFaixaPesoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    especieId?: StringFieldUpdateOperationsInput | string
+    pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    valoresFornecedor?: FornecedorValorEspecieUncheckedUpdateManyWithoutFaixaPesoNestedInput
+  }
+
+  export type EspecieFaixaPesoCreateManyInput = {
+    id?: string
+    especieId: string
+    pesoMin: Decimal | DecimalJsLike | number | string
+    pesoMax: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EspecieFaixaPesoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EspecieFaixaPesoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    especieId?: StringFieldUpdateOperationsInput | string
+    pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorCreateInput = {
+    id?: string
+    nome: string
+    fazenda: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    valores?: FornecedorValorEspecieCreateNestedManyWithoutFornecedorInput
+  }
+
+  export type FornecedorUncheckedCreateInput = {
+    id?: string
+    nome: string
+    fazenda: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    valores?: FornecedorValorEspecieUncheckedCreateNestedManyWithoutFornecedorInput
+  }
+
+  export type FornecedorUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    fazenda?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    valores?: FornecedorValorEspecieUpdateManyWithoutFornecedorNestedInput
+  }
+
+  export type FornecedorUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    fazenda?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    valores?: FornecedorValorEspecieUncheckedUpdateManyWithoutFornecedorNestedInput
+  }
+
+  export type FornecedorCreateManyInput = {
+    id?: string
+    nome: string
+    fazenda: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FornecedorUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    fazenda?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    fazenda?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorValorEspecieCreateInput = {
+    id?: string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    fornecedor: FornecedorCreateNestedOneWithoutValoresInput
+    faixaPeso: EspecieFaixaPesoCreateNestedOneWithoutValoresFornecedorInput
+  }
+
+  export type FornecedorValorEspecieUncheckedCreateInput = {
+    id?: string
+    fornecedorId: string
+    faixaPesoId: string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FornecedorValorEspecieUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fornecedor?: FornecedorUpdateOneRequiredWithoutValoresNestedInput
+    faixaPeso?: EspecieFaixaPesoUpdateOneRequiredWithoutValoresFornecedorNestedInput
+  }
+
+  export type FornecedorValorEspecieUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fornecedorId?: StringFieldUpdateOperationsInput | string
+    faixaPesoId?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorValorEspecieCreateManyInput = {
+    id?: string
+    fornecedorId: string
+    faixaPesoId: string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FornecedorValorEspecieUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorValorEspecieUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fornecedorId?: StringFieldUpdateOperationsInput | string
+    faixaPesoId?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -5192,6 +10543,174 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type EspecieFaixaPesoListRelationFilter = {
+    every?: EspecieFaixaPesoWhereInput
+    some?: EspecieFaixaPesoWhereInput
+    none?: EspecieFaixaPesoWhereInput
+  }
+
+  export type EspecieFaixaPesoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EspecieCountOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EspecieMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EspecieMinOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EspecieScalarRelationFilter = {
+    is?: EspecieWhereInput
+    isNot?: EspecieWhereInput
+  }
+
+  export type FornecedorValorEspecieListRelationFilter = {
+    every?: FornecedorValorEspecieWhereInput
+    some?: FornecedorValorEspecieWhereInput
+    none?: FornecedorValorEspecieWhereInput
+  }
+
+  export type FornecedorValorEspecieOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EspecieFaixaPesoEspecieIdPesoMinPesoMaxCompoundUniqueInput = {
+    especieId: string
+    pesoMin: Decimal | DecimalJsLike | number | string
+    pesoMax: Decimal | DecimalJsLike | number | string
+  }
+
+  export type EspecieFaixaPesoCountOrderByAggregateInput = {
+    id?: SortOrder
+    especieId?: SortOrder
+    pesoMin?: SortOrder
+    pesoMax?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EspecieFaixaPesoAvgOrderByAggregateInput = {
+    pesoMin?: SortOrder
+    pesoMax?: SortOrder
+  }
+
+  export type EspecieFaixaPesoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    especieId?: SortOrder
+    pesoMin?: SortOrder
+    pesoMax?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EspecieFaixaPesoMinOrderByAggregateInput = {
+    id?: SortOrder
+    especieId?: SortOrder
+    pesoMin?: SortOrder
+    pesoMax?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EspecieFaixaPesoSumOrderByAggregateInput = {
+    pesoMin?: SortOrder
+    pesoMax?: SortOrder
+  }
+
+  export type FornecedorNomeFazendaCompoundUniqueInput = {
+    nome: string
+    fazenda: string
+  }
+
+  export type FornecedorCountOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    fazenda?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FornecedorMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    fazenda?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FornecedorMinOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    fazenda?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FornecedorScalarRelationFilter = {
+    is?: FornecedorWhereInput
+    isNot?: FornecedorWhereInput
+  }
+
+  export type EspecieFaixaPesoScalarRelationFilter = {
+    is?: EspecieFaixaPesoWhereInput
+    isNot?: EspecieFaixaPesoWhereInput
+  }
+
+  export type FornecedorValorEspecieFornecedorIdFaixaPesoIdCompoundUniqueInput = {
+    fornecedorId: string
+    faixaPesoId: string
+  }
+
+  export type FornecedorValorEspecieCountOrderByAggregateInput = {
+    id?: SortOrder
+    fornecedorId?: SortOrder
+    faixaPesoId?: SortOrder
+    valorKg?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FornecedorValorEspecieAvgOrderByAggregateInput = {
+    valorKg?: SortOrder
+  }
+
+  export type FornecedorValorEspecieMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fornecedorId?: SortOrder
+    faixaPesoId?: SortOrder
+    valorKg?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FornecedorValorEspecieMinOrderByAggregateInput = {
+    id?: SortOrder
+    fornecedorId?: SortOrder
+    faixaPesoId?: SortOrder
+    valorKg?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FornecedorValorEspecieSumOrderByAggregateInput = {
+    valorKg?: SortOrder
+  }
+
   export type PesagemCreateNestedManyWithoutOperadorInput = {
     create?: XOR<PesagemCreateWithoutOperadorInput, PesagemUncheckedCreateWithoutOperadorInput> | PesagemCreateWithoutOperadorInput[] | PesagemUncheckedCreateWithoutOperadorInput[]
     connectOrCreate?: PesagemCreateOrConnectWithoutOperadorInput | PesagemCreateOrConnectWithoutOperadorInput[]
@@ -5342,6 +10861,174 @@ export namespace Prisma {
     upsert?: OperadorUpsertWithoutPesagensInput
     connect?: OperadorWhereUniqueInput
     update?: XOR<XOR<OperadorUpdateToOneWithWhereWithoutPesagensInput, OperadorUpdateWithoutPesagensInput>, OperadorUncheckedUpdateWithoutPesagensInput>
+  }
+
+  export type EspecieFaixaPesoCreateNestedManyWithoutEspecieInput = {
+    create?: XOR<EspecieFaixaPesoCreateWithoutEspecieInput, EspecieFaixaPesoUncheckedCreateWithoutEspecieInput> | EspecieFaixaPesoCreateWithoutEspecieInput[] | EspecieFaixaPesoUncheckedCreateWithoutEspecieInput[]
+    connectOrCreate?: EspecieFaixaPesoCreateOrConnectWithoutEspecieInput | EspecieFaixaPesoCreateOrConnectWithoutEspecieInput[]
+    createMany?: EspecieFaixaPesoCreateManyEspecieInputEnvelope
+    connect?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
+  }
+
+  export type EspecieFaixaPesoUncheckedCreateNestedManyWithoutEspecieInput = {
+    create?: XOR<EspecieFaixaPesoCreateWithoutEspecieInput, EspecieFaixaPesoUncheckedCreateWithoutEspecieInput> | EspecieFaixaPesoCreateWithoutEspecieInput[] | EspecieFaixaPesoUncheckedCreateWithoutEspecieInput[]
+    connectOrCreate?: EspecieFaixaPesoCreateOrConnectWithoutEspecieInput | EspecieFaixaPesoCreateOrConnectWithoutEspecieInput[]
+    createMany?: EspecieFaixaPesoCreateManyEspecieInputEnvelope
+    connect?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
+  }
+
+  export type EspecieFaixaPesoUpdateManyWithoutEspecieNestedInput = {
+    create?: XOR<EspecieFaixaPesoCreateWithoutEspecieInput, EspecieFaixaPesoUncheckedCreateWithoutEspecieInput> | EspecieFaixaPesoCreateWithoutEspecieInput[] | EspecieFaixaPesoUncheckedCreateWithoutEspecieInput[]
+    connectOrCreate?: EspecieFaixaPesoCreateOrConnectWithoutEspecieInput | EspecieFaixaPesoCreateOrConnectWithoutEspecieInput[]
+    upsert?: EspecieFaixaPesoUpsertWithWhereUniqueWithoutEspecieInput | EspecieFaixaPesoUpsertWithWhereUniqueWithoutEspecieInput[]
+    createMany?: EspecieFaixaPesoCreateManyEspecieInputEnvelope
+    set?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
+    disconnect?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
+    delete?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
+    connect?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
+    update?: EspecieFaixaPesoUpdateWithWhereUniqueWithoutEspecieInput | EspecieFaixaPesoUpdateWithWhereUniqueWithoutEspecieInput[]
+    updateMany?: EspecieFaixaPesoUpdateManyWithWhereWithoutEspecieInput | EspecieFaixaPesoUpdateManyWithWhereWithoutEspecieInput[]
+    deleteMany?: EspecieFaixaPesoScalarWhereInput | EspecieFaixaPesoScalarWhereInput[]
+  }
+
+  export type EspecieFaixaPesoUncheckedUpdateManyWithoutEspecieNestedInput = {
+    create?: XOR<EspecieFaixaPesoCreateWithoutEspecieInput, EspecieFaixaPesoUncheckedCreateWithoutEspecieInput> | EspecieFaixaPesoCreateWithoutEspecieInput[] | EspecieFaixaPesoUncheckedCreateWithoutEspecieInput[]
+    connectOrCreate?: EspecieFaixaPesoCreateOrConnectWithoutEspecieInput | EspecieFaixaPesoCreateOrConnectWithoutEspecieInput[]
+    upsert?: EspecieFaixaPesoUpsertWithWhereUniqueWithoutEspecieInput | EspecieFaixaPesoUpsertWithWhereUniqueWithoutEspecieInput[]
+    createMany?: EspecieFaixaPesoCreateManyEspecieInputEnvelope
+    set?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
+    disconnect?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
+    delete?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
+    connect?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
+    update?: EspecieFaixaPesoUpdateWithWhereUniqueWithoutEspecieInput | EspecieFaixaPesoUpdateWithWhereUniqueWithoutEspecieInput[]
+    updateMany?: EspecieFaixaPesoUpdateManyWithWhereWithoutEspecieInput | EspecieFaixaPesoUpdateManyWithWhereWithoutEspecieInput[]
+    deleteMany?: EspecieFaixaPesoScalarWhereInput | EspecieFaixaPesoScalarWhereInput[]
+  }
+
+  export type EspecieCreateNestedOneWithoutFaixasInput = {
+    create?: XOR<EspecieCreateWithoutFaixasInput, EspecieUncheckedCreateWithoutFaixasInput>
+    connectOrCreate?: EspecieCreateOrConnectWithoutFaixasInput
+    connect?: EspecieWhereUniqueInput
+  }
+
+  export type FornecedorValorEspecieCreateNestedManyWithoutFaixaPesoInput = {
+    create?: XOR<FornecedorValorEspecieCreateWithoutFaixaPesoInput, FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput> | FornecedorValorEspecieCreateWithoutFaixaPesoInput[] | FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput[]
+    connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput | FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput[]
+    createMany?: FornecedorValorEspecieCreateManyFaixaPesoInputEnvelope
+    connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+  }
+
+  export type FornecedorValorEspecieUncheckedCreateNestedManyWithoutFaixaPesoInput = {
+    create?: XOR<FornecedorValorEspecieCreateWithoutFaixaPesoInput, FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput> | FornecedorValorEspecieCreateWithoutFaixaPesoInput[] | FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput[]
+    connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput | FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput[]
+    createMany?: FornecedorValorEspecieCreateManyFaixaPesoInputEnvelope
+    connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+  }
+
+  export type EspecieUpdateOneRequiredWithoutFaixasNestedInput = {
+    create?: XOR<EspecieCreateWithoutFaixasInput, EspecieUncheckedCreateWithoutFaixasInput>
+    connectOrCreate?: EspecieCreateOrConnectWithoutFaixasInput
+    upsert?: EspecieUpsertWithoutFaixasInput
+    connect?: EspecieWhereUniqueInput
+    update?: XOR<XOR<EspecieUpdateToOneWithWhereWithoutFaixasInput, EspecieUpdateWithoutFaixasInput>, EspecieUncheckedUpdateWithoutFaixasInput>
+  }
+
+  export type FornecedorValorEspecieUpdateManyWithoutFaixaPesoNestedInput = {
+    create?: XOR<FornecedorValorEspecieCreateWithoutFaixaPesoInput, FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput> | FornecedorValorEspecieCreateWithoutFaixaPesoInput[] | FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput[]
+    connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput | FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput[]
+    upsert?: FornecedorValorEspecieUpsertWithWhereUniqueWithoutFaixaPesoInput | FornecedorValorEspecieUpsertWithWhereUniqueWithoutFaixaPesoInput[]
+    createMany?: FornecedorValorEspecieCreateManyFaixaPesoInputEnvelope
+    set?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    disconnect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    delete?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    update?: FornecedorValorEspecieUpdateWithWhereUniqueWithoutFaixaPesoInput | FornecedorValorEspecieUpdateWithWhereUniqueWithoutFaixaPesoInput[]
+    updateMany?: FornecedorValorEspecieUpdateManyWithWhereWithoutFaixaPesoInput | FornecedorValorEspecieUpdateManyWithWhereWithoutFaixaPesoInput[]
+    deleteMany?: FornecedorValorEspecieScalarWhereInput | FornecedorValorEspecieScalarWhereInput[]
+  }
+
+  export type FornecedorValorEspecieUncheckedUpdateManyWithoutFaixaPesoNestedInput = {
+    create?: XOR<FornecedorValorEspecieCreateWithoutFaixaPesoInput, FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput> | FornecedorValorEspecieCreateWithoutFaixaPesoInput[] | FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput[]
+    connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput | FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput[]
+    upsert?: FornecedorValorEspecieUpsertWithWhereUniqueWithoutFaixaPesoInput | FornecedorValorEspecieUpsertWithWhereUniqueWithoutFaixaPesoInput[]
+    createMany?: FornecedorValorEspecieCreateManyFaixaPesoInputEnvelope
+    set?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    disconnect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    delete?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    update?: FornecedorValorEspecieUpdateWithWhereUniqueWithoutFaixaPesoInput | FornecedorValorEspecieUpdateWithWhereUniqueWithoutFaixaPesoInput[]
+    updateMany?: FornecedorValorEspecieUpdateManyWithWhereWithoutFaixaPesoInput | FornecedorValorEspecieUpdateManyWithWhereWithoutFaixaPesoInput[]
+    deleteMany?: FornecedorValorEspecieScalarWhereInput | FornecedorValorEspecieScalarWhereInput[]
+  }
+
+  export type FornecedorValorEspecieCreateNestedManyWithoutFornecedorInput = {
+    create?: XOR<FornecedorValorEspecieCreateWithoutFornecedorInput, FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput> | FornecedorValorEspecieCreateWithoutFornecedorInput[] | FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput[]
+    connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput | FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput[]
+    createMany?: FornecedorValorEspecieCreateManyFornecedorInputEnvelope
+    connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+  }
+
+  export type FornecedorValorEspecieUncheckedCreateNestedManyWithoutFornecedorInput = {
+    create?: XOR<FornecedorValorEspecieCreateWithoutFornecedorInput, FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput> | FornecedorValorEspecieCreateWithoutFornecedorInput[] | FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput[]
+    connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput | FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput[]
+    createMany?: FornecedorValorEspecieCreateManyFornecedorInputEnvelope
+    connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+  }
+
+  export type FornecedorValorEspecieUpdateManyWithoutFornecedorNestedInput = {
+    create?: XOR<FornecedorValorEspecieCreateWithoutFornecedorInput, FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput> | FornecedorValorEspecieCreateWithoutFornecedorInput[] | FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput[]
+    connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput | FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput[]
+    upsert?: FornecedorValorEspecieUpsertWithWhereUniqueWithoutFornecedorInput | FornecedorValorEspecieUpsertWithWhereUniqueWithoutFornecedorInput[]
+    createMany?: FornecedorValorEspecieCreateManyFornecedorInputEnvelope
+    set?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    disconnect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    delete?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    update?: FornecedorValorEspecieUpdateWithWhereUniqueWithoutFornecedorInput | FornecedorValorEspecieUpdateWithWhereUniqueWithoutFornecedorInput[]
+    updateMany?: FornecedorValorEspecieUpdateManyWithWhereWithoutFornecedorInput | FornecedorValorEspecieUpdateManyWithWhereWithoutFornecedorInput[]
+    deleteMany?: FornecedorValorEspecieScalarWhereInput | FornecedorValorEspecieScalarWhereInput[]
+  }
+
+  export type FornecedorValorEspecieUncheckedUpdateManyWithoutFornecedorNestedInput = {
+    create?: XOR<FornecedorValorEspecieCreateWithoutFornecedorInput, FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput> | FornecedorValorEspecieCreateWithoutFornecedorInput[] | FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput[]
+    connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput | FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput[]
+    upsert?: FornecedorValorEspecieUpsertWithWhereUniqueWithoutFornecedorInput | FornecedorValorEspecieUpsertWithWhereUniqueWithoutFornecedorInput[]
+    createMany?: FornecedorValorEspecieCreateManyFornecedorInputEnvelope
+    set?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    disconnect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    delete?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+    update?: FornecedorValorEspecieUpdateWithWhereUniqueWithoutFornecedorInput | FornecedorValorEspecieUpdateWithWhereUniqueWithoutFornecedorInput[]
+    updateMany?: FornecedorValorEspecieUpdateManyWithWhereWithoutFornecedorInput | FornecedorValorEspecieUpdateManyWithWhereWithoutFornecedorInput[]
+    deleteMany?: FornecedorValorEspecieScalarWhereInput | FornecedorValorEspecieScalarWhereInput[]
+  }
+
+  export type FornecedorCreateNestedOneWithoutValoresInput = {
+    create?: XOR<FornecedorCreateWithoutValoresInput, FornecedorUncheckedCreateWithoutValoresInput>
+    connectOrCreate?: FornecedorCreateOrConnectWithoutValoresInput
+    connect?: FornecedorWhereUniqueInput
+  }
+
+  export type EspecieFaixaPesoCreateNestedOneWithoutValoresFornecedorInput = {
+    create?: XOR<EspecieFaixaPesoCreateWithoutValoresFornecedorInput, EspecieFaixaPesoUncheckedCreateWithoutValoresFornecedorInput>
+    connectOrCreate?: EspecieFaixaPesoCreateOrConnectWithoutValoresFornecedorInput
+    connect?: EspecieFaixaPesoWhereUniqueInput
+  }
+
+  export type FornecedorUpdateOneRequiredWithoutValoresNestedInput = {
+    create?: XOR<FornecedorCreateWithoutValoresInput, FornecedorUncheckedCreateWithoutValoresInput>
+    connectOrCreate?: FornecedorCreateOrConnectWithoutValoresInput
+    upsert?: FornecedorUpsertWithoutValoresInput
+    connect?: FornecedorWhereUniqueInput
+    update?: XOR<XOR<FornecedorUpdateToOneWithWhereWithoutValoresInput, FornecedorUpdateWithoutValoresInput>, FornecedorUncheckedUpdateWithoutValoresInput>
+  }
+
+  export type EspecieFaixaPesoUpdateOneRequiredWithoutValoresFornecedorNestedInput = {
+    create?: XOR<EspecieFaixaPesoCreateWithoutValoresFornecedorInput, EspecieFaixaPesoUncheckedCreateWithoutValoresFornecedorInput>
+    connectOrCreate?: EspecieFaixaPesoCreateOrConnectWithoutValoresFornecedorInput
+    upsert?: EspecieFaixaPesoUpsertWithoutValoresFornecedorInput
+    connect?: EspecieFaixaPesoWhereUniqueInput
+    update?: XOR<XOR<EspecieFaixaPesoUpdateToOneWithWhereWithoutValoresFornecedorInput, EspecieFaixaPesoUpdateWithoutValoresFornecedorInput>, EspecieFaixaPesoUncheckedUpdateWithoutValoresFornecedorInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -5731,6 +11418,299 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EspecieFaixaPesoCreateWithoutEspecieInput = {
+    id?: string
+    pesoMin: Decimal | DecimalJsLike | number | string
+    pesoMax: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    valoresFornecedor?: FornecedorValorEspecieCreateNestedManyWithoutFaixaPesoInput
+  }
+
+  export type EspecieFaixaPesoUncheckedCreateWithoutEspecieInput = {
+    id?: string
+    pesoMin: Decimal | DecimalJsLike | number | string
+    pesoMax: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    valoresFornecedor?: FornecedorValorEspecieUncheckedCreateNestedManyWithoutFaixaPesoInput
+  }
+
+  export type EspecieFaixaPesoCreateOrConnectWithoutEspecieInput = {
+    where: EspecieFaixaPesoWhereUniqueInput
+    create: XOR<EspecieFaixaPesoCreateWithoutEspecieInput, EspecieFaixaPesoUncheckedCreateWithoutEspecieInput>
+  }
+
+  export type EspecieFaixaPesoCreateManyEspecieInputEnvelope = {
+    data: EspecieFaixaPesoCreateManyEspecieInput | EspecieFaixaPesoCreateManyEspecieInput[]
+  }
+
+  export type EspecieFaixaPesoUpsertWithWhereUniqueWithoutEspecieInput = {
+    where: EspecieFaixaPesoWhereUniqueInput
+    update: XOR<EspecieFaixaPesoUpdateWithoutEspecieInput, EspecieFaixaPesoUncheckedUpdateWithoutEspecieInput>
+    create: XOR<EspecieFaixaPesoCreateWithoutEspecieInput, EspecieFaixaPesoUncheckedCreateWithoutEspecieInput>
+  }
+
+  export type EspecieFaixaPesoUpdateWithWhereUniqueWithoutEspecieInput = {
+    where: EspecieFaixaPesoWhereUniqueInput
+    data: XOR<EspecieFaixaPesoUpdateWithoutEspecieInput, EspecieFaixaPesoUncheckedUpdateWithoutEspecieInput>
+  }
+
+  export type EspecieFaixaPesoUpdateManyWithWhereWithoutEspecieInput = {
+    where: EspecieFaixaPesoScalarWhereInput
+    data: XOR<EspecieFaixaPesoUpdateManyMutationInput, EspecieFaixaPesoUncheckedUpdateManyWithoutEspecieInput>
+  }
+
+  export type EspecieFaixaPesoScalarWhereInput = {
+    AND?: EspecieFaixaPesoScalarWhereInput | EspecieFaixaPesoScalarWhereInput[]
+    OR?: EspecieFaixaPesoScalarWhereInput[]
+    NOT?: EspecieFaixaPesoScalarWhereInput | EspecieFaixaPesoScalarWhereInput[]
+    id?: StringFilter<"EspecieFaixaPeso"> | string
+    especieId?: StringFilter<"EspecieFaixaPeso"> | string
+    pesoMin?: DecimalFilter<"EspecieFaixaPeso"> | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFilter<"EspecieFaixaPeso"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"EspecieFaixaPeso"> | Date | string
+    updatedAt?: DateTimeFilter<"EspecieFaixaPeso"> | Date | string
+  }
+
+  export type EspecieCreateWithoutFaixasInput = {
+    id?: string
+    nome: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EspecieUncheckedCreateWithoutFaixasInput = {
+    id?: string
+    nome: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EspecieCreateOrConnectWithoutFaixasInput = {
+    where: EspecieWhereUniqueInput
+    create: XOR<EspecieCreateWithoutFaixasInput, EspecieUncheckedCreateWithoutFaixasInput>
+  }
+
+  export type FornecedorValorEspecieCreateWithoutFaixaPesoInput = {
+    id?: string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    fornecedor: FornecedorCreateNestedOneWithoutValoresInput
+  }
+
+  export type FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput = {
+    id?: string
+    fornecedorId: string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput = {
+    where: FornecedorValorEspecieWhereUniqueInput
+    create: XOR<FornecedorValorEspecieCreateWithoutFaixaPesoInput, FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput>
+  }
+
+  export type FornecedorValorEspecieCreateManyFaixaPesoInputEnvelope = {
+    data: FornecedorValorEspecieCreateManyFaixaPesoInput | FornecedorValorEspecieCreateManyFaixaPesoInput[]
+  }
+
+  export type EspecieUpsertWithoutFaixasInput = {
+    update: XOR<EspecieUpdateWithoutFaixasInput, EspecieUncheckedUpdateWithoutFaixasInput>
+    create: XOR<EspecieCreateWithoutFaixasInput, EspecieUncheckedCreateWithoutFaixasInput>
+    where?: EspecieWhereInput
+  }
+
+  export type EspecieUpdateToOneWithWhereWithoutFaixasInput = {
+    where?: EspecieWhereInput
+    data: XOR<EspecieUpdateWithoutFaixasInput, EspecieUncheckedUpdateWithoutFaixasInput>
+  }
+
+  export type EspecieUpdateWithoutFaixasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EspecieUncheckedUpdateWithoutFaixasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorValorEspecieUpsertWithWhereUniqueWithoutFaixaPesoInput = {
+    where: FornecedorValorEspecieWhereUniqueInput
+    update: XOR<FornecedorValorEspecieUpdateWithoutFaixaPesoInput, FornecedorValorEspecieUncheckedUpdateWithoutFaixaPesoInput>
+    create: XOR<FornecedorValorEspecieCreateWithoutFaixaPesoInput, FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput>
+  }
+
+  export type FornecedorValorEspecieUpdateWithWhereUniqueWithoutFaixaPesoInput = {
+    where: FornecedorValorEspecieWhereUniqueInput
+    data: XOR<FornecedorValorEspecieUpdateWithoutFaixaPesoInput, FornecedorValorEspecieUncheckedUpdateWithoutFaixaPesoInput>
+  }
+
+  export type FornecedorValorEspecieUpdateManyWithWhereWithoutFaixaPesoInput = {
+    where: FornecedorValorEspecieScalarWhereInput
+    data: XOR<FornecedorValorEspecieUpdateManyMutationInput, FornecedorValorEspecieUncheckedUpdateManyWithoutFaixaPesoInput>
+  }
+
+  export type FornecedorValorEspecieScalarWhereInput = {
+    AND?: FornecedorValorEspecieScalarWhereInput | FornecedorValorEspecieScalarWhereInput[]
+    OR?: FornecedorValorEspecieScalarWhereInput[]
+    NOT?: FornecedorValorEspecieScalarWhereInput | FornecedorValorEspecieScalarWhereInput[]
+    id?: StringFilter<"FornecedorValorEspecie"> | string
+    fornecedorId?: StringFilter<"FornecedorValorEspecie"> | string
+    faixaPesoId?: StringFilter<"FornecedorValorEspecie"> | string
+    valorKg?: DecimalFilter<"FornecedorValorEspecie"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"FornecedorValorEspecie"> | Date | string
+    updatedAt?: DateTimeFilter<"FornecedorValorEspecie"> | Date | string
+  }
+
+  export type FornecedorValorEspecieCreateWithoutFornecedorInput = {
+    id?: string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    faixaPeso: EspecieFaixaPesoCreateNestedOneWithoutValoresFornecedorInput
+  }
+
+  export type FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput = {
+    id?: string
+    faixaPesoId: string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput = {
+    where: FornecedorValorEspecieWhereUniqueInput
+    create: XOR<FornecedorValorEspecieCreateWithoutFornecedorInput, FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput>
+  }
+
+  export type FornecedorValorEspecieCreateManyFornecedorInputEnvelope = {
+    data: FornecedorValorEspecieCreateManyFornecedorInput | FornecedorValorEspecieCreateManyFornecedorInput[]
+  }
+
+  export type FornecedorValorEspecieUpsertWithWhereUniqueWithoutFornecedorInput = {
+    where: FornecedorValorEspecieWhereUniqueInput
+    update: XOR<FornecedorValorEspecieUpdateWithoutFornecedorInput, FornecedorValorEspecieUncheckedUpdateWithoutFornecedorInput>
+    create: XOR<FornecedorValorEspecieCreateWithoutFornecedorInput, FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput>
+  }
+
+  export type FornecedorValorEspecieUpdateWithWhereUniqueWithoutFornecedorInput = {
+    where: FornecedorValorEspecieWhereUniqueInput
+    data: XOR<FornecedorValorEspecieUpdateWithoutFornecedorInput, FornecedorValorEspecieUncheckedUpdateWithoutFornecedorInput>
+  }
+
+  export type FornecedorValorEspecieUpdateManyWithWhereWithoutFornecedorInput = {
+    where: FornecedorValorEspecieScalarWhereInput
+    data: XOR<FornecedorValorEspecieUpdateManyMutationInput, FornecedorValorEspecieUncheckedUpdateManyWithoutFornecedorInput>
+  }
+
+  export type FornecedorCreateWithoutValoresInput = {
+    id?: string
+    nome: string
+    fazenda: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FornecedorUncheckedCreateWithoutValoresInput = {
+    id?: string
+    nome: string
+    fazenda: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FornecedorCreateOrConnectWithoutValoresInput = {
+    where: FornecedorWhereUniqueInput
+    create: XOR<FornecedorCreateWithoutValoresInput, FornecedorUncheckedCreateWithoutValoresInput>
+  }
+
+  export type EspecieFaixaPesoCreateWithoutValoresFornecedorInput = {
+    id?: string
+    pesoMin: Decimal | DecimalJsLike | number | string
+    pesoMax: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    especie: EspecieCreateNestedOneWithoutFaixasInput
+  }
+
+  export type EspecieFaixaPesoUncheckedCreateWithoutValoresFornecedorInput = {
+    id?: string
+    especieId: string
+    pesoMin: Decimal | DecimalJsLike | number | string
+    pesoMax: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EspecieFaixaPesoCreateOrConnectWithoutValoresFornecedorInput = {
+    where: EspecieFaixaPesoWhereUniqueInput
+    create: XOR<EspecieFaixaPesoCreateWithoutValoresFornecedorInput, EspecieFaixaPesoUncheckedCreateWithoutValoresFornecedorInput>
+  }
+
+  export type FornecedorUpsertWithoutValoresInput = {
+    update: XOR<FornecedorUpdateWithoutValoresInput, FornecedorUncheckedUpdateWithoutValoresInput>
+    create: XOR<FornecedorCreateWithoutValoresInput, FornecedorUncheckedCreateWithoutValoresInput>
+    where?: FornecedorWhereInput
+  }
+
+  export type FornecedorUpdateToOneWithWhereWithoutValoresInput = {
+    where?: FornecedorWhereInput
+    data: XOR<FornecedorUpdateWithoutValoresInput, FornecedorUncheckedUpdateWithoutValoresInput>
+  }
+
+  export type FornecedorUpdateWithoutValoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    fazenda?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorUncheckedUpdateWithoutValoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    fazenda?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EspecieFaixaPesoUpsertWithoutValoresFornecedorInput = {
+    update: XOR<EspecieFaixaPesoUpdateWithoutValoresFornecedorInput, EspecieFaixaPesoUncheckedUpdateWithoutValoresFornecedorInput>
+    create: XOR<EspecieFaixaPesoCreateWithoutValoresFornecedorInput, EspecieFaixaPesoUncheckedCreateWithoutValoresFornecedorInput>
+    where?: EspecieFaixaPesoWhereInput
+  }
+
+  export type EspecieFaixaPesoUpdateToOneWithWhereWithoutValoresFornecedorInput = {
+    where?: EspecieFaixaPesoWhereInput
+    data: XOR<EspecieFaixaPesoUpdateWithoutValoresFornecedorInput, EspecieFaixaPesoUncheckedUpdateWithoutValoresFornecedorInput>
+  }
+
+  export type EspecieFaixaPesoUpdateWithoutValoresFornecedorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    especie?: EspecieUpdateOneRequiredWithoutFaixasNestedInput
+  }
+
+  export type EspecieFaixaPesoUncheckedUpdateWithoutValoresFornecedorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    especieId?: StringFieldUpdateOperationsInput | string
+    pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type PesagemCreateManyOperadorInput = {
     id?: string
     peso: number
@@ -5801,6 +11781,104 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     operadorMatricula?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EspecieFaixaPesoCreateManyEspecieInput = {
+    id?: string
+    pesoMin: Decimal | DecimalJsLike | number | string
+    pesoMax: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EspecieFaixaPesoUpdateWithoutEspecieInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    valoresFornecedor?: FornecedorValorEspecieUpdateManyWithoutFaixaPesoNestedInput
+  }
+
+  export type EspecieFaixaPesoUncheckedUpdateWithoutEspecieInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    valoresFornecedor?: FornecedorValorEspecieUncheckedUpdateManyWithoutFaixaPesoNestedInput
+  }
+
+  export type EspecieFaixaPesoUncheckedUpdateManyWithoutEspecieInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorValorEspecieCreateManyFaixaPesoInput = {
+    id?: string
+    fornecedorId: string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FornecedorValorEspecieUpdateWithoutFaixaPesoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fornecedor?: FornecedorUpdateOneRequiredWithoutValoresNestedInput
+  }
+
+  export type FornecedorValorEspecieUncheckedUpdateWithoutFaixaPesoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fornecedorId?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorValorEspecieUncheckedUpdateManyWithoutFaixaPesoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fornecedorId?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorValorEspecieCreateManyFornecedorInput = {
+    id?: string
+    faixaPesoId: string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FornecedorValorEspecieUpdateWithoutFornecedorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    faixaPeso?: EspecieFaixaPesoUpdateOneRequiredWithoutValoresFornecedorNestedInput
+  }
+
+  export type FornecedorValorEspecieUncheckedUpdateWithoutFornecedorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    faixaPesoId?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorValorEspecieUncheckedUpdateManyWithoutFornecedorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    faixaPesoId?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
