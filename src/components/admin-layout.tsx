@@ -3,9 +3,16 @@
 import type React from "react"
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import rfLogo from "../../public/rondo01.png"
 import Link from "next/link"
-import { User, Fish, BarChart3, Trophy, Menu, X } from "lucide-react"
+import {
+  User,
+  Fish,
+  BarChart3,
+  Trophy,
+  Menu,
+  X,
+} from "lucide-react"
+import rfLogo from "../../public/rondo01.png"
 
 interface AdminLayoutProps {
   children: React.ReactNode
@@ -16,7 +23,6 @@ export function AdminLayout({ children, activeTab }: AdminLayoutProps) {
   const [hideSidebar, setHideSidebar] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
-  // Observa classe do body (modo tela cheia no ranking)
   useEffect(() => {
     const observer = new MutationObserver(() => {
       setHideSidebar(document.body.classList.contains("hide-sidebar"))
@@ -32,7 +38,7 @@ export function AdminLayout({ children, activeTab }: AdminLayoutProps) {
       {/* OVERLAY MOBILE */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/40 z-40 sm:hidden"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 sm:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -41,44 +47,51 @@ export function AdminLayout({ children, activeTab }: AdminLayoutProps) {
       {!(hideSidebar && activeTab === "ranking") && (
         <aside
           className={`
-            fixed z-50 inset-y-0 left-0 w-60 bg-gray-50 border-r
-            transform transition-transform duration-300 ease-in-out
+            fixed inset-y-0 left-0 z-50 w-64
+            bg-gradient-to-b from-gray-50 to-white
+            border-r shadow-sm
+            transform transition-transform duration-300 ease-out
             ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-            sm:translate-x-0 sm:static sm:z-auto
+            sm:translate-x-0 sm:static
           `}
         >
-          {/* HEADER SIDEBAR (mobile) */}
-          <div className="flex items-center justify-between p-4 sm:hidden">
-            <Image src={rfLogo} alt="logoEmpresa" />
-            <button onClick={() => setSidebarOpen(false)}>
+          {/* LOGO */}
+          <div className="flex items-center justify-between px-5 border-b bg-red">
+            <Image src={rfLogo} alt="RONDOFISH" className="h-32 w-32" />
+            <button className="sm:hidden" onClick={() => setSidebarOpen(false)}>
               <X size={22} />
             </button>
           </div>
 
-          <nav className="flex flex-col p-2 gap-1">
-            <div className="hidden sm:flex items-center px-3 py-4">
-              <Image src={rfLogo} alt="logoEmpresa" />
-            </div>
+          {/* MENU */}
+          <nav className="p-3 space-y-1">
+            <SidebarItem
+              href="/operadores"
+              active={activeTab === "operadores"}
+              icon={<User size={18} />}
+              label="Operadores"
+            />
 
-            <NavLink href="/operadores" active={activeTab === "operadores"}>
-              <User size={18} />
-              Operadores
-            </NavLink>
+            <SidebarItem
+              href="/cortes"
+              active={activeTab === "cortes"}
+              icon={<Fish size={18} />}
+              label="Cortes"
+            />
 
-            <NavLink href="/cortes" active={activeTab === "cortes"}>
-              <Fish size={18} />
-              Cortes
-            </NavLink>
+            <SidebarItem
+              href="/ranking"
+              active={activeTab === "ranking"}
+              icon={<Trophy size={18} />}
+              label="Ranking"
+            />
 
-            <NavLink href="/ranking" active={activeTab === "ranking"}>
-              <Trophy size={18} />
-              Ranking
-            </NavLink>
-
-            <NavLink href="/relatorios" active={activeTab === "relatorios"}>
-              <BarChart3 size={18} />
-              Relatórios
-            </NavLink>
+            <SidebarItem
+              href="/relatorios"
+              active={activeTab === "relatorios"}
+              icon={<BarChart3 size={18} />}
+              label="Relatórios"
+            />
           </nav>
         </aside>
       )}
@@ -94,12 +107,7 @@ export function AdminLayout({ children, activeTab }: AdminLayoutProps) {
           <span className="font-semibold capitalize">{activeTab}</span>
         </header>
 
-        <main
-          className={`
-            flex-1 p-4 sm:p-6 transition-all duration-500 ease-in-out
-            ${hideSidebar && activeTab === "ranking" ? "w-full" : ""}
-          `}
-        >
+        <main className="flex-1 p-4 sm:p-6">
           {children}
         </main>
       </div>
@@ -107,25 +115,55 @@ export function AdminLayout({ children, activeTab }: AdminLayoutProps) {
   )
 }
 
-/* COMPONENTE AUXILIAR */
-function NavLink({
+/* ===============================
+   ITEM DA SIDEBAR
+================================ */
+function SidebarItem({
   href,
+  icon,
+  label,
   active,
-  children,
 }: {
   href: string
+  icon: React.ReactNode
+  label: string
   active: boolean
-  children: React.ReactNode
 }) {
   return (
     <Link
       href={href}
       className={`
-        flex items-center gap-2 px-3 py-2 rounded-md transition-all
-        ${active ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"}
+        group relative flex items-center gap-3 px-4 py-2.5 rounded-md
+        transition-all duration-200 ease-out
+        active:scale-[0.98]
+        ${
+          active
+            ? "bg-green-50 text-green-700 font-semibold shadow-sm"
+            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+        }
       `}
     >
-      {children}
+      {/* BARRA ATIVA */}
+      <span
+        className={`
+          absolute left-0 top-1/2 -translate-y-1/2 h-6 w-1 rounded-r
+          transition-all duration-300
+          ${active ? "bg-green-500" : "bg-transparent group-hover:bg-gray-300"}
+        `}
+      />
+
+      {/* ÍCONE */}
+      <span
+        className={`
+          transition-transform duration-200
+          ${active ? "scale-110" : "group-hover:scale-105"}
+        `}
+      >
+        {icon}
+      </span>
+
+      {/* TEXTO */}
+      <span className="tracking-wide">{label}</span>
     </Link>
   )
 }
