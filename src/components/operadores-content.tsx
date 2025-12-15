@@ -5,6 +5,16 @@ import { Search, Plus, Trash2, Pencil, Printer } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog } from "@/components/ui/dialog"
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog"
 import { toast } from "sonner"
 
 import { OperadorForm } from "@/components/operadores/operador-form"
@@ -27,6 +37,10 @@ export function OperadoresContent() {
   const [isEtiquetaModalOpen, setIsEtiquetaModalOpen] = useState(false)
   const [selectedOperador, setSelectedOperador] = useState<Operador | null>(null)
 
+  /** MODAL DE EXCLUSÃO */
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
+  const [operadorParaExcluir, setOperadorParaExcluir] = useState<Operador | null>(null)
+
   const fetchOperadores = async () => {
     try {
       setLoading(true)
@@ -40,11 +54,11 @@ export function OperadoresContent() {
     }
   }
 
-  const handleDelete = async (matricula: number) => {
-    if (!confirm("Tem certeza que deseja excluir este operador?")) return
+  const handleConfirmDelete = async () => {
+    if (!operadorParaExcluir) return
 
     try {
-      const response = await fetch(`/api/operadores/${matricula}`, {
+      const response = await fetch(`/api/operadores/${operadorParaExcluir.matricula}`, {
         method: "DELETE",
       })
 
@@ -54,6 +68,9 @@ export function OperadoresContent() {
       fetchOperadores()
     } catch {
       toast.error("Não foi possível excluir o operador", { duration: 2000 })
+    } finally {
+      setIsDeleteOpen(false)
+      setOperadorParaExcluir(null)
     }
   }
 
@@ -73,7 +90,7 @@ export function OperadoresContent() {
         <h1 className="text-2xl font-bold">Operadores</h1>
 
         <Button
-          className="bg-green-500 hover:bg-green-600 w-full sm:w-auto"
+          className="bg-green-500 hover:bg-green-600 w-full sm:w-auto cursor-pointer"
           onClick={() => {
             setDialogMode("novo")
             setOperadorParaEditar(null)
@@ -106,39 +123,15 @@ export function OperadoresContent() {
 
         {loading && <div className="py-8 text-center">Carregando...</div>}
 
-        {/* ===== MOBILE (CARDS) ===== */}
+        {/* MOBILE */}
         {!loading && (
           <div className="sm:hidden space-y-3">
             {filteredOperadores.map((operador) => (
-              <div
-                key={operador.matricula}
-                className="border rounded-lg p-4 shadow-sm"
-              >
-                <div className="flex justify-between mb-2">
-                  <div>
-                    <p className="text-xs text-gray-500">Matrícula</p>
-                    <p className="font-semibold">{operador.matricula}</p>
-                  </div>
+              <div key={operador.matricula} className="border rounded-lg p-4 shadow-sm">
+                <p className="font-semibold">{operador.nome}</p>
+                <p className="text-sm text-gray-500">Matrícula: {operador.matricula}</p>
 
-                  <div className="text-right">
-                    <p className="text-xs text-gray-500">Valor</p>
-                    <p className="font-semibold">
-                      {operador.valor
-                        ? operador.valor.toLocaleString("pt-BR", {
-                            style: "currency",
-                            currency: "BRL",
-                          })
-                        : "-"}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mb-3">
-                  <p className="text-xs text-gray-500">Nome</p>
-                  <p className="font-medium">{operador.nome}</p>
-                </div>
-
-                <div className="flex gap-2">
+                <div className="flex gap-2 mt-3">
                   <Button
                     variant="outline"
                     className="flex-1 bg-gray-300 hover:bg-gray-400"
@@ -168,7 +161,10 @@ export function OperadoresContent() {
                     variant="destructive"
                     size="icon"
                     className="bg-red-400 hover:bg-red-500"
-                    onClick={() => handleDelete(operador.matricula)}
+                    onClick={() => {
+                      setOperadorParaExcluir(operador)
+                      setIsDeleteOpen(true)
+                    }}
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -178,15 +174,14 @@ export function OperadoresContent() {
           </div>
         )}
 
-        {/* ===== DESKTOP (TABELA) ===== */}
+        {/* DESKTOP */}
         {!loading && (
-          <div className="hidden sm:block overflow-x-auto -mx-4 sm:mx-0">
-            <table className="min-w-[720px] w-full border-collapse">
+          <div className="hidden sm:block overflow-x-auto">
+            <table className="w-full">
               <thead>
                 <tr className="border-b">
                   <th className="text-left px-4 py-3">Matrícula</th>
                   <th className="text-left px-4 py-3">Nome</th>
-                  <th className="text-right px-4 py-3">Valor</th>
                   <th className="text-right px-4 py-3">Ações</th>
                 </tr>
               </thead>
@@ -195,19 +190,11 @@ export function OperadoresContent() {
                   <tr key={operador.matricula} className="border-b hover:bg-gray-50">
                     <td className="px-4 py-3">{operador.matricula}</td>
                     <td className="px-4 py-3">{operador.nome}</td>
-                    <td className="px-4 py-3 text-right">
-                      {operador.valor
-                        ? operador.valor.toLocaleString("pt-BR", {
-                            style: "currency",
-                            currency: "BRL",
-                          })
-                        : "-"}
-                    </td>
                     <td className="px-4 py-3">
                       <div className="flex gap-2 justify-end">
                         <Button
                           variant="outline"
-                          className="bg-gray-300 hover:bg-gray-400 px-3"
+                          className="bg-gray-300 hover:bg-gray-400 cursor-pointer"
                           onClick={() => {
                             setSelectedOperador(operador)
                             setIsEtiquetaModalOpen(true)
@@ -220,7 +207,7 @@ export function OperadoresContent() {
                         <Button
                           variant="outline"
                           size="icon"
-                          className="bg-amber-200 hover:bg-amber-300"
+                          className="bg-amber-200 hover:bg-amber-300 cursor-pointer"
                           onClick={() => {
                             setDialogMode("editar")
                             setOperadorParaEditar(operador)
@@ -233,8 +220,11 @@ export function OperadoresContent() {
                         <Button
                           variant="destructive"
                           size="icon"
-                          className="bg-red-400 hover:bg-red-500"
-                          onClick={() => handleDelete(operador.matricula)}
+                          className="bg-red-400 hover:bg-red-500 cursor-pointer"
+                          onClick={() => {
+                            setOperadorParaExcluir(operador)
+                            setIsDeleteOpen(true)
+                          }}
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
@@ -274,6 +264,30 @@ export function OperadoresContent() {
           />
         )}
       </Dialog>
+
+      {/* MODAL EXCLUSÃO */}
+      <AlertDialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Excluir operador</AlertDialogTitle>
+            <AlertDialogDescription>
+              Tem certeza que deseja excluir o operador{" "}
+              <strong>{operadorParaExcluir?.nome}</strong>?  
+              Essa ação não pode ser desfeita.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2">
+            <AlertDialogCancel className="cursor-pointer">Cancelar</AlertDialogCancel>
+            <AlertDialogAction
+              className="bg-red-500 hover:bg-red-600 cursor-pointer"
+              onClick={handleConfirmDelete}
+            >
+              Excluir
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   )
 }

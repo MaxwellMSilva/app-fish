@@ -1,52 +1,118 @@
 "use client"
 
 import type React from "react"
-
-import { useState, useRef, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import {
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+
+type Corte = {
+  id: string
+  nome: string
+  imagem?: string | null
+}
 
 type NovoCorteFormProps = {
+  corte?: Corte | null
   onSuccess: () => void
   onCancel: () => void
 }
 
-export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
+export function NovoCorteForm({ corte, onSuccess, onCancel }: NovoCorteFormProps) {
   const [formData, setFormData] = useState({ nome: "", imagem: "" })
   const [previewImage, setPreviewImage] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const dialogContentRef = useRef<HTMLDivElement>(null); // Ref para o DialogContent
-  const formRef = useRef<HTMLFormElement>(null) // Ref para o formulário
 
-  // Manipular mudanças no formulário
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
+  const [nomeErro, setNomeErro] = useState<string | null>(null)
+  const [nomeValido, setNomeValido] = useState(false)
+  const [checkingNome, setCheckingNome] = useState(false)
 
-    const formattedValue = value
-    .toUpperCase() // Converte para maiúsculas
-    .normalize("NFD") // Normaliza caracteres com acentos
-    .replace(/[\u0300-\u036f]/g, "") // Remove acentos
+  const debounceRef = useRef<NodeJS.Timeout | null>(null)
+  const isEdit = Boolean(corte)
 
-    setFormData((prev) => ({ ...prev, [name]: formattedValue }))
-  }
-
-  // Manipular upload de imagem
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-
-    // Validar tipo de arquivo
-    if (!file.type.includes("image/")) {
-      toast.error("Por favor, selecione uma imagem válida", {
-        duration: 2000
+  /* ===== Preencher dados ao editar ===== */
+  useEffect(() => {
+    if (corte) {
+      setFormData({
+        nome: corte.nome,
+        imagem: corte.imagem || "",
       })
+      setPreviewImage(corte.imagem || null)
+      validarNome(corte.nome)
+    } else {
+      setFormData({ nome: "", imagem: "" })
+      setPreviewImage(null)
+      setNomeErro(null)
+      setNomeValido(false)
+    }
+  }, [corte])
+
+  /* ===== Validação de nome ===== */
+  const validarNome = async (nome: string) => {
+    if (!nome || nome.length < 2) {
+      setNomeErro(null)
+      setNomeValido(false)
       return
     }
 
-    // Criar URL para preview
+    setCheckingNome(true)
+
+    try {
+      const params = new URLSearchParams({
+        nome,
+        id: corte?.id ?? "",
+      })
+
+      const res = await fetch(`/api/cortes/check-nome?${params}`)
+      const data = await res.json()
+
+      if (data.exists) {
+        setNomeErro("Já existe um corte com esse nome")
+        setNomeValido(false)
+      } else {
+        setNomeErro(null)
+        setNomeValido(true)
+      }
+    } catch {
+      setNomeErro(null)
+      setNomeValido(false)
+    } finally {
+      setCheckingNome(false)
+    }
+  }
+
+  const handleNomeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+      .toUpperCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+
+    setFormData((prev) => ({ ...prev, nome: value }))
+    setNomeErro(null)
+    setNomeValido(false)
+
+    if (debounceRef.current) clearTimeout(debounceRef.current)
+
+    debounceRef.current = setTimeout(() => {
+      validarNome(value)
+    }, 300)
+  }
+
+  /* ===== Upload imagem ===== */
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file || !file.type.includes("image/")) {
+      toast.error("Selecione uma imagem válida")
+      return
+    }
+
     const reader = new FileReader()
     reader.onload = () => {
       setPreviewImage(reader.result as string)
@@ -55,132 +121,123 @@ export function NovoCorteForm({ onSuccess, onCancel }: NovoCorteFormProps) {
     reader.readAsDataURL(file)
   }
 
-  // Enviar formulário
+  /* ===== Submit ===== */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (nomeErro || !nomeValido) return
+
     setIsSubmitting(true)
 
     try {
-      const response = await fetch("/api/cortes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nome: formData.nome,
-          imagem: formData.imagem || null,
-        }),
-      })
-
-      if (!response.ok) {
-        let errorMessage = "Falha ao criar corte"
-        try {
-          const errorData = await response.json()
-          if (errorData && errorData.error) {
-            errorMessage = errorData.error
-          }
-        } catch (parseError) {
-          console.error("Erro ao processar resposta de erro:", parseError)
+      const res = await fetch(
+        isEdit ? `/api/cortes/${corte!.id}` : "/api/cortes",
+        {
+          method: isEdit ? "PUT" : "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            nome: formData.nome,
+            imagem: formData.imagem || null,
+          }),
         }
-        throw new Error(errorMessage)
+      )
+
+      if (res.status === 409) {
+        setNomeErro("Já existe um corte com esse nome")
+        setNomeValido(false)
+        return
       }
 
-      toast.success("Corte criado com sucesso", {
-        duration: 2000
-      })
-      onSuccess()
+      if (!res.ok) throw new Error()
 
-      setFormData({ nome: "", imagem: "" })
-      setPreviewImage(null)
-    } catch (error: any) {
-      console.error("Erro ao criar corte:", error)
-      toast.error(error.message || "Não foi possível criar o corte", {
-        duration: 2000
-      })
+      toast.success(isEdit ? "Corte atualizado com sucesso" : "Corte criado com sucesso")
+      onSuccess()
+    } catch {
+      toast.error("Erro ao salvar o corte")
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  // Cancelar formulário
-  const handleCancel = () => {
-    setFormData({ nome: "", imagem: "" })
-    setPreviewImage(null)
-    onCancel()
-  }
-
-  // Manipulador para fechar quando clicar fora
-  const handleClickOutside = (e: MouseEvent) => {
-    if (formRef.current && !formRef.current.contains(e.target as Node)) {
-      setFormData({
-        nome: "",
-        imagem: ""
-      })
-      setPreviewImage(null)
-    }
-  }
-  
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
+  /* ===== Estilo da borda ===== */
+  const nomeBorderClass = checkingNome
+    ? "border-yellow-400 focus:ring-yellow-400"
+    : nomeErro
+    ? "border-red-500 focus:ring-red-500"
+    : nomeValido
+    ? "border-green-500 focus:ring-green-500"
+    : "border-gray-300 focus:ring-green-500"
 
   return (
-    <DialogContent ref={dialogContentRef}>
+    <DialogContent>
       <DialogHeader>
-        <DialogTitle className="font-bold">Cadastrar Novo Corte</DialogTitle>
+        <DialogTitle>
+          {isEdit ? "Editar Corte" : "Cadastrar Novo Corte"}
+        </DialogTitle>
       </DialogHeader>
-      <form onSubmit={handleSubmit} ref={formRef}>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="nome" className="text-right font-semibold">
+
+      <form onSubmit={handleSubmit}>
+        <div className="space-y-4 py-4">
+          {/* NOME */}
+          <div className="flex flex-col">
+            <Label className="font-semibold text-gray-700 mb-1">
               Nome:
             </Label>
             <Input
-              id="nome"
-              name="nome"
-              placeholder="Nome do corte..."
+              placeholder="Digite o nome do corte..."
               value={formData.nome}
-              onChange={handleChange}
-              className="col-span-3"
+              onChange={handleNomeChange}
+              className={`border rounded-md px-3 py-2 focus:outline-none focus:ring-2 transition ${nomeBorderClass}`}
               required
             />
+            {checkingNome && (
+              <span className="text-xs text-yellow-600 mt-1">
+                Verificando disponibilidade…
+              </span>
+            )}
+            {nomeErro && (
+              <span className="text-xs text-red-500 mt-1">
+                {nomeErro}
+              </span>
+            )}
           </div>
-          <div className="grid grid-cols-4 items-start gap-4">
-            <Label htmlFor="imagem" className="text-right pt-2 font-semibold">
+
+          {/* IMAGEM */}
+          <div className="flex flex-col">
+            <Label className="font-semibold text-gray-700 mb-1">
               Imagem:
             </Label>
-            <div className="col-span-3">
-              <Input
-                id="imagem"
-                name="imagem-upload"
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="mb-2"
+            <Input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="cursor-pointer"
+            />
+
+            {previewImage && (
+              <img
+                src={previewImage}
+                alt="Preview"
+                className="mt-2 w-32 h-32 object-cover rounded-md border"
               />
-              {previewImage && (
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500 mb-1">Preview:</p>
-                  <img
-                    src={previewImage || "/placeholder.svg"}
-                    alt="Preview"
-                    className="w-32 h-32 object-cover rounded-md border"
-                  />
-                </div>
-              )}
-            </div>
+            )}
           </div>
         </div>
-        <DialogFooter>
-          <Button type="button" variant="outline" onClick={handleCancel} disabled={isSubmitting} className="h-10 w-25 font-semibold cursor-pointer">
+
+        <DialogFooter className="mt-6">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onCancel}
+            disabled={isSubmitting}
+            className="cursor-pointer h-10 px-6 font-semibold"
+          >
             Cancelar
           </Button>
-          <Button type="submit" 
-                  className="bg-green-500 hover:bg-green-600 h-10 w-25 font-semibold cursor-pointer" 
-                  disabled={isSubmitting || !formData.nome}
+
+          <Button
+            type="submit"
+            disabled={isSubmitting || !nomeValido}
+            className="cursor-pointer bg-green-500 hover:bg-green-600 text-white h-10 px-6 font-semibold"
           >
             {isSubmitting ? "Salvando..." : "Salvar"}
           </Button>

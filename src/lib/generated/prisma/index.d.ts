@@ -4598,15 +4598,15 @@ export namespace Prisma {
 
   export type CorteWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    nome?: string
     AND?: CorteWhereInput | CorteWhereInput[]
     OR?: CorteWhereInput[]
     NOT?: CorteWhereInput | CorteWhereInput[]
-    nome?: StringFilter<"Corte"> | string
     imagem?: StringNullableFilter<"Corte"> | string | null
     createdAt?: DateTimeFilter<"Corte"> | Date | string
     updatedAt?: DateTimeFilter<"Corte"> | Date | string
     pesagens?: PesagemListRelationFilter
-  }, "id">
+  }, "id" | "nome">
 
   export type CorteOrderByWithAggregationInput = {
     id?: SortOrder

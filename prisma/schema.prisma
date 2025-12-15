@@ -20,7 +20,7 @@ model Operador {
 
 model Corte {
   id        String   @id
-  nome      String
+  nome      String @unique
   imagem    String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

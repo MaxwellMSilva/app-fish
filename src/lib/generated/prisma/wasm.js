@@ -171,7 +171,6 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlite",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -180,8 +179,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/lib/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Operador {\n  matricula Int      @id\n  nome      String\n  valor     Decimal\n  ativo     Boolean  @default(true)\n  createdAt DateTime @default(now())\n\n  pesagens Pesagem[]\n}\n\nmodel Corte {\n  id        String   @id\n  nome      String\n  imagem    String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  pesagens Pesagem[]\n}\n\nmodel Pesagem {\n  id          String   @id @default(uuid())\n  peso        Float\n  tipoPesagem String // \"inicial\" ou \"final\"\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relações\n  corte   Corte  @relation(fields: [corteId], references: [id])\n  corteId String\n\n  operador          Operador @relation(fields: [operadorMatricula], references: [matricula])\n  operadorMatricula Int\n}\n",
-  "inlineSchemaHash": "0658ab3774479038318c2f87017199502b499850252a476dc461c09cf5769892",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/lib/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Operador {\n  matricula Int      @id\n  nome      String\n  valor     Decimal\n  ativo     Boolean  @default(true)\n  createdAt DateTime @default(now())\n\n  pesagens Pesagem[]\n}\n\nmodel Corte {\n  id        String   @id\n  nome      String   @unique\n  imagem    String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  pesagens Pesagem[]\n}\n\nmodel Pesagem {\n  id          String   @id @default(uuid())\n  peso        Float\n  tipoPesagem String // \"inicial\" ou \"final\"\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  // Relações\n  corte   Corte  @relation(fields: [corteId], references: [id])\n  corteId String\n\n  operador          Operador @relation(fields: [operadorMatricula], references: [matricula])\n  operadorMatricula Int\n}\n",
+  "inlineSchemaHash": "99920c6b1f6813fd8fe5565073a01eea94ae9d780e57db9c61b661db89811fbb",
   "copyEngine": true
 }
 config.dirname = '/'
