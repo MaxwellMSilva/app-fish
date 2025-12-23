@@ -48,6 +48,16 @@ export type Fornecedor = $Result.DefaultSelection<Prisma.$FornecedorPayload>
  * 
  */
 export type FornecedorValorEspecie = $Result.DefaultSelection<Prisma.$FornecedorValorEspeciePayload>
+/**
+ * Model MapaCompra
+ * 
+ */
+export type MapaCompra = $Result.DefaultSelection<Prisma.$MapaCompraPayload>
+/**
+ * Model MapaCompraFaixa
+ * 
+ */
+export type MapaCompraFaixa = $Result.DefaultSelection<Prisma.$MapaCompraFaixaPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -236,6 +246,26 @@ export class PrismaClient<
     * ```
     */
   get fornecedorValorEspecie(): Prisma.FornecedorValorEspecieDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mapaCompra`: Exposes CRUD operations for the **MapaCompra** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MapaCompras
+    * const mapaCompras = await prisma.mapaCompra.findMany()
+    * ```
+    */
+  get mapaCompra(): Prisma.MapaCompraDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mapaCompraFaixa`: Exposes CRUD operations for the **MapaCompraFaixa** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MapaCompraFaixas
+    * const mapaCompraFaixas = await prisma.mapaCompraFaixa.findMany()
+    * ```
+    */
+  get mapaCompraFaixa(): Prisma.MapaCompraFaixaDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -683,7 +713,9 @@ export namespace Prisma {
     Especie: 'Especie',
     EspecieFaixaPeso: 'EspecieFaixaPeso',
     Fornecedor: 'Fornecedor',
-    FornecedorValorEspecie: 'FornecedorValorEspecie'
+    FornecedorValorEspecie: 'FornecedorValorEspecie',
+    MapaCompra: 'MapaCompra',
+    MapaCompraFaixa: 'MapaCompraFaixa'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -702,7 +734,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "operador" | "corte" | "pesagem" | "especie" | "especieFaixaPeso" | "fornecedor" | "fornecedorValorEspecie"
+      modelProps: "operador" | "corte" | "pesagem" | "especie" | "especieFaixaPeso" | "fornecedor" | "fornecedorValorEspecie" | "mapaCompra" | "mapaCompraFaixa"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1224,6 +1256,154 @@ export namespace Prisma {
           }
         }
       }
+      MapaCompra: {
+        payload: Prisma.$MapaCompraPayload<ExtArgs>
+        fields: Prisma.MapaCompraFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MapaCompraFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MapaCompraFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraPayload>
+          }
+          findFirst: {
+            args: Prisma.MapaCompraFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MapaCompraFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraPayload>
+          }
+          findMany: {
+            args: Prisma.MapaCompraFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraPayload>[]
+          }
+          create: {
+            args: Prisma.MapaCompraCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraPayload>
+          }
+          createMany: {
+            args: Prisma.MapaCompraCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MapaCompraCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraPayload>[]
+          }
+          delete: {
+            args: Prisma.MapaCompraDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraPayload>
+          }
+          update: {
+            args: Prisma.MapaCompraUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraPayload>
+          }
+          deleteMany: {
+            args: Prisma.MapaCompraDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MapaCompraUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MapaCompraUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraPayload>[]
+          }
+          upsert: {
+            args: Prisma.MapaCompraUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraPayload>
+          }
+          aggregate: {
+            args: Prisma.MapaCompraAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMapaCompra>
+          }
+          groupBy: {
+            args: Prisma.MapaCompraGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MapaCompraGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MapaCompraCountArgs<ExtArgs>
+            result: $Utils.Optional<MapaCompraCountAggregateOutputType> | number
+          }
+        }
+      }
+      MapaCompraFaixa: {
+        payload: Prisma.$MapaCompraFaixaPayload<ExtArgs>
+        fields: Prisma.MapaCompraFaixaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MapaCompraFaixaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraFaixaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MapaCompraFaixaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraFaixaPayload>
+          }
+          findFirst: {
+            args: Prisma.MapaCompraFaixaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraFaixaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MapaCompraFaixaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraFaixaPayload>
+          }
+          findMany: {
+            args: Prisma.MapaCompraFaixaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraFaixaPayload>[]
+          }
+          create: {
+            args: Prisma.MapaCompraFaixaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraFaixaPayload>
+          }
+          createMany: {
+            args: Prisma.MapaCompraFaixaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MapaCompraFaixaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraFaixaPayload>[]
+          }
+          delete: {
+            args: Prisma.MapaCompraFaixaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraFaixaPayload>
+          }
+          update: {
+            args: Prisma.MapaCompraFaixaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraFaixaPayload>
+          }
+          deleteMany: {
+            args: Prisma.MapaCompraFaixaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MapaCompraFaixaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MapaCompraFaixaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraFaixaPayload>[]
+          }
+          upsert: {
+            args: Prisma.MapaCompraFaixaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MapaCompraFaixaPayload>
+          }
+          aggregate: {
+            args: Prisma.MapaCompraFaixaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMapaCompraFaixa>
+          }
+          groupBy: {
+            args: Prisma.MapaCompraFaixaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MapaCompraFaixaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MapaCompraFaixaCountArgs<ExtArgs>
+            result: $Utils.Optional<MapaCompraFaixaCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1327,6 +1507,8 @@ export namespace Prisma {
     especieFaixaPeso?: EspecieFaixaPesoOmit
     fornecedor?: FornecedorOmit
     fornecedorValorEspecie?: FornecedorValorEspecieOmit
+    mapaCompra?: MapaCompraOmit
+    mapaCompraFaixa?: MapaCompraFaixaOmit
   }
 
   /* Types for Logging */
@@ -1470,10 +1652,12 @@ export namespace Prisma {
 
   export type EspecieCountOutputType = {
     faixas: number
+    mapasCompra: number
   }
 
   export type EspecieCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     faixas?: boolean | EspecieCountOutputTypeCountFaixasArgs
+    mapasCompra?: boolean | EspecieCountOutputTypeCountMapasCompraArgs
   }
 
   // Custom InputTypes
@@ -1494,6 +1678,13 @@ export namespace Prisma {
     where?: EspecieFaixaPesoWhereInput
   }
 
+  /**
+   * EspecieCountOutputType without action
+   */
+  export type EspecieCountOutputTypeCountMapasCompraArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MapaCompraWhereInput
+  }
+
 
   /**
    * Count Type EspecieFaixaPesoCountOutputType
@@ -1501,10 +1692,12 @@ export namespace Prisma {
 
   export type EspecieFaixaPesoCountOutputType = {
     valoresFornecedor: number
+    mapasCompraFaixa: number
   }
 
   export type EspecieFaixaPesoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     valoresFornecedor?: boolean | EspecieFaixaPesoCountOutputTypeCountValoresFornecedorArgs
+    mapasCompraFaixa?: boolean | EspecieFaixaPesoCountOutputTypeCountMapasCompraFaixaArgs
   }
 
   // Custom InputTypes
@@ -1525,6 +1718,13 @@ export namespace Prisma {
     where?: FornecedorValorEspecieWhereInput
   }
 
+  /**
+   * EspecieFaixaPesoCountOutputType without action
+   */
+  export type EspecieFaixaPesoCountOutputTypeCountMapasCompraFaixaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MapaCompraFaixaWhereInput
+  }
+
 
   /**
    * Count Type FornecedorCountOutputType
@@ -1532,10 +1732,12 @@ export namespace Prisma {
 
   export type FornecedorCountOutputType = {
     valores: number
+    mapasCompra: number
   }
 
   export type FornecedorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     valores?: boolean | FornecedorCountOutputTypeCountValoresArgs
+    mapasCompra?: boolean | FornecedorCountOutputTypeCountMapasCompraArgs
   }
 
   // Custom InputTypes
@@ -1554,6 +1756,44 @@ export namespace Prisma {
    */
   export type FornecedorCountOutputTypeCountValoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FornecedorValorEspecieWhereInput
+  }
+
+  /**
+   * FornecedorCountOutputType without action
+   */
+  export type FornecedorCountOutputTypeCountMapasCompraArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MapaCompraWhereInput
+  }
+
+
+  /**
+   * Count Type MapaCompraCountOutputType
+   */
+
+  export type MapaCompraCountOutputType = {
+    faixas: number
+  }
+
+  export type MapaCompraCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    faixas?: boolean | MapaCompraCountOutputTypeCountFaixasArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MapaCompraCountOutputType without action
+   */
+  export type MapaCompraCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraCountOutputType
+     */
+    select?: MapaCompraCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MapaCompraCountOutputType without action
+   */
+  export type MapaCompraCountOutputTypeCountFaixasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MapaCompraFaixaWhereInput
   }
 
 
@@ -5020,6 +5260,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     faixas?: boolean | Especie$faixasArgs<ExtArgs>
+    mapasCompra?: boolean | Especie$mapasCompraArgs<ExtArgs>
     _count?: boolean | EspecieCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["especie"]>
 
@@ -5047,6 +5288,7 @@ export namespace Prisma {
   export type EspecieOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "createdAt" | "updatedAt", ExtArgs["result"]["especie"]>
   export type EspecieInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     faixas?: boolean | Especie$faixasArgs<ExtArgs>
+    mapasCompra?: boolean | Especie$mapasCompraArgs<ExtArgs>
     _count?: boolean | EspecieCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EspecieIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5056,6 +5298,7 @@ export namespace Prisma {
     name: "Especie"
     objects: {
       faixas: Prisma.$EspecieFaixaPesoPayload<ExtArgs>[]
+      mapasCompra: Prisma.$MapaCompraPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5457,6 +5700,7 @@ export namespace Prisma {
   export interface Prisma__EspecieClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     faixas<T extends Especie$faixasArgs<ExtArgs> = {}>(args?: Subset<T, Especie$faixasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    mapasCompra<T extends Especie$mapasCompraArgs<ExtArgs> = {}>(args?: Subset<T, Especie$mapasCompraArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5900,6 +6144,30 @@ export namespace Prisma {
   }
 
   /**
+   * Especie.mapasCompra
+   */
+  export type Especie$mapasCompraArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+    where?: MapaCompraWhereInput
+    orderBy?: MapaCompraOrderByWithRelationInput | MapaCompraOrderByWithRelationInput[]
+    cursor?: MapaCompraWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MapaCompraScalarFieldEnum | MapaCompraScalarFieldEnum[]
+  }
+
+  /**
    * Especie without action
    */
   export type EspecieDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6130,6 +6398,7 @@ export namespace Prisma {
     updatedAt?: boolean
     especie?: boolean | EspecieDefaultArgs<ExtArgs>
     valoresFornecedor?: boolean | EspecieFaixaPeso$valoresFornecedorArgs<ExtArgs>
+    mapasCompraFaixa?: boolean | EspecieFaixaPeso$mapasCompraFaixaArgs<ExtArgs>
     _count?: boolean | EspecieFaixaPesoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["especieFaixaPeso"]>
 
@@ -6166,6 +6435,7 @@ export namespace Prisma {
   export type EspecieFaixaPesoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     especie?: boolean | EspecieDefaultArgs<ExtArgs>
     valoresFornecedor?: boolean | EspecieFaixaPeso$valoresFornecedorArgs<ExtArgs>
+    mapasCompraFaixa?: boolean | EspecieFaixaPeso$mapasCompraFaixaArgs<ExtArgs>
     _count?: boolean | EspecieFaixaPesoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EspecieFaixaPesoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6180,6 +6450,7 @@ export namespace Prisma {
     objects: {
       especie: Prisma.$EspeciePayload<ExtArgs>
       valoresFornecedor: Prisma.$FornecedorValorEspeciePayload<ExtArgs>[]
+      mapasCompraFaixa: Prisma.$MapaCompraFaixaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6584,6 +6855,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     especie<T extends EspecieDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EspecieDefaultArgs<ExtArgs>>): Prisma__EspecieClient<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     valoresFornecedor<T extends EspecieFaixaPeso$valoresFornecedorArgs<ExtArgs> = {}>(args?: Subset<T, EspecieFaixaPeso$valoresFornecedorArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    mapasCompraFaixa<T extends EspecieFaixaPeso$mapasCompraFaixaArgs<ExtArgs> = {}>(args?: Subset<T, EspecieFaixaPeso$mapasCompraFaixaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7037,6 +7309,30 @@ export namespace Prisma {
   }
 
   /**
+   * EspecieFaixaPeso.mapasCompraFaixa
+   */
+  export type EspecieFaixaPeso$mapasCompraFaixaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+    where?: MapaCompraFaixaWhereInput
+    orderBy?: MapaCompraFaixaOrderByWithRelationInput | MapaCompraFaixaOrderByWithRelationInput[]
+    cursor?: MapaCompraFaixaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MapaCompraFaixaScalarFieldEnum | MapaCompraFaixaScalarFieldEnum[]
+  }
+
+  /**
    * EspecieFaixaPeso without action
    */
   export type EspecieFaixaPesoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7220,6 +7516,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     valores?: boolean | Fornecedor$valoresArgs<ExtArgs>
+    mapasCompra?: boolean | Fornecedor$mapasCompraArgs<ExtArgs>
     _count?: boolean | FornecedorCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["fornecedor"]>
 
@@ -7250,6 +7547,7 @@ export namespace Prisma {
   export type FornecedorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "fazenda" | "createdAt" | "updatedAt", ExtArgs["result"]["fornecedor"]>
   export type FornecedorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     valores?: boolean | Fornecedor$valoresArgs<ExtArgs>
+    mapasCompra?: boolean | Fornecedor$mapasCompraArgs<ExtArgs>
     _count?: boolean | FornecedorCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FornecedorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7259,6 +7557,7 @@ export namespace Prisma {
     name: "Fornecedor"
     objects: {
       valores: Prisma.$FornecedorValorEspeciePayload<ExtArgs>[]
+      mapasCompra: Prisma.$MapaCompraPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7661,6 +7960,7 @@ export namespace Prisma {
   export interface Prisma__FornecedorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     valores<T extends Fornecedor$valoresArgs<ExtArgs> = {}>(args?: Subset<T, Fornecedor$valoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorValorEspeciePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    mapasCompra<T extends Fornecedor$mapasCompraArgs<ExtArgs> = {}>(args?: Subset<T, Fornecedor$mapasCompraArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8102,6 +8402,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FornecedorValorEspecieScalarFieldEnum | FornecedorValorEspecieScalarFieldEnum[]
+  }
+
+  /**
+   * Fornecedor.mapasCompra
+   */
+  export type Fornecedor$mapasCompraArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+    where?: MapaCompraWhereInput
+    orderBy?: MapaCompraOrderByWithRelationInput | MapaCompraOrderByWithRelationInput[]
+    cursor?: MapaCompraWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MapaCompraScalarFieldEnum | MapaCompraScalarFieldEnum[]
   }
 
   /**
@@ -9235,6 +9559,2369 @@ export namespace Prisma {
 
 
   /**
+   * Model MapaCompra
+   */
+
+  export type AggregateMapaCompra = {
+    _count: MapaCompraCountAggregateOutputType | null
+    _avg: MapaCompraAvgAggregateOutputType | null
+    _sum: MapaCompraSumAggregateOutputType | null
+    _min: MapaCompraMinAggregateOutputType | null
+    _max: MapaCompraMaxAggregateOutputType | null
+  }
+
+  export type MapaCompraAvgAggregateOutputType = {
+    lote: number | null
+    prazoDias: number | null
+    pesoBruto: Decimal | null
+    descontoUmidade: Decimal | null
+    pesoLiquido: Decimal | null
+  }
+
+  export type MapaCompraSumAggregateOutputType = {
+    lote: number | null
+    prazoDias: number | null
+    pesoBruto: Decimal | null
+    descontoUmidade: Decimal | null
+    pesoLiquido: Decimal | null
+  }
+
+  export type MapaCompraMinAggregateOutputType = {
+    id: string | null
+    fornecedorId: string | null
+    especieId: string | null
+    lote: number | null
+    dataDespesca: Date | null
+    prazoDias: number | null
+    dataVencimento: Date | null
+    pesoBruto: Decimal | null
+    descontoUmidade: Decimal | null
+    pesoLiquido: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MapaCompraMaxAggregateOutputType = {
+    id: string | null
+    fornecedorId: string | null
+    especieId: string | null
+    lote: number | null
+    dataDespesca: Date | null
+    prazoDias: number | null
+    dataVencimento: Date | null
+    pesoBruto: Decimal | null
+    descontoUmidade: Decimal | null
+    pesoLiquido: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MapaCompraCountAggregateOutputType = {
+    id: number
+    fornecedorId: number
+    especieId: number
+    lote: number
+    dataDespesca: number
+    prazoDias: number
+    dataVencimento: number
+    pesoBruto: number
+    descontoUmidade: number
+    pesoLiquido: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MapaCompraAvgAggregateInputType = {
+    lote?: true
+    prazoDias?: true
+    pesoBruto?: true
+    descontoUmidade?: true
+    pesoLiquido?: true
+  }
+
+  export type MapaCompraSumAggregateInputType = {
+    lote?: true
+    prazoDias?: true
+    pesoBruto?: true
+    descontoUmidade?: true
+    pesoLiquido?: true
+  }
+
+  export type MapaCompraMinAggregateInputType = {
+    id?: true
+    fornecedorId?: true
+    especieId?: true
+    lote?: true
+    dataDespesca?: true
+    prazoDias?: true
+    dataVencimento?: true
+    pesoBruto?: true
+    descontoUmidade?: true
+    pesoLiquido?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MapaCompraMaxAggregateInputType = {
+    id?: true
+    fornecedorId?: true
+    especieId?: true
+    lote?: true
+    dataDespesca?: true
+    prazoDias?: true
+    dataVencimento?: true
+    pesoBruto?: true
+    descontoUmidade?: true
+    pesoLiquido?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MapaCompraCountAggregateInputType = {
+    id?: true
+    fornecedorId?: true
+    especieId?: true
+    lote?: true
+    dataDespesca?: true
+    prazoDias?: true
+    dataVencimento?: true
+    pesoBruto?: true
+    descontoUmidade?: true
+    pesoLiquido?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MapaCompraAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MapaCompra to aggregate.
+     */
+    where?: MapaCompraWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MapaCompras to fetch.
+     */
+    orderBy?: MapaCompraOrderByWithRelationInput | MapaCompraOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MapaCompraWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MapaCompras from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MapaCompras.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MapaCompras
+    **/
+    _count?: true | MapaCompraCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MapaCompraAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MapaCompraSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MapaCompraMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MapaCompraMaxAggregateInputType
+  }
+
+  export type GetMapaCompraAggregateType<T extends MapaCompraAggregateArgs> = {
+        [P in keyof T & keyof AggregateMapaCompra]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMapaCompra[P]>
+      : GetScalarType<T[P], AggregateMapaCompra[P]>
+  }
+
+
+
+
+  export type MapaCompraGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MapaCompraWhereInput
+    orderBy?: MapaCompraOrderByWithAggregationInput | MapaCompraOrderByWithAggregationInput[]
+    by: MapaCompraScalarFieldEnum[] | MapaCompraScalarFieldEnum
+    having?: MapaCompraScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MapaCompraCountAggregateInputType | true
+    _avg?: MapaCompraAvgAggregateInputType
+    _sum?: MapaCompraSumAggregateInputType
+    _min?: MapaCompraMinAggregateInputType
+    _max?: MapaCompraMaxAggregateInputType
+  }
+
+  export type MapaCompraGroupByOutputType = {
+    id: string
+    fornecedorId: string
+    especieId: string
+    lote: number
+    dataDespesca: Date
+    prazoDias: number
+    dataVencimento: Date
+    pesoBruto: Decimal
+    descontoUmidade: Decimal
+    pesoLiquido: Decimal
+    createdAt: Date
+    updatedAt: Date
+    _count: MapaCompraCountAggregateOutputType | null
+    _avg: MapaCompraAvgAggregateOutputType | null
+    _sum: MapaCompraSumAggregateOutputType | null
+    _min: MapaCompraMinAggregateOutputType | null
+    _max: MapaCompraMaxAggregateOutputType | null
+  }
+
+  type GetMapaCompraGroupByPayload<T extends MapaCompraGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MapaCompraGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MapaCompraGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MapaCompraGroupByOutputType[P]>
+            : GetScalarType<T[P], MapaCompraGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MapaCompraSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fornecedorId?: boolean
+    especieId?: boolean
+    lote?: boolean
+    dataDespesca?: boolean
+    prazoDias?: boolean
+    dataVencimento?: boolean
+    pesoBruto?: boolean
+    descontoUmidade?: boolean
+    pesoLiquido?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+    faixas?: boolean | MapaCompra$faixasArgs<ExtArgs>
+    _count?: boolean | MapaCompraCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mapaCompra"]>
+
+  export type MapaCompraSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fornecedorId?: boolean
+    especieId?: boolean
+    lote?: boolean
+    dataDespesca?: boolean
+    prazoDias?: boolean
+    dataVencimento?: boolean
+    pesoBruto?: boolean
+    descontoUmidade?: boolean
+    pesoLiquido?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mapaCompra"]>
+
+  export type MapaCompraSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fornecedorId?: boolean
+    especieId?: boolean
+    lote?: boolean
+    dataDespesca?: boolean
+    prazoDias?: boolean
+    dataVencimento?: boolean
+    pesoBruto?: boolean
+    descontoUmidade?: boolean
+    pesoLiquido?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mapaCompra"]>
+
+  export type MapaCompraSelectScalar = {
+    id?: boolean
+    fornecedorId?: boolean
+    especieId?: boolean
+    lote?: boolean
+    dataDespesca?: boolean
+    prazoDias?: boolean
+    dataVencimento?: boolean
+    pesoBruto?: boolean
+    descontoUmidade?: boolean
+    pesoLiquido?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MapaCompraOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fornecedorId" | "especieId" | "lote" | "dataDespesca" | "prazoDias" | "dataVencimento" | "pesoBruto" | "descontoUmidade" | "pesoLiquido" | "createdAt" | "updatedAt", ExtArgs["result"]["mapaCompra"]>
+  export type MapaCompraInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+    faixas?: boolean | MapaCompra$faixasArgs<ExtArgs>
+    _count?: boolean | MapaCompraCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type MapaCompraIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+  }
+  export type MapaCompraIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    fornecedor?: boolean | FornecedorDefaultArgs<ExtArgs>
+    especie?: boolean | EspecieDefaultArgs<ExtArgs>
+  }
+
+  export type $MapaCompraPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MapaCompra"
+    objects: {
+      fornecedor: Prisma.$FornecedorPayload<ExtArgs>
+      especie: Prisma.$EspeciePayload<ExtArgs>
+      faixas: Prisma.$MapaCompraFaixaPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fornecedorId: string
+      especieId: string
+      lote: number
+      dataDespesca: Date
+      prazoDias: number
+      dataVencimento: Date
+      pesoBruto: Prisma.Decimal
+      descontoUmidade: Prisma.Decimal
+      pesoLiquido: Prisma.Decimal
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["mapaCompra"]>
+    composites: {}
+  }
+
+  type MapaCompraGetPayload<S extends boolean | null | undefined | MapaCompraDefaultArgs> = $Result.GetResult<Prisma.$MapaCompraPayload, S>
+
+  type MapaCompraCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MapaCompraFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MapaCompraCountAggregateInputType | true
+    }
+
+  export interface MapaCompraDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MapaCompra'], meta: { name: 'MapaCompra' } }
+    /**
+     * Find zero or one MapaCompra that matches the filter.
+     * @param {MapaCompraFindUniqueArgs} args - Arguments to find a MapaCompra
+     * @example
+     * // Get one MapaCompra
+     * const mapaCompra = await prisma.mapaCompra.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MapaCompraFindUniqueArgs>(args: SelectSubset<T, MapaCompraFindUniqueArgs<ExtArgs>>): Prisma__MapaCompraClient<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MapaCompra that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MapaCompraFindUniqueOrThrowArgs} args - Arguments to find a MapaCompra
+     * @example
+     * // Get one MapaCompra
+     * const mapaCompra = await prisma.mapaCompra.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MapaCompraFindUniqueOrThrowArgs>(args: SelectSubset<T, MapaCompraFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MapaCompraClient<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MapaCompra that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraFindFirstArgs} args - Arguments to find a MapaCompra
+     * @example
+     * // Get one MapaCompra
+     * const mapaCompra = await prisma.mapaCompra.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MapaCompraFindFirstArgs>(args?: SelectSubset<T, MapaCompraFindFirstArgs<ExtArgs>>): Prisma__MapaCompraClient<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MapaCompra that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraFindFirstOrThrowArgs} args - Arguments to find a MapaCompra
+     * @example
+     * // Get one MapaCompra
+     * const mapaCompra = await prisma.mapaCompra.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MapaCompraFindFirstOrThrowArgs>(args?: SelectSubset<T, MapaCompraFindFirstOrThrowArgs<ExtArgs>>): Prisma__MapaCompraClient<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MapaCompras that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MapaCompras
+     * const mapaCompras = await prisma.mapaCompra.findMany()
+     * 
+     * // Get first 10 MapaCompras
+     * const mapaCompras = await prisma.mapaCompra.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mapaCompraWithIdOnly = await prisma.mapaCompra.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MapaCompraFindManyArgs>(args?: SelectSubset<T, MapaCompraFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MapaCompra.
+     * @param {MapaCompraCreateArgs} args - Arguments to create a MapaCompra.
+     * @example
+     * // Create one MapaCompra
+     * const MapaCompra = await prisma.mapaCompra.create({
+     *   data: {
+     *     // ... data to create a MapaCompra
+     *   }
+     * })
+     * 
+     */
+    create<T extends MapaCompraCreateArgs>(args: SelectSubset<T, MapaCompraCreateArgs<ExtArgs>>): Prisma__MapaCompraClient<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MapaCompras.
+     * @param {MapaCompraCreateManyArgs} args - Arguments to create many MapaCompras.
+     * @example
+     * // Create many MapaCompras
+     * const mapaCompra = await prisma.mapaCompra.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MapaCompraCreateManyArgs>(args?: SelectSubset<T, MapaCompraCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MapaCompras and returns the data saved in the database.
+     * @param {MapaCompraCreateManyAndReturnArgs} args - Arguments to create many MapaCompras.
+     * @example
+     * // Create many MapaCompras
+     * const mapaCompra = await prisma.mapaCompra.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MapaCompras and only return the `id`
+     * const mapaCompraWithIdOnly = await prisma.mapaCompra.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MapaCompraCreateManyAndReturnArgs>(args?: SelectSubset<T, MapaCompraCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MapaCompra.
+     * @param {MapaCompraDeleteArgs} args - Arguments to delete one MapaCompra.
+     * @example
+     * // Delete one MapaCompra
+     * const MapaCompra = await prisma.mapaCompra.delete({
+     *   where: {
+     *     // ... filter to delete one MapaCompra
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MapaCompraDeleteArgs>(args: SelectSubset<T, MapaCompraDeleteArgs<ExtArgs>>): Prisma__MapaCompraClient<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MapaCompra.
+     * @param {MapaCompraUpdateArgs} args - Arguments to update one MapaCompra.
+     * @example
+     * // Update one MapaCompra
+     * const mapaCompra = await prisma.mapaCompra.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MapaCompraUpdateArgs>(args: SelectSubset<T, MapaCompraUpdateArgs<ExtArgs>>): Prisma__MapaCompraClient<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MapaCompras.
+     * @param {MapaCompraDeleteManyArgs} args - Arguments to filter MapaCompras to delete.
+     * @example
+     * // Delete a few MapaCompras
+     * const { count } = await prisma.mapaCompra.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MapaCompraDeleteManyArgs>(args?: SelectSubset<T, MapaCompraDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MapaCompras.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MapaCompras
+     * const mapaCompra = await prisma.mapaCompra.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MapaCompraUpdateManyArgs>(args: SelectSubset<T, MapaCompraUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MapaCompras and returns the data updated in the database.
+     * @param {MapaCompraUpdateManyAndReturnArgs} args - Arguments to update many MapaCompras.
+     * @example
+     * // Update many MapaCompras
+     * const mapaCompra = await prisma.mapaCompra.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MapaCompras and only return the `id`
+     * const mapaCompraWithIdOnly = await prisma.mapaCompra.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MapaCompraUpdateManyAndReturnArgs>(args: SelectSubset<T, MapaCompraUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MapaCompra.
+     * @param {MapaCompraUpsertArgs} args - Arguments to update or create a MapaCompra.
+     * @example
+     * // Update or create a MapaCompra
+     * const mapaCompra = await prisma.mapaCompra.upsert({
+     *   create: {
+     *     // ... data to create a MapaCompra
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MapaCompra we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MapaCompraUpsertArgs>(args: SelectSubset<T, MapaCompraUpsertArgs<ExtArgs>>): Prisma__MapaCompraClient<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MapaCompras.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraCountArgs} args - Arguments to filter MapaCompras to count.
+     * @example
+     * // Count the number of MapaCompras
+     * const count = await prisma.mapaCompra.count({
+     *   where: {
+     *     // ... the filter for the MapaCompras we want to count
+     *   }
+     * })
+    **/
+    count<T extends MapaCompraCountArgs>(
+      args?: Subset<T, MapaCompraCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MapaCompraCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MapaCompra.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MapaCompraAggregateArgs>(args: Subset<T, MapaCompraAggregateArgs>): Prisma.PrismaPromise<GetMapaCompraAggregateType<T>>
+
+    /**
+     * Group by MapaCompra.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MapaCompraGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MapaCompraGroupByArgs['orderBy'] }
+        : { orderBy?: MapaCompraGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MapaCompraGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMapaCompraGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MapaCompra model
+   */
+  readonly fields: MapaCompraFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MapaCompra.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MapaCompraClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    fornecedor<T extends FornecedorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FornecedorDefaultArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    especie<T extends EspecieDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EspecieDefaultArgs<ExtArgs>>): Prisma__EspecieClient<$Result.GetResult<Prisma.$EspeciePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    faixas<T extends MapaCompra$faixasArgs<ExtArgs> = {}>(args?: Subset<T, MapaCompra$faixasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MapaCompra model
+   */
+  interface MapaCompraFieldRefs {
+    readonly id: FieldRef<"MapaCompra", 'String'>
+    readonly fornecedorId: FieldRef<"MapaCompra", 'String'>
+    readonly especieId: FieldRef<"MapaCompra", 'String'>
+    readonly lote: FieldRef<"MapaCompra", 'Int'>
+    readonly dataDespesca: FieldRef<"MapaCompra", 'DateTime'>
+    readonly prazoDias: FieldRef<"MapaCompra", 'Int'>
+    readonly dataVencimento: FieldRef<"MapaCompra", 'DateTime'>
+    readonly pesoBruto: FieldRef<"MapaCompra", 'Decimal'>
+    readonly descontoUmidade: FieldRef<"MapaCompra", 'Decimal'>
+    readonly pesoLiquido: FieldRef<"MapaCompra", 'Decimal'>
+    readonly createdAt: FieldRef<"MapaCompra", 'DateTime'>
+    readonly updatedAt: FieldRef<"MapaCompra", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MapaCompra findUnique
+   */
+  export type MapaCompraFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+    /**
+     * Filter, which MapaCompra to fetch.
+     */
+    where: MapaCompraWhereUniqueInput
+  }
+
+  /**
+   * MapaCompra findUniqueOrThrow
+   */
+  export type MapaCompraFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+    /**
+     * Filter, which MapaCompra to fetch.
+     */
+    where: MapaCompraWhereUniqueInput
+  }
+
+  /**
+   * MapaCompra findFirst
+   */
+  export type MapaCompraFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+    /**
+     * Filter, which MapaCompra to fetch.
+     */
+    where?: MapaCompraWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MapaCompras to fetch.
+     */
+    orderBy?: MapaCompraOrderByWithRelationInput | MapaCompraOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MapaCompras.
+     */
+    cursor?: MapaCompraWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MapaCompras from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MapaCompras.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MapaCompras.
+     */
+    distinct?: MapaCompraScalarFieldEnum | MapaCompraScalarFieldEnum[]
+  }
+
+  /**
+   * MapaCompra findFirstOrThrow
+   */
+  export type MapaCompraFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+    /**
+     * Filter, which MapaCompra to fetch.
+     */
+    where?: MapaCompraWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MapaCompras to fetch.
+     */
+    orderBy?: MapaCompraOrderByWithRelationInput | MapaCompraOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MapaCompras.
+     */
+    cursor?: MapaCompraWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MapaCompras from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MapaCompras.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MapaCompras.
+     */
+    distinct?: MapaCompraScalarFieldEnum | MapaCompraScalarFieldEnum[]
+  }
+
+  /**
+   * MapaCompra findMany
+   */
+  export type MapaCompraFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+    /**
+     * Filter, which MapaCompras to fetch.
+     */
+    where?: MapaCompraWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MapaCompras to fetch.
+     */
+    orderBy?: MapaCompraOrderByWithRelationInput | MapaCompraOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MapaCompras.
+     */
+    cursor?: MapaCompraWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MapaCompras from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MapaCompras.
+     */
+    skip?: number
+    distinct?: MapaCompraScalarFieldEnum | MapaCompraScalarFieldEnum[]
+  }
+
+  /**
+   * MapaCompra create
+   */
+  export type MapaCompraCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MapaCompra.
+     */
+    data: XOR<MapaCompraCreateInput, MapaCompraUncheckedCreateInput>
+  }
+
+  /**
+   * MapaCompra createMany
+   */
+  export type MapaCompraCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MapaCompras.
+     */
+    data: MapaCompraCreateManyInput | MapaCompraCreateManyInput[]
+  }
+
+  /**
+   * MapaCompra createManyAndReturn
+   */
+  export type MapaCompraCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * The data used to create many MapaCompras.
+     */
+    data: MapaCompraCreateManyInput | MapaCompraCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MapaCompra update
+   */
+  export type MapaCompraUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MapaCompra.
+     */
+    data: XOR<MapaCompraUpdateInput, MapaCompraUncheckedUpdateInput>
+    /**
+     * Choose, which MapaCompra to update.
+     */
+    where: MapaCompraWhereUniqueInput
+  }
+
+  /**
+   * MapaCompra updateMany
+   */
+  export type MapaCompraUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MapaCompras.
+     */
+    data: XOR<MapaCompraUpdateManyMutationInput, MapaCompraUncheckedUpdateManyInput>
+    /**
+     * Filter which MapaCompras to update
+     */
+    where?: MapaCompraWhereInput
+    /**
+     * Limit how many MapaCompras to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MapaCompra updateManyAndReturn
+   */
+  export type MapaCompraUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * The data used to update MapaCompras.
+     */
+    data: XOR<MapaCompraUpdateManyMutationInput, MapaCompraUncheckedUpdateManyInput>
+    /**
+     * Filter which MapaCompras to update
+     */
+    where?: MapaCompraWhereInput
+    /**
+     * Limit how many MapaCompras to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MapaCompra upsert
+   */
+  export type MapaCompraUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MapaCompra to update in case it exists.
+     */
+    where: MapaCompraWhereUniqueInput
+    /**
+     * In case the MapaCompra found by the `where` argument doesn't exist, create a new MapaCompra with this data.
+     */
+    create: XOR<MapaCompraCreateInput, MapaCompraUncheckedCreateInput>
+    /**
+     * In case the MapaCompra was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MapaCompraUpdateInput, MapaCompraUncheckedUpdateInput>
+  }
+
+  /**
+   * MapaCompra delete
+   */
+  export type MapaCompraDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+    /**
+     * Filter which MapaCompra to delete.
+     */
+    where: MapaCompraWhereUniqueInput
+  }
+
+  /**
+   * MapaCompra deleteMany
+   */
+  export type MapaCompraDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MapaCompras to delete
+     */
+    where?: MapaCompraWhereInput
+    /**
+     * Limit how many MapaCompras to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MapaCompra.faixas
+   */
+  export type MapaCompra$faixasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+    where?: MapaCompraFaixaWhereInput
+    orderBy?: MapaCompraFaixaOrderByWithRelationInput | MapaCompraFaixaOrderByWithRelationInput[]
+    cursor?: MapaCompraFaixaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MapaCompraFaixaScalarFieldEnum | MapaCompraFaixaScalarFieldEnum[]
+  }
+
+  /**
+   * MapaCompra without action
+   */
+  export type MapaCompraDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompra
+     */
+    select?: MapaCompraSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompra
+     */
+    omit?: MapaCompraOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MapaCompraFaixa
+   */
+
+  export type AggregateMapaCompraFaixa = {
+    _count: MapaCompraFaixaCountAggregateOutputType | null
+    _avg: MapaCompraFaixaAvgAggregateOutputType | null
+    _sum: MapaCompraFaixaSumAggregateOutputType | null
+    _min: MapaCompraFaixaMinAggregateOutputType | null
+    _max: MapaCompraFaixaMaxAggregateOutputType | null
+  }
+
+  export type MapaCompraFaixaAvgAggregateOutputType = {
+    pesoKg: Decimal | null
+    valorKg: Decimal | null
+  }
+
+  export type MapaCompraFaixaSumAggregateOutputType = {
+    pesoKg: Decimal | null
+    valorKg: Decimal | null
+  }
+
+  export type MapaCompraFaixaMinAggregateOutputType = {
+    id: string | null
+    mapaCompraId: string | null
+    faixaPesoId: string | null
+    pesoKg: Decimal | null
+    valorKg: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MapaCompraFaixaMaxAggregateOutputType = {
+    id: string | null
+    mapaCompraId: string | null
+    faixaPesoId: string | null
+    pesoKg: Decimal | null
+    valorKg: Decimal | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MapaCompraFaixaCountAggregateOutputType = {
+    id: number
+    mapaCompraId: number
+    faixaPesoId: number
+    pesoKg: number
+    valorKg: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MapaCompraFaixaAvgAggregateInputType = {
+    pesoKg?: true
+    valorKg?: true
+  }
+
+  export type MapaCompraFaixaSumAggregateInputType = {
+    pesoKg?: true
+    valorKg?: true
+  }
+
+  export type MapaCompraFaixaMinAggregateInputType = {
+    id?: true
+    mapaCompraId?: true
+    faixaPesoId?: true
+    pesoKg?: true
+    valorKg?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MapaCompraFaixaMaxAggregateInputType = {
+    id?: true
+    mapaCompraId?: true
+    faixaPesoId?: true
+    pesoKg?: true
+    valorKg?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MapaCompraFaixaCountAggregateInputType = {
+    id?: true
+    mapaCompraId?: true
+    faixaPesoId?: true
+    pesoKg?: true
+    valorKg?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MapaCompraFaixaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MapaCompraFaixa to aggregate.
+     */
+    where?: MapaCompraFaixaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MapaCompraFaixas to fetch.
+     */
+    orderBy?: MapaCompraFaixaOrderByWithRelationInput | MapaCompraFaixaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MapaCompraFaixaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MapaCompraFaixas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MapaCompraFaixas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MapaCompraFaixas
+    **/
+    _count?: true | MapaCompraFaixaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MapaCompraFaixaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MapaCompraFaixaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MapaCompraFaixaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MapaCompraFaixaMaxAggregateInputType
+  }
+
+  export type GetMapaCompraFaixaAggregateType<T extends MapaCompraFaixaAggregateArgs> = {
+        [P in keyof T & keyof AggregateMapaCompraFaixa]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMapaCompraFaixa[P]>
+      : GetScalarType<T[P], AggregateMapaCompraFaixa[P]>
+  }
+
+
+
+
+  export type MapaCompraFaixaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MapaCompraFaixaWhereInput
+    orderBy?: MapaCompraFaixaOrderByWithAggregationInput | MapaCompraFaixaOrderByWithAggregationInput[]
+    by: MapaCompraFaixaScalarFieldEnum[] | MapaCompraFaixaScalarFieldEnum
+    having?: MapaCompraFaixaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MapaCompraFaixaCountAggregateInputType | true
+    _avg?: MapaCompraFaixaAvgAggregateInputType
+    _sum?: MapaCompraFaixaSumAggregateInputType
+    _min?: MapaCompraFaixaMinAggregateInputType
+    _max?: MapaCompraFaixaMaxAggregateInputType
+  }
+
+  export type MapaCompraFaixaGroupByOutputType = {
+    id: string
+    mapaCompraId: string
+    faixaPesoId: string
+    pesoKg: Decimal
+    valorKg: Decimal
+    createdAt: Date
+    updatedAt: Date
+    _count: MapaCompraFaixaCountAggregateOutputType | null
+    _avg: MapaCompraFaixaAvgAggregateOutputType | null
+    _sum: MapaCompraFaixaSumAggregateOutputType | null
+    _min: MapaCompraFaixaMinAggregateOutputType | null
+    _max: MapaCompraFaixaMaxAggregateOutputType | null
+  }
+
+  type GetMapaCompraFaixaGroupByPayload<T extends MapaCompraFaixaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MapaCompraFaixaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MapaCompraFaixaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MapaCompraFaixaGroupByOutputType[P]>
+            : GetScalarType<T[P], MapaCompraFaixaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MapaCompraFaixaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mapaCompraId?: boolean
+    faixaPesoId?: boolean
+    pesoKg?: boolean
+    valorKg?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    mapaCompra?: boolean | MapaCompraDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mapaCompraFaixa"]>
+
+  export type MapaCompraFaixaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mapaCompraId?: boolean
+    faixaPesoId?: boolean
+    pesoKg?: boolean
+    valorKg?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    mapaCompra?: boolean | MapaCompraDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mapaCompraFaixa"]>
+
+  export type MapaCompraFaixaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mapaCompraId?: boolean
+    faixaPesoId?: boolean
+    pesoKg?: boolean
+    valorKg?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    mapaCompra?: boolean | MapaCompraDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mapaCompraFaixa"]>
+
+  export type MapaCompraFaixaSelectScalar = {
+    id?: boolean
+    mapaCompraId?: boolean
+    faixaPesoId?: boolean
+    pesoKg?: boolean
+    valorKg?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MapaCompraFaixaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mapaCompraId" | "faixaPesoId" | "pesoKg" | "valorKg" | "createdAt" | "updatedAt", ExtArgs["result"]["mapaCompraFaixa"]>
+  export type MapaCompraFaixaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mapaCompra?: boolean | MapaCompraDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }
+  export type MapaCompraFaixaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mapaCompra?: boolean | MapaCompraDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }
+  export type MapaCompraFaixaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mapaCompra?: boolean | MapaCompraDefaultArgs<ExtArgs>
+    faixaPeso?: boolean | EspecieFaixaPesoDefaultArgs<ExtArgs>
+  }
+
+  export type $MapaCompraFaixaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MapaCompraFaixa"
+    objects: {
+      mapaCompra: Prisma.$MapaCompraPayload<ExtArgs>
+      faixaPeso: Prisma.$EspecieFaixaPesoPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      mapaCompraId: string
+      faixaPesoId: string
+      pesoKg: Prisma.Decimal
+      valorKg: Prisma.Decimal
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["mapaCompraFaixa"]>
+    composites: {}
+  }
+
+  type MapaCompraFaixaGetPayload<S extends boolean | null | undefined | MapaCompraFaixaDefaultArgs> = $Result.GetResult<Prisma.$MapaCompraFaixaPayload, S>
+
+  type MapaCompraFaixaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MapaCompraFaixaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MapaCompraFaixaCountAggregateInputType | true
+    }
+
+  export interface MapaCompraFaixaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MapaCompraFaixa'], meta: { name: 'MapaCompraFaixa' } }
+    /**
+     * Find zero or one MapaCompraFaixa that matches the filter.
+     * @param {MapaCompraFaixaFindUniqueArgs} args - Arguments to find a MapaCompraFaixa
+     * @example
+     * // Get one MapaCompraFaixa
+     * const mapaCompraFaixa = await prisma.mapaCompraFaixa.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MapaCompraFaixaFindUniqueArgs>(args: SelectSubset<T, MapaCompraFaixaFindUniqueArgs<ExtArgs>>): Prisma__MapaCompraFaixaClient<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MapaCompraFaixa that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MapaCompraFaixaFindUniqueOrThrowArgs} args - Arguments to find a MapaCompraFaixa
+     * @example
+     * // Get one MapaCompraFaixa
+     * const mapaCompraFaixa = await prisma.mapaCompraFaixa.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MapaCompraFaixaFindUniqueOrThrowArgs>(args: SelectSubset<T, MapaCompraFaixaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MapaCompraFaixaClient<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MapaCompraFaixa that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraFaixaFindFirstArgs} args - Arguments to find a MapaCompraFaixa
+     * @example
+     * // Get one MapaCompraFaixa
+     * const mapaCompraFaixa = await prisma.mapaCompraFaixa.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MapaCompraFaixaFindFirstArgs>(args?: SelectSubset<T, MapaCompraFaixaFindFirstArgs<ExtArgs>>): Prisma__MapaCompraFaixaClient<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MapaCompraFaixa that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraFaixaFindFirstOrThrowArgs} args - Arguments to find a MapaCompraFaixa
+     * @example
+     * // Get one MapaCompraFaixa
+     * const mapaCompraFaixa = await prisma.mapaCompraFaixa.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MapaCompraFaixaFindFirstOrThrowArgs>(args?: SelectSubset<T, MapaCompraFaixaFindFirstOrThrowArgs<ExtArgs>>): Prisma__MapaCompraFaixaClient<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MapaCompraFaixas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraFaixaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MapaCompraFaixas
+     * const mapaCompraFaixas = await prisma.mapaCompraFaixa.findMany()
+     * 
+     * // Get first 10 MapaCompraFaixas
+     * const mapaCompraFaixas = await prisma.mapaCompraFaixa.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mapaCompraFaixaWithIdOnly = await prisma.mapaCompraFaixa.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MapaCompraFaixaFindManyArgs>(args?: SelectSubset<T, MapaCompraFaixaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MapaCompraFaixa.
+     * @param {MapaCompraFaixaCreateArgs} args - Arguments to create a MapaCompraFaixa.
+     * @example
+     * // Create one MapaCompraFaixa
+     * const MapaCompraFaixa = await prisma.mapaCompraFaixa.create({
+     *   data: {
+     *     // ... data to create a MapaCompraFaixa
+     *   }
+     * })
+     * 
+     */
+    create<T extends MapaCompraFaixaCreateArgs>(args: SelectSubset<T, MapaCompraFaixaCreateArgs<ExtArgs>>): Prisma__MapaCompraFaixaClient<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MapaCompraFaixas.
+     * @param {MapaCompraFaixaCreateManyArgs} args - Arguments to create many MapaCompraFaixas.
+     * @example
+     * // Create many MapaCompraFaixas
+     * const mapaCompraFaixa = await prisma.mapaCompraFaixa.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MapaCompraFaixaCreateManyArgs>(args?: SelectSubset<T, MapaCompraFaixaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MapaCompraFaixas and returns the data saved in the database.
+     * @param {MapaCompraFaixaCreateManyAndReturnArgs} args - Arguments to create many MapaCompraFaixas.
+     * @example
+     * // Create many MapaCompraFaixas
+     * const mapaCompraFaixa = await prisma.mapaCompraFaixa.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MapaCompraFaixas and only return the `id`
+     * const mapaCompraFaixaWithIdOnly = await prisma.mapaCompraFaixa.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MapaCompraFaixaCreateManyAndReturnArgs>(args?: SelectSubset<T, MapaCompraFaixaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MapaCompraFaixa.
+     * @param {MapaCompraFaixaDeleteArgs} args - Arguments to delete one MapaCompraFaixa.
+     * @example
+     * // Delete one MapaCompraFaixa
+     * const MapaCompraFaixa = await prisma.mapaCompraFaixa.delete({
+     *   where: {
+     *     // ... filter to delete one MapaCompraFaixa
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MapaCompraFaixaDeleteArgs>(args: SelectSubset<T, MapaCompraFaixaDeleteArgs<ExtArgs>>): Prisma__MapaCompraFaixaClient<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MapaCompraFaixa.
+     * @param {MapaCompraFaixaUpdateArgs} args - Arguments to update one MapaCompraFaixa.
+     * @example
+     * // Update one MapaCompraFaixa
+     * const mapaCompraFaixa = await prisma.mapaCompraFaixa.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MapaCompraFaixaUpdateArgs>(args: SelectSubset<T, MapaCompraFaixaUpdateArgs<ExtArgs>>): Prisma__MapaCompraFaixaClient<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MapaCompraFaixas.
+     * @param {MapaCompraFaixaDeleteManyArgs} args - Arguments to filter MapaCompraFaixas to delete.
+     * @example
+     * // Delete a few MapaCompraFaixas
+     * const { count } = await prisma.mapaCompraFaixa.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MapaCompraFaixaDeleteManyArgs>(args?: SelectSubset<T, MapaCompraFaixaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MapaCompraFaixas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraFaixaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MapaCompraFaixas
+     * const mapaCompraFaixa = await prisma.mapaCompraFaixa.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MapaCompraFaixaUpdateManyArgs>(args: SelectSubset<T, MapaCompraFaixaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MapaCompraFaixas and returns the data updated in the database.
+     * @param {MapaCompraFaixaUpdateManyAndReturnArgs} args - Arguments to update many MapaCompraFaixas.
+     * @example
+     * // Update many MapaCompraFaixas
+     * const mapaCompraFaixa = await prisma.mapaCompraFaixa.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MapaCompraFaixas and only return the `id`
+     * const mapaCompraFaixaWithIdOnly = await prisma.mapaCompraFaixa.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MapaCompraFaixaUpdateManyAndReturnArgs>(args: SelectSubset<T, MapaCompraFaixaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MapaCompraFaixa.
+     * @param {MapaCompraFaixaUpsertArgs} args - Arguments to update or create a MapaCompraFaixa.
+     * @example
+     * // Update or create a MapaCompraFaixa
+     * const mapaCompraFaixa = await prisma.mapaCompraFaixa.upsert({
+     *   create: {
+     *     // ... data to create a MapaCompraFaixa
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MapaCompraFaixa we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MapaCompraFaixaUpsertArgs>(args: SelectSubset<T, MapaCompraFaixaUpsertArgs<ExtArgs>>): Prisma__MapaCompraFaixaClient<$Result.GetResult<Prisma.$MapaCompraFaixaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MapaCompraFaixas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraFaixaCountArgs} args - Arguments to filter MapaCompraFaixas to count.
+     * @example
+     * // Count the number of MapaCompraFaixas
+     * const count = await prisma.mapaCompraFaixa.count({
+     *   where: {
+     *     // ... the filter for the MapaCompraFaixas we want to count
+     *   }
+     * })
+    **/
+    count<T extends MapaCompraFaixaCountArgs>(
+      args?: Subset<T, MapaCompraFaixaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MapaCompraFaixaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MapaCompraFaixa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraFaixaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MapaCompraFaixaAggregateArgs>(args: Subset<T, MapaCompraFaixaAggregateArgs>): Prisma.PrismaPromise<GetMapaCompraFaixaAggregateType<T>>
+
+    /**
+     * Group by MapaCompraFaixa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MapaCompraFaixaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MapaCompraFaixaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MapaCompraFaixaGroupByArgs['orderBy'] }
+        : { orderBy?: MapaCompraFaixaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MapaCompraFaixaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMapaCompraFaixaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MapaCompraFaixa model
+   */
+  readonly fields: MapaCompraFaixaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MapaCompraFaixa.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MapaCompraFaixaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    mapaCompra<T extends MapaCompraDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MapaCompraDefaultArgs<ExtArgs>>): Prisma__MapaCompraClient<$Result.GetResult<Prisma.$MapaCompraPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    faixaPeso<T extends EspecieFaixaPesoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EspecieFaixaPesoDefaultArgs<ExtArgs>>): Prisma__EspecieFaixaPesoClient<$Result.GetResult<Prisma.$EspecieFaixaPesoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MapaCompraFaixa model
+   */
+  interface MapaCompraFaixaFieldRefs {
+    readonly id: FieldRef<"MapaCompraFaixa", 'String'>
+    readonly mapaCompraId: FieldRef<"MapaCompraFaixa", 'String'>
+    readonly faixaPesoId: FieldRef<"MapaCompraFaixa", 'String'>
+    readonly pesoKg: FieldRef<"MapaCompraFaixa", 'Decimal'>
+    readonly valorKg: FieldRef<"MapaCompraFaixa", 'Decimal'>
+    readonly createdAt: FieldRef<"MapaCompraFaixa", 'DateTime'>
+    readonly updatedAt: FieldRef<"MapaCompraFaixa", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MapaCompraFaixa findUnique
+   */
+  export type MapaCompraFaixaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+    /**
+     * Filter, which MapaCompraFaixa to fetch.
+     */
+    where: MapaCompraFaixaWhereUniqueInput
+  }
+
+  /**
+   * MapaCompraFaixa findUniqueOrThrow
+   */
+  export type MapaCompraFaixaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+    /**
+     * Filter, which MapaCompraFaixa to fetch.
+     */
+    where: MapaCompraFaixaWhereUniqueInput
+  }
+
+  /**
+   * MapaCompraFaixa findFirst
+   */
+  export type MapaCompraFaixaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+    /**
+     * Filter, which MapaCompraFaixa to fetch.
+     */
+    where?: MapaCompraFaixaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MapaCompraFaixas to fetch.
+     */
+    orderBy?: MapaCompraFaixaOrderByWithRelationInput | MapaCompraFaixaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MapaCompraFaixas.
+     */
+    cursor?: MapaCompraFaixaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MapaCompraFaixas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MapaCompraFaixas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MapaCompraFaixas.
+     */
+    distinct?: MapaCompraFaixaScalarFieldEnum | MapaCompraFaixaScalarFieldEnum[]
+  }
+
+  /**
+   * MapaCompraFaixa findFirstOrThrow
+   */
+  export type MapaCompraFaixaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+    /**
+     * Filter, which MapaCompraFaixa to fetch.
+     */
+    where?: MapaCompraFaixaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MapaCompraFaixas to fetch.
+     */
+    orderBy?: MapaCompraFaixaOrderByWithRelationInput | MapaCompraFaixaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MapaCompraFaixas.
+     */
+    cursor?: MapaCompraFaixaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MapaCompraFaixas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MapaCompraFaixas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MapaCompraFaixas.
+     */
+    distinct?: MapaCompraFaixaScalarFieldEnum | MapaCompraFaixaScalarFieldEnum[]
+  }
+
+  /**
+   * MapaCompraFaixa findMany
+   */
+  export type MapaCompraFaixaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+    /**
+     * Filter, which MapaCompraFaixas to fetch.
+     */
+    where?: MapaCompraFaixaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MapaCompraFaixas to fetch.
+     */
+    orderBy?: MapaCompraFaixaOrderByWithRelationInput | MapaCompraFaixaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MapaCompraFaixas.
+     */
+    cursor?: MapaCompraFaixaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MapaCompraFaixas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MapaCompraFaixas.
+     */
+    skip?: number
+    distinct?: MapaCompraFaixaScalarFieldEnum | MapaCompraFaixaScalarFieldEnum[]
+  }
+
+  /**
+   * MapaCompraFaixa create
+   */
+  export type MapaCompraFaixaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MapaCompraFaixa.
+     */
+    data: XOR<MapaCompraFaixaCreateInput, MapaCompraFaixaUncheckedCreateInput>
+  }
+
+  /**
+   * MapaCompraFaixa createMany
+   */
+  export type MapaCompraFaixaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MapaCompraFaixas.
+     */
+    data: MapaCompraFaixaCreateManyInput | MapaCompraFaixaCreateManyInput[]
+  }
+
+  /**
+   * MapaCompraFaixa createManyAndReturn
+   */
+  export type MapaCompraFaixaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * The data used to create many MapaCompraFaixas.
+     */
+    data: MapaCompraFaixaCreateManyInput | MapaCompraFaixaCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MapaCompraFaixa update
+   */
+  export type MapaCompraFaixaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MapaCompraFaixa.
+     */
+    data: XOR<MapaCompraFaixaUpdateInput, MapaCompraFaixaUncheckedUpdateInput>
+    /**
+     * Choose, which MapaCompraFaixa to update.
+     */
+    where: MapaCompraFaixaWhereUniqueInput
+  }
+
+  /**
+   * MapaCompraFaixa updateMany
+   */
+  export type MapaCompraFaixaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MapaCompraFaixas.
+     */
+    data: XOR<MapaCompraFaixaUpdateManyMutationInput, MapaCompraFaixaUncheckedUpdateManyInput>
+    /**
+     * Filter which MapaCompraFaixas to update
+     */
+    where?: MapaCompraFaixaWhereInput
+    /**
+     * Limit how many MapaCompraFaixas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MapaCompraFaixa updateManyAndReturn
+   */
+  export type MapaCompraFaixaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * The data used to update MapaCompraFaixas.
+     */
+    data: XOR<MapaCompraFaixaUpdateManyMutationInput, MapaCompraFaixaUncheckedUpdateManyInput>
+    /**
+     * Filter which MapaCompraFaixas to update
+     */
+    where?: MapaCompraFaixaWhereInput
+    /**
+     * Limit how many MapaCompraFaixas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MapaCompraFaixa upsert
+   */
+  export type MapaCompraFaixaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MapaCompraFaixa to update in case it exists.
+     */
+    where: MapaCompraFaixaWhereUniqueInput
+    /**
+     * In case the MapaCompraFaixa found by the `where` argument doesn't exist, create a new MapaCompraFaixa with this data.
+     */
+    create: XOR<MapaCompraFaixaCreateInput, MapaCompraFaixaUncheckedCreateInput>
+    /**
+     * In case the MapaCompraFaixa was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MapaCompraFaixaUpdateInput, MapaCompraFaixaUncheckedUpdateInput>
+  }
+
+  /**
+   * MapaCompraFaixa delete
+   */
+  export type MapaCompraFaixaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+    /**
+     * Filter which MapaCompraFaixa to delete.
+     */
+    where: MapaCompraFaixaWhereUniqueInput
+  }
+
+  /**
+   * MapaCompraFaixa deleteMany
+   */
+  export type MapaCompraFaixaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MapaCompraFaixas to delete
+     */
+    where?: MapaCompraFaixaWhereInput
+    /**
+     * Limit how many MapaCompraFaixas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MapaCompraFaixa without action
+   */
+  export type MapaCompraFaixaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MapaCompraFaixa
+     */
+    select?: MapaCompraFaixaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MapaCompraFaixa
+     */
+    omit?: MapaCompraFaixaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MapaCompraFaixaInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9323,6 +12010,37 @@ export namespace Prisma {
   };
 
   export type FornecedorValorEspecieScalarFieldEnum = (typeof FornecedorValorEspecieScalarFieldEnum)[keyof typeof FornecedorValorEspecieScalarFieldEnum]
+
+
+  export const MapaCompraScalarFieldEnum: {
+    id: 'id',
+    fornecedorId: 'fornecedorId',
+    especieId: 'especieId',
+    lote: 'lote',
+    dataDespesca: 'dataDespesca',
+    prazoDias: 'prazoDias',
+    dataVencimento: 'dataVencimento',
+    pesoBruto: 'pesoBruto',
+    descontoUmidade: 'descontoUmidade',
+    pesoLiquido: 'pesoLiquido',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MapaCompraScalarFieldEnum = (typeof MapaCompraScalarFieldEnum)[keyof typeof MapaCompraScalarFieldEnum]
+
+
+  export const MapaCompraFaixaScalarFieldEnum: {
+    id: 'id',
+    mapaCompraId: 'mapaCompraId',
+    faixaPesoId: 'faixaPesoId',
+    pesoKg: 'pesoKg',
+    valorKg: 'valorKg',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MapaCompraFaixaScalarFieldEnum = (typeof MapaCompraFaixaScalarFieldEnum)[keyof typeof MapaCompraFaixaScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9582,6 +12300,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Especie"> | Date | string
     updatedAt?: DateTimeFilter<"Especie"> | Date | string
     faixas?: EspecieFaixaPesoListRelationFilter
+    mapasCompra?: MapaCompraListRelationFilter
   }
 
   export type EspecieOrderByWithRelationInput = {
@@ -9590,6 +12309,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     faixas?: EspecieFaixaPesoOrderByRelationAggregateInput
+    mapasCompra?: MapaCompraOrderByRelationAggregateInput
   }
 
   export type EspecieWhereUniqueInput = Prisma.AtLeast<{
@@ -9601,6 +12321,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Especie"> | Date | string
     updatedAt?: DateTimeFilter<"Especie"> | Date | string
     faixas?: EspecieFaixaPesoListRelationFilter
+    mapasCompra?: MapaCompraListRelationFilter
   }, "id" | "nome">
 
   export type EspecieOrderByWithAggregationInput = {
@@ -9635,6 +12356,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"EspecieFaixaPeso"> | Date | string
     especie?: XOR<EspecieScalarRelationFilter, EspecieWhereInput>
     valoresFornecedor?: FornecedorValorEspecieListRelationFilter
+    mapasCompraFaixa?: MapaCompraFaixaListRelationFilter
   }
 
   export type EspecieFaixaPesoOrderByWithRelationInput = {
@@ -9646,6 +12368,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     especie?: EspecieOrderByWithRelationInput
     valoresFornecedor?: FornecedorValorEspecieOrderByRelationAggregateInput
+    mapasCompraFaixa?: MapaCompraFaixaOrderByRelationAggregateInput
   }
 
   export type EspecieFaixaPesoWhereUniqueInput = Prisma.AtLeast<{
@@ -9661,6 +12384,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"EspecieFaixaPeso"> | Date | string
     especie?: XOR<EspecieScalarRelationFilter, EspecieWhereInput>
     valoresFornecedor?: FornecedorValorEspecieListRelationFilter
+    mapasCompraFaixa?: MapaCompraFaixaListRelationFilter
   }, "id" | "especieId_pesoMin_pesoMax">
 
   export type EspecieFaixaPesoOrderByWithAggregationInput = {
@@ -9699,6 +12423,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Fornecedor"> | Date | string
     updatedAt?: DateTimeFilter<"Fornecedor"> | Date | string
     valores?: FornecedorValorEspecieListRelationFilter
+    mapasCompra?: MapaCompraListRelationFilter
   }
 
   export type FornecedorOrderByWithRelationInput = {
@@ -9708,6 +12433,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     valores?: FornecedorValorEspecieOrderByRelationAggregateInput
+    mapasCompra?: MapaCompraOrderByRelationAggregateInput
   }
 
   export type FornecedorWhereUniqueInput = Prisma.AtLeast<{
@@ -9721,6 +12447,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Fornecedor"> | Date | string
     updatedAt?: DateTimeFilter<"Fornecedor"> | Date | string
     valores?: FornecedorValorEspecieListRelationFilter
+    mapasCompra?: MapaCompraListRelationFilter
   }, "id" | "nome_fazenda">
 
   export type FornecedorOrderByWithAggregationInput = {
@@ -9809,6 +12536,176 @@ export namespace Prisma {
     valorKg?: DecimalWithAggregatesFilter<"FornecedorValorEspecie"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeWithAggregatesFilter<"FornecedorValorEspecie"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"FornecedorValorEspecie"> | Date | string
+  }
+
+  export type MapaCompraWhereInput = {
+    AND?: MapaCompraWhereInput | MapaCompraWhereInput[]
+    OR?: MapaCompraWhereInput[]
+    NOT?: MapaCompraWhereInput | MapaCompraWhereInput[]
+    id?: StringFilter<"MapaCompra"> | string
+    fornecedorId?: StringFilter<"MapaCompra"> | string
+    especieId?: StringFilter<"MapaCompra"> | string
+    lote?: IntFilter<"MapaCompra"> | number
+    dataDespesca?: DateTimeFilter<"MapaCompra"> | Date | string
+    prazoDias?: IntFilter<"MapaCompra"> | number
+    dataVencimento?: DateTimeFilter<"MapaCompra"> | Date | string
+    pesoBruto?: DecimalFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"MapaCompra"> | Date | string
+    updatedAt?: DateTimeFilter<"MapaCompra"> | Date | string
+    fornecedor?: XOR<FornecedorScalarRelationFilter, FornecedorWhereInput>
+    especie?: XOR<EspecieScalarRelationFilter, EspecieWhereInput>
+    faixas?: MapaCompraFaixaListRelationFilter
+  }
+
+  export type MapaCompraOrderByWithRelationInput = {
+    id?: SortOrder
+    fornecedorId?: SortOrder
+    especieId?: SortOrder
+    lote?: SortOrder
+    dataDespesca?: SortOrder
+    prazoDias?: SortOrder
+    dataVencimento?: SortOrder
+    pesoBruto?: SortOrder
+    descontoUmidade?: SortOrder
+    pesoLiquido?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    fornecedor?: FornecedorOrderByWithRelationInput
+    especie?: EspecieOrderByWithRelationInput
+    faixas?: MapaCompraFaixaOrderByRelationAggregateInput
+  }
+
+  export type MapaCompraWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    fornecedorId_lote?: MapaCompraFornecedorIdLoteCompoundUniqueInput
+    AND?: MapaCompraWhereInput | MapaCompraWhereInput[]
+    OR?: MapaCompraWhereInput[]
+    NOT?: MapaCompraWhereInput | MapaCompraWhereInput[]
+    fornecedorId?: StringFilter<"MapaCompra"> | string
+    especieId?: StringFilter<"MapaCompra"> | string
+    lote?: IntFilter<"MapaCompra"> | number
+    dataDespesca?: DateTimeFilter<"MapaCompra"> | Date | string
+    prazoDias?: IntFilter<"MapaCompra"> | number
+    dataVencimento?: DateTimeFilter<"MapaCompra"> | Date | string
+    pesoBruto?: DecimalFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"MapaCompra"> | Date | string
+    updatedAt?: DateTimeFilter<"MapaCompra"> | Date | string
+    fornecedor?: XOR<FornecedorScalarRelationFilter, FornecedorWhereInput>
+    especie?: XOR<EspecieScalarRelationFilter, EspecieWhereInput>
+    faixas?: MapaCompraFaixaListRelationFilter
+  }, "id" | "fornecedorId_lote">
+
+  export type MapaCompraOrderByWithAggregationInput = {
+    id?: SortOrder
+    fornecedorId?: SortOrder
+    especieId?: SortOrder
+    lote?: SortOrder
+    dataDespesca?: SortOrder
+    prazoDias?: SortOrder
+    dataVencimento?: SortOrder
+    pesoBruto?: SortOrder
+    descontoUmidade?: SortOrder
+    pesoLiquido?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MapaCompraCountOrderByAggregateInput
+    _avg?: MapaCompraAvgOrderByAggregateInput
+    _max?: MapaCompraMaxOrderByAggregateInput
+    _min?: MapaCompraMinOrderByAggregateInput
+    _sum?: MapaCompraSumOrderByAggregateInput
+  }
+
+  export type MapaCompraScalarWhereWithAggregatesInput = {
+    AND?: MapaCompraScalarWhereWithAggregatesInput | MapaCompraScalarWhereWithAggregatesInput[]
+    OR?: MapaCompraScalarWhereWithAggregatesInput[]
+    NOT?: MapaCompraScalarWhereWithAggregatesInput | MapaCompraScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MapaCompra"> | string
+    fornecedorId?: StringWithAggregatesFilter<"MapaCompra"> | string
+    especieId?: StringWithAggregatesFilter<"MapaCompra"> | string
+    lote?: IntWithAggregatesFilter<"MapaCompra"> | number
+    dataDespesca?: DateTimeWithAggregatesFilter<"MapaCompra"> | Date | string
+    prazoDias?: IntWithAggregatesFilter<"MapaCompra"> | number
+    dataVencimento?: DateTimeWithAggregatesFilter<"MapaCompra"> | Date | string
+    pesoBruto?: DecimalWithAggregatesFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalWithAggregatesFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalWithAggregatesFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeWithAggregatesFilter<"MapaCompra"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MapaCompra"> | Date | string
+  }
+
+  export type MapaCompraFaixaWhereInput = {
+    AND?: MapaCompraFaixaWhereInput | MapaCompraFaixaWhereInput[]
+    OR?: MapaCompraFaixaWhereInput[]
+    NOT?: MapaCompraFaixaWhereInput | MapaCompraFaixaWhereInput[]
+    id?: StringFilter<"MapaCompraFaixa"> | string
+    mapaCompraId?: StringFilter<"MapaCompraFaixa"> | string
+    faixaPesoId?: StringFilter<"MapaCompraFaixa"> | string
+    pesoKg?: DecimalFilter<"MapaCompraFaixa"> | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalFilter<"MapaCompraFaixa"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"MapaCompraFaixa"> | Date | string
+    updatedAt?: DateTimeFilter<"MapaCompraFaixa"> | Date | string
+    mapaCompra?: XOR<MapaCompraScalarRelationFilter, MapaCompraWhereInput>
+    faixaPeso?: XOR<EspecieFaixaPesoScalarRelationFilter, EspecieFaixaPesoWhereInput>
+  }
+
+  export type MapaCompraFaixaOrderByWithRelationInput = {
+    id?: SortOrder
+    mapaCompraId?: SortOrder
+    faixaPesoId?: SortOrder
+    pesoKg?: SortOrder
+    valorKg?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    mapaCompra?: MapaCompraOrderByWithRelationInput
+    faixaPeso?: EspecieFaixaPesoOrderByWithRelationInput
+  }
+
+  export type MapaCompraFaixaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    mapaCompraId_faixaPesoId?: MapaCompraFaixaMapaCompraIdFaixaPesoIdCompoundUniqueInput
+    AND?: MapaCompraFaixaWhereInput | MapaCompraFaixaWhereInput[]
+    OR?: MapaCompraFaixaWhereInput[]
+    NOT?: MapaCompraFaixaWhereInput | MapaCompraFaixaWhereInput[]
+    mapaCompraId?: StringFilter<"MapaCompraFaixa"> | string
+    faixaPesoId?: StringFilter<"MapaCompraFaixa"> | string
+    pesoKg?: DecimalFilter<"MapaCompraFaixa"> | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalFilter<"MapaCompraFaixa"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"MapaCompraFaixa"> | Date | string
+    updatedAt?: DateTimeFilter<"MapaCompraFaixa"> | Date | string
+    mapaCompra?: XOR<MapaCompraScalarRelationFilter, MapaCompraWhereInput>
+    faixaPeso?: XOR<EspecieFaixaPesoScalarRelationFilter, EspecieFaixaPesoWhereInput>
+  }, "id" | "mapaCompraId_faixaPesoId">
+
+  export type MapaCompraFaixaOrderByWithAggregationInput = {
+    id?: SortOrder
+    mapaCompraId?: SortOrder
+    faixaPesoId?: SortOrder
+    pesoKg?: SortOrder
+    valorKg?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MapaCompraFaixaCountOrderByAggregateInput
+    _avg?: MapaCompraFaixaAvgOrderByAggregateInput
+    _max?: MapaCompraFaixaMaxOrderByAggregateInput
+    _min?: MapaCompraFaixaMinOrderByAggregateInput
+    _sum?: MapaCompraFaixaSumOrderByAggregateInput
+  }
+
+  export type MapaCompraFaixaScalarWhereWithAggregatesInput = {
+    AND?: MapaCompraFaixaScalarWhereWithAggregatesInput | MapaCompraFaixaScalarWhereWithAggregatesInput[]
+    OR?: MapaCompraFaixaScalarWhereWithAggregatesInput[]
+    NOT?: MapaCompraFaixaScalarWhereWithAggregatesInput | MapaCompraFaixaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MapaCompraFaixa"> | string
+    mapaCompraId?: StringWithAggregatesFilter<"MapaCompraFaixa"> | string
+    faixaPesoId?: StringWithAggregatesFilter<"MapaCompraFaixa"> | string
+    pesoKg?: DecimalWithAggregatesFilter<"MapaCompraFaixa"> | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalWithAggregatesFilter<"MapaCompraFaixa"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeWithAggregatesFilter<"MapaCompraFaixa"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MapaCompraFaixa"> | Date | string
   }
 
   export type OperadorCreateInput = {
@@ -10005,6 +12902,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     faixas?: EspecieFaixaPesoCreateNestedManyWithoutEspecieInput
+    mapasCompra?: MapaCompraCreateNestedManyWithoutEspecieInput
   }
 
   export type EspecieUncheckedCreateInput = {
@@ -10013,6 +12911,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     faixas?: EspecieFaixaPesoUncheckedCreateNestedManyWithoutEspecieInput
+    mapasCompra?: MapaCompraUncheckedCreateNestedManyWithoutEspecieInput
   }
 
   export type EspecieUpdateInput = {
@@ -10021,6 +12920,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     faixas?: EspecieFaixaPesoUpdateManyWithoutEspecieNestedInput
+    mapasCompra?: MapaCompraUpdateManyWithoutEspecieNestedInput
   }
 
   export type EspecieUncheckedUpdateInput = {
@@ -10029,6 +12929,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     faixas?: EspecieFaixaPesoUncheckedUpdateManyWithoutEspecieNestedInput
+    mapasCompra?: MapaCompraUncheckedUpdateManyWithoutEspecieNestedInput
   }
 
   export type EspecieCreateManyInput = {
@@ -10060,6 +12961,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     especie: EspecieCreateNestedOneWithoutFaixasInput
     valoresFornecedor?: FornecedorValorEspecieCreateNestedManyWithoutFaixaPesoInput
+    mapasCompraFaixa?: MapaCompraFaixaCreateNestedManyWithoutFaixaPesoInput
   }
 
   export type EspecieFaixaPesoUncheckedCreateInput = {
@@ -10070,6 +12972,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     valoresFornecedor?: FornecedorValorEspecieUncheckedCreateNestedManyWithoutFaixaPesoInput
+    mapasCompraFaixa?: MapaCompraFaixaUncheckedCreateNestedManyWithoutFaixaPesoInput
   }
 
   export type EspecieFaixaPesoUpdateInput = {
@@ -10080,6 +12983,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     especie?: EspecieUpdateOneRequiredWithoutFaixasNestedInput
     valoresFornecedor?: FornecedorValorEspecieUpdateManyWithoutFaixaPesoNestedInput
+    mapasCompraFaixa?: MapaCompraFaixaUpdateManyWithoutFaixaPesoNestedInput
   }
 
   export type EspecieFaixaPesoUncheckedUpdateInput = {
@@ -10090,6 +12994,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     valoresFornecedor?: FornecedorValorEspecieUncheckedUpdateManyWithoutFaixaPesoNestedInput
+    mapasCompraFaixa?: MapaCompraFaixaUncheckedUpdateManyWithoutFaixaPesoNestedInput
   }
 
   export type EspecieFaixaPesoCreateManyInput = {
@@ -10125,6 +13030,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     valores?: FornecedorValorEspecieCreateNestedManyWithoutFornecedorInput
+    mapasCompra?: MapaCompraCreateNestedManyWithoutFornecedorInput
   }
 
   export type FornecedorUncheckedCreateInput = {
@@ -10134,6 +13040,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     valores?: FornecedorValorEspecieUncheckedCreateNestedManyWithoutFornecedorInput
+    mapasCompra?: MapaCompraUncheckedCreateNestedManyWithoutFornecedorInput
   }
 
   export type FornecedorUpdateInput = {
@@ -10143,6 +13050,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     valores?: FornecedorValorEspecieUpdateManyWithoutFornecedorNestedInput
+    mapasCompra?: MapaCompraUpdateManyWithoutFornecedorNestedInput
   }
 
   export type FornecedorUncheckedUpdateInput = {
@@ -10152,6 +13060,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     valores?: FornecedorValorEspecieUncheckedUpdateManyWithoutFornecedorNestedInput
+    mapasCompra?: MapaCompraUncheckedUpdateManyWithoutFornecedorNestedInput
   }
 
   export type FornecedorCreateManyInput = {
@@ -10234,6 +13143,181 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fornecedorId?: StringFieldUpdateOperationsInput | string
     faixaPesoId?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MapaCompraCreateInput = {
+    id?: string
+    lote: number
+    dataDespesca: Date | string
+    prazoDias: number
+    dataVencimento: Date | string
+    pesoBruto: Decimal | DecimalJsLike | number | string
+    descontoUmidade: Decimal | DecimalJsLike | number | string
+    pesoLiquido: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    fornecedor: FornecedorCreateNestedOneWithoutMapasCompraInput
+    especie: EspecieCreateNestedOneWithoutMapasCompraInput
+    faixas?: MapaCompraFaixaCreateNestedManyWithoutMapaCompraInput
+  }
+
+  export type MapaCompraUncheckedCreateInput = {
+    id?: string
+    fornecedorId: string
+    especieId: string
+    lote: number
+    dataDespesca: Date | string
+    prazoDias: number
+    dataVencimento: Date | string
+    pesoBruto: Decimal | DecimalJsLike | number | string
+    descontoUmidade: Decimal | DecimalJsLike | number | string
+    pesoLiquido: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    faixas?: MapaCompraFaixaUncheckedCreateNestedManyWithoutMapaCompraInput
+  }
+
+  export type MapaCompraUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fornecedor?: FornecedorUpdateOneRequiredWithoutMapasCompraNestedInput
+    especie?: EspecieUpdateOneRequiredWithoutMapasCompraNestedInput
+    faixas?: MapaCompraFaixaUpdateManyWithoutMapaCompraNestedInput
+  }
+
+  export type MapaCompraUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fornecedorId?: StringFieldUpdateOperationsInput | string
+    especieId?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    faixas?: MapaCompraFaixaUncheckedUpdateManyWithoutMapaCompraNestedInput
+  }
+
+  export type MapaCompraCreateManyInput = {
+    id?: string
+    fornecedorId: string
+    especieId: string
+    lote: number
+    dataDespesca: Date | string
+    prazoDias: number
+    dataVencimento: Date | string
+    pesoBruto: Decimal | DecimalJsLike | number | string
+    descontoUmidade: Decimal | DecimalJsLike | number | string
+    pesoLiquido: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MapaCompraUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MapaCompraUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fornecedorId?: StringFieldUpdateOperationsInput | string
+    especieId?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MapaCompraFaixaCreateInput = {
+    id?: string
+    pesoKg: Decimal | DecimalJsLike | number | string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    mapaCompra: MapaCompraCreateNestedOneWithoutFaixasInput
+    faixaPeso: EspecieFaixaPesoCreateNestedOneWithoutMapasCompraFaixaInput
+  }
+
+  export type MapaCompraFaixaUncheckedCreateInput = {
+    id?: string
+    mapaCompraId: string
+    faixaPesoId: string
+    pesoKg: Decimal | DecimalJsLike | number | string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MapaCompraFaixaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesoKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mapaCompra?: MapaCompraUpdateOneRequiredWithoutFaixasNestedInput
+    faixaPeso?: EspecieFaixaPesoUpdateOneRequiredWithoutMapasCompraFaixaNestedInput
+  }
+
+  export type MapaCompraFaixaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mapaCompraId?: StringFieldUpdateOperationsInput | string
+    faixaPesoId?: StringFieldUpdateOperationsInput | string
+    pesoKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MapaCompraFaixaCreateManyInput = {
+    id?: string
+    mapaCompraId: string
+    faixaPesoId: string
+    pesoKg: Decimal | DecimalJsLike | number | string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MapaCompraFaixaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesoKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MapaCompraFaixaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mapaCompraId?: StringFieldUpdateOperationsInput | string
+    faixaPesoId?: StringFieldUpdateOperationsInput | string
+    pesoKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10549,7 +13633,17 @@ export namespace Prisma {
     none?: EspecieFaixaPesoWhereInput
   }
 
+  export type MapaCompraListRelationFilter = {
+    every?: MapaCompraWhereInput
+    some?: MapaCompraWhereInput
+    none?: MapaCompraWhereInput
+  }
+
   export type EspecieFaixaPesoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MapaCompraOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10585,7 +13679,17 @@ export namespace Prisma {
     none?: FornecedorValorEspecieWhereInput
   }
 
+  export type MapaCompraFaixaListRelationFilter = {
+    every?: MapaCompraFaixaWhereInput
+    some?: MapaCompraFaixaWhereInput
+    none?: MapaCompraFaixaWhereInput
+  }
+
   export type FornecedorValorEspecieOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MapaCompraFaixaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10708,6 +13812,122 @@ export namespace Prisma {
   }
 
   export type FornecedorValorEspecieSumOrderByAggregateInput = {
+    valorKg?: SortOrder
+  }
+
+  export type MapaCompraFornecedorIdLoteCompoundUniqueInput = {
+    fornecedorId: string
+    lote: number
+  }
+
+  export type MapaCompraCountOrderByAggregateInput = {
+    id?: SortOrder
+    fornecedorId?: SortOrder
+    especieId?: SortOrder
+    lote?: SortOrder
+    dataDespesca?: SortOrder
+    prazoDias?: SortOrder
+    dataVencimento?: SortOrder
+    pesoBruto?: SortOrder
+    descontoUmidade?: SortOrder
+    pesoLiquido?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MapaCompraAvgOrderByAggregateInput = {
+    lote?: SortOrder
+    prazoDias?: SortOrder
+    pesoBruto?: SortOrder
+    descontoUmidade?: SortOrder
+    pesoLiquido?: SortOrder
+  }
+
+  export type MapaCompraMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fornecedorId?: SortOrder
+    especieId?: SortOrder
+    lote?: SortOrder
+    dataDespesca?: SortOrder
+    prazoDias?: SortOrder
+    dataVencimento?: SortOrder
+    pesoBruto?: SortOrder
+    descontoUmidade?: SortOrder
+    pesoLiquido?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MapaCompraMinOrderByAggregateInput = {
+    id?: SortOrder
+    fornecedorId?: SortOrder
+    especieId?: SortOrder
+    lote?: SortOrder
+    dataDespesca?: SortOrder
+    prazoDias?: SortOrder
+    dataVencimento?: SortOrder
+    pesoBruto?: SortOrder
+    descontoUmidade?: SortOrder
+    pesoLiquido?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MapaCompraSumOrderByAggregateInput = {
+    lote?: SortOrder
+    prazoDias?: SortOrder
+    pesoBruto?: SortOrder
+    descontoUmidade?: SortOrder
+    pesoLiquido?: SortOrder
+  }
+
+  export type MapaCompraScalarRelationFilter = {
+    is?: MapaCompraWhereInput
+    isNot?: MapaCompraWhereInput
+  }
+
+  export type MapaCompraFaixaMapaCompraIdFaixaPesoIdCompoundUniqueInput = {
+    mapaCompraId: string
+    faixaPesoId: string
+  }
+
+  export type MapaCompraFaixaCountOrderByAggregateInput = {
+    id?: SortOrder
+    mapaCompraId?: SortOrder
+    faixaPesoId?: SortOrder
+    pesoKg?: SortOrder
+    valorKg?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MapaCompraFaixaAvgOrderByAggregateInput = {
+    pesoKg?: SortOrder
+    valorKg?: SortOrder
+  }
+
+  export type MapaCompraFaixaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    mapaCompraId?: SortOrder
+    faixaPesoId?: SortOrder
+    pesoKg?: SortOrder
+    valorKg?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MapaCompraFaixaMinOrderByAggregateInput = {
+    id?: SortOrder
+    mapaCompraId?: SortOrder
+    faixaPesoId?: SortOrder
+    pesoKg?: SortOrder
+    valorKg?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MapaCompraFaixaSumOrderByAggregateInput = {
+    pesoKg?: SortOrder
     valorKg?: SortOrder
   }
 
@@ -10870,11 +14090,25 @@ export namespace Prisma {
     connect?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
   }
 
+  export type MapaCompraCreateNestedManyWithoutEspecieInput = {
+    create?: XOR<MapaCompraCreateWithoutEspecieInput, MapaCompraUncheckedCreateWithoutEspecieInput> | MapaCompraCreateWithoutEspecieInput[] | MapaCompraUncheckedCreateWithoutEspecieInput[]
+    connectOrCreate?: MapaCompraCreateOrConnectWithoutEspecieInput | MapaCompraCreateOrConnectWithoutEspecieInput[]
+    createMany?: MapaCompraCreateManyEspecieInputEnvelope
+    connect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+  }
+
   export type EspecieFaixaPesoUncheckedCreateNestedManyWithoutEspecieInput = {
     create?: XOR<EspecieFaixaPesoCreateWithoutEspecieInput, EspecieFaixaPesoUncheckedCreateWithoutEspecieInput> | EspecieFaixaPesoCreateWithoutEspecieInput[] | EspecieFaixaPesoUncheckedCreateWithoutEspecieInput[]
     connectOrCreate?: EspecieFaixaPesoCreateOrConnectWithoutEspecieInput | EspecieFaixaPesoCreateOrConnectWithoutEspecieInput[]
     createMany?: EspecieFaixaPesoCreateManyEspecieInputEnvelope
     connect?: EspecieFaixaPesoWhereUniqueInput | EspecieFaixaPesoWhereUniqueInput[]
+  }
+
+  export type MapaCompraUncheckedCreateNestedManyWithoutEspecieInput = {
+    create?: XOR<MapaCompraCreateWithoutEspecieInput, MapaCompraUncheckedCreateWithoutEspecieInput> | MapaCompraCreateWithoutEspecieInput[] | MapaCompraUncheckedCreateWithoutEspecieInput[]
+    connectOrCreate?: MapaCompraCreateOrConnectWithoutEspecieInput | MapaCompraCreateOrConnectWithoutEspecieInput[]
+    createMany?: MapaCompraCreateManyEspecieInputEnvelope
+    connect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
   }
 
   export type EspecieFaixaPesoUpdateManyWithoutEspecieNestedInput = {
@@ -10891,6 +14125,20 @@ export namespace Prisma {
     deleteMany?: EspecieFaixaPesoScalarWhereInput | EspecieFaixaPesoScalarWhereInput[]
   }
 
+  export type MapaCompraUpdateManyWithoutEspecieNestedInput = {
+    create?: XOR<MapaCompraCreateWithoutEspecieInput, MapaCompraUncheckedCreateWithoutEspecieInput> | MapaCompraCreateWithoutEspecieInput[] | MapaCompraUncheckedCreateWithoutEspecieInput[]
+    connectOrCreate?: MapaCompraCreateOrConnectWithoutEspecieInput | MapaCompraCreateOrConnectWithoutEspecieInput[]
+    upsert?: MapaCompraUpsertWithWhereUniqueWithoutEspecieInput | MapaCompraUpsertWithWhereUniqueWithoutEspecieInput[]
+    createMany?: MapaCompraCreateManyEspecieInputEnvelope
+    set?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    disconnect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    delete?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    connect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    update?: MapaCompraUpdateWithWhereUniqueWithoutEspecieInput | MapaCompraUpdateWithWhereUniqueWithoutEspecieInput[]
+    updateMany?: MapaCompraUpdateManyWithWhereWithoutEspecieInput | MapaCompraUpdateManyWithWhereWithoutEspecieInput[]
+    deleteMany?: MapaCompraScalarWhereInput | MapaCompraScalarWhereInput[]
+  }
+
   export type EspecieFaixaPesoUncheckedUpdateManyWithoutEspecieNestedInput = {
     create?: XOR<EspecieFaixaPesoCreateWithoutEspecieInput, EspecieFaixaPesoUncheckedCreateWithoutEspecieInput> | EspecieFaixaPesoCreateWithoutEspecieInput[] | EspecieFaixaPesoUncheckedCreateWithoutEspecieInput[]
     connectOrCreate?: EspecieFaixaPesoCreateOrConnectWithoutEspecieInput | EspecieFaixaPesoCreateOrConnectWithoutEspecieInput[]
@@ -10903,6 +14151,20 @@ export namespace Prisma {
     update?: EspecieFaixaPesoUpdateWithWhereUniqueWithoutEspecieInput | EspecieFaixaPesoUpdateWithWhereUniqueWithoutEspecieInput[]
     updateMany?: EspecieFaixaPesoUpdateManyWithWhereWithoutEspecieInput | EspecieFaixaPesoUpdateManyWithWhereWithoutEspecieInput[]
     deleteMany?: EspecieFaixaPesoScalarWhereInput | EspecieFaixaPesoScalarWhereInput[]
+  }
+
+  export type MapaCompraUncheckedUpdateManyWithoutEspecieNestedInput = {
+    create?: XOR<MapaCompraCreateWithoutEspecieInput, MapaCompraUncheckedCreateWithoutEspecieInput> | MapaCompraCreateWithoutEspecieInput[] | MapaCompraUncheckedCreateWithoutEspecieInput[]
+    connectOrCreate?: MapaCompraCreateOrConnectWithoutEspecieInput | MapaCompraCreateOrConnectWithoutEspecieInput[]
+    upsert?: MapaCompraUpsertWithWhereUniqueWithoutEspecieInput | MapaCompraUpsertWithWhereUniqueWithoutEspecieInput[]
+    createMany?: MapaCompraCreateManyEspecieInputEnvelope
+    set?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    disconnect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    delete?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    connect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    update?: MapaCompraUpdateWithWhereUniqueWithoutEspecieInput | MapaCompraUpdateWithWhereUniqueWithoutEspecieInput[]
+    updateMany?: MapaCompraUpdateManyWithWhereWithoutEspecieInput | MapaCompraUpdateManyWithWhereWithoutEspecieInput[]
+    deleteMany?: MapaCompraScalarWhereInput | MapaCompraScalarWhereInput[]
   }
 
   export type EspecieCreateNestedOneWithoutFaixasInput = {
@@ -10918,11 +14180,25 @@ export namespace Prisma {
     connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
   }
 
+  export type MapaCompraFaixaCreateNestedManyWithoutFaixaPesoInput = {
+    create?: XOR<MapaCompraFaixaCreateWithoutFaixaPesoInput, MapaCompraFaixaUncheckedCreateWithoutFaixaPesoInput> | MapaCompraFaixaCreateWithoutFaixaPesoInput[] | MapaCompraFaixaUncheckedCreateWithoutFaixaPesoInput[]
+    connectOrCreate?: MapaCompraFaixaCreateOrConnectWithoutFaixaPesoInput | MapaCompraFaixaCreateOrConnectWithoutFaixaPesoInput[]
+    createMany?: MapaCompraFaixaCreateManyFaixaPesoInputEnvelope
+    connect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+  }
+
   export type FornecedorValorEspecieUncheckedCreateNestedManyWithoutFaixaPesoInput = {
     create?: XOR<FornecedorValorEspecieCreateWithoutFaixaPesoInput, FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput> | FornecedorValorEspecieCreateWithoutFaixaPesoInput[] | FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput[]
     connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput | FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput[]
     createMany?: FornecedorValorEspecieCreateManyFaixaPesoInputEnvelope
     connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+  }
+
+  export type MapaCompraFaixaUncheckedCreateNestedManyWithoutFaixaPesoInput = {
+    create?: XOR<MapaCompraFaixaCreateWithoutFaixaPesoInput, MapaCompraFaixaUncheckedCreateWithoutFaixaPesoInput> | MapaCompraFaixaCreateWithoutFaixaPesoInput[] | MapaCompraFaixaUncheckedCreateWithoutFaixaPesoInput[]
+    connectOrCreate?: MapaCompraFaixaCreateOrConnectWithoutFaixaPesoInput | MapaCompraFaixaCreateOrConnectWithoutFaixaPesoInput[]
+    createMany?: MapaCompraFaixaCreateManyFaixaPesoInputEnvelope
+    connect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
   }
 
   export type EspecieUpdateOneRequiredWithoutFaixasNestedInput = {
@@ -10947,6 +14223,20 @@ export namespace Prisma {
     deleteMany?: FornecedorValorEspecieScalarWhereInput | FornecedorValorEspecieScalarWhereInput[]
   }
 
+  export type MapaCompraFaixaUpdateManyWithoutFaixaPesoNestedInput = {
+    create?: XOR<MapaCompraFaixaCreateWithoutFaixaPesoInput, MapaCompraFaixaUncheckedCreateWithoutFaixaPesoInput> | MapaCompraFaixaCreateWithoutFaixaPesoInput[] | MapaCompraFaixaUncheckedCreateWithoutFaixaPesoInput[]
+    connectOrCreate?: MapaCompraFaixaCreateOrConnectWithoutFaixaPesoInput | MapaCompraFaixaCreateOrConnectWithoutFaixaPesoInput[]
+    upsert?: MapaCompraFaixaUpsertWithWhereUniqueWithoutFaixaPesoInput | MapaCompraFaixaUpsertWithWhereUniqueWithoutFaixaPesoInput[]
+    createMany?: MapaCompraFaixaCreateManyFaixaPesoInputEnvelope
+    set?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    disconnect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    delete?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    connect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    update?: MapaCompraFaixaUpdateWithWhereUniqueWithoutFaixaPesoInput | MapaCompraFaixaUpdateWithWhereUniqueWithoutFaixaPesoInput[]
+    updateMany?: MapaCompraFaixaUpdateManyWithWhereWithoutFaixaPesoInput | MapaCompraFaixaUpdateManyWithWhereWithoutFaixaPesoInput[]
+    deleteMany?: MapaCompraFaixaScalarWhereInput | MapaCompraFaixaScalarWhereInput[]
+  }
+
   export type FornecedorValorEspecieUncheckedUpdateManyWithoutFaixaPesoNestedInput = {
     create?: XOR<FornecedorValorEspecieCreateWithoutFaixaPesoInput, FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput> | FornecedorValorEspecieCreateWithoutFaixaPesoInput[] | FornecedorValorEspecieUncheckedCreateWithoutFaixaPesoInput[]
     connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput | FornecedorValorEspecieCreateOrConnectWithoutFaixaPesoInput[]
@@ -10961,6 +14251,20 @@ export namespace Prisma {
     deleteMany?: FornecedorValorEspecieScalarWhereInput | FornecedorValorEspecieScalarWhereInput[]
   }
 
+  export type MapaCompraFaixaUncheckedUpdateManyWithoutFaixaPesoNestedInput = {
+    create?: XOR<MapaCompraFaixaCreateWithoutFaixaPesoInput, MapaCompraFaixaUncheckedCreateWithoutFaixaPesoInput> | MapaCompraFaixaCreateWithoutFaixaPesoInput[] | MapaCompraFaixaUncheckedCreateWithoutFaixaPesoInput[]
+    connectOrCreate?: MapaCompraFaixaCreateOrConnectWithoutFaixaPesoInput | MapaCompraFaixaCreateOrConnectWithoutFaixaPesoInput[]
+    upsert?: MapaCompraFaixaUpsertWithWhereUniqueWithoutFaixaPesoInput | MapaCompraFaixaUpsertWithWhereUniqueWithoutFaixaPesoInput[]
+    createMany?: MapaCompraFaixaCreateManyFaixaPesoInputEnvelope
+    set?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    disconnect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    delete?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    connect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    update?: MapaCompraFaixaUpdateWithWhereUniqueWithoutFaixaPesoInput | MapaCompraFaixaUpdateWithWhereUniqueWithoutFaixaPesoInput[]
+    updateMany?: MapaCompraFaixaUpdateManyWithWhereWithoutFaixaPesoInput | MapaCompraFaixaUpdateManyWithWhereWithoutFaixaPesoInput[]
+    deleteMany?: MapaCompraFaixaScalarWhereInput | MapaCompraFaixaScalarWhereInput[]
+  }
+
   export type FornecedorValorEspecieCreateNestedManyWithoutFornecedorInput = {
     create?: XOR<FornecedorValorEspecieCreateWithoutFornecedorInput, FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput> | FornecedorValorEspecieCreateWithoutFornecedorInput[] | FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput[]
     connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput | FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput[]
@@ -10968,11 +14272,25 @@ export namespace Prisma {
     connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
   }
 
+  export type MapaCompraCreateNestedManyWithoutFornecedorInput = {
+    create?: XOR<MapaCompraCreateWithoutFornecedorInput, MapaCompraUncheckedCreateWithoutFornecedorInput> | MapaCompraCreateWithoutFornecedorInput[] | MapaCompraUncheckedCreateWithoutFornecedorInput[]
+    connectOrCreate?: MapaCompraCreateOrConnectWithoutFornecedorInput | MapaCompraCreateOrConnectWithoutFornecedorInput[]
+    createMany?: MapaCompraCreateManyFornecedorInputEnvelope
+    connect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+  }
+
   export type FornecedorValorEspecieUncheckedCreateNestedManyWithoutFornecedorInput = {
     create?: XOR<FornecedorValorEspecieCreateWithoutFornecedorInput, FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput> | FornecedorValorEspecieCreateWithoutFornecedorInput[] | FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput[]
     connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput | FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput[]
     createMany?: FornecedorValorEspecieCreateManyFornecedorInputEnvelope
     connect?: FornecedorValorEspecieWhereUniqueInput | FornecedorValorEspecieWhereUniqueInput[]
+  }
+
+  export type MapaCompraUncheckedCreateNestedManyWithoutFornecedorInput = {
+    create?: XOR<MapaCompraCreateWithoutFornecedorInput, MapaCompraUncheckedCreateWithoutFornecedorInput> | MapaCompraCreateWithoutFornecedorInput[] | MapaCompraUncheckedCreateWithoutFornecedorInput[]
+    connectOrCreate?: MapaCompraCreateOrConnectWithoutFornecedorInput | MapaCompraCreateOrConnectWithoutFornecedorInput[]
+    createMany?: MapaCompraCreateManyFornecedorInputEnvelope
+    connect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
   }
 
   export type FornecedorValorEspecieUpdateManyWithoutFornecedorNestedInput = {
@@ -10989,6 +14307,20 @@ export namespace Prisma {
     deleteMany?: FornecedorValorEspecieScalarWhereInput | FornecedorValorEspecieScalarWhereInput[]
   }
 
+  export type MapaCompraUpdateManyWithoutFornecedorNestedInput = {
+    create?: XOR<MapaCompraCreateWithoutFornecedorInput, MapaCompraUncheckedCreateWithoutFornecedorInput> | MapaCompraCreateWithoutFornecedorInput[] | MapaCompraUncheckedCreateWithoutFornecedorInput[]
+    connectOrCreate?: MapaCompraCreateOrConnectWithoutFornecedorInput | MapaCompraCreateOrConnectWithoutFornecedorInput[]
+    upsert?: MapaCompraUpsertWithWhereUniqueWithoutFornecedorInput | MapaCompraUpsertWithWhereUniqueWithoutFornecedorInput[]
+    createMany?: MapaCompraCreateManyFornecedorInputEnvelope
+    set?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    disconnect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    delete?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    connect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    update?: MapaCompraUpdateWithWhereUniqueWithoutFornecedorInput | MapaCompraUpdateWithWhereUniqueWithoutFornecedorInput[]
+    updateMany?: MapaCompraUpdateManyWithWhereWithoutFornecedorInput | MapaCompraUpdateManyWithWhereWithoutFornecedorInput[]
+    deleteMany?: MapaCompraScalarWhereInput | MapaCompraScalarWhereInput[]
+  }
+
   export type FornecedorValorEspecieUncheckedUpdateManyWithoutFornecedorNestedInput = {
     create?: XOR<FornecedorValorEspecieCreateWithoutFornecedorInput, FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput> | FornecedorValorEspecieCreateWithoutFornecedorInput[] | FornecedorValorEspecieUncheckedCreateWithoutFornecedorInput[]
     connectOrCreate?: FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput | FornecedorValorEspecieCreateOrConnectWithoutFornecedorInput[]
@@ -11001,6 +14333,20 @@ export namespace Prisma {
     update?: FornecedorValorEspecieUpdateWithWhereUniqueWithoutFornecedorInput | FornecedorValorEspecieUpdateWithWhereUniqueWithoutFornecedorInput[]
     updateMany?: FornecedorValorEspecieUpdateManyWithWhereWithoutFornecedorInput | FornecedorValorEspecieUpdateManyWithWhereWithoutFornecedorInput[]
     deleteMany?: FornecedorValorEspecieScalarWhereInput | FornecedorValorEspecieScalarWhereInput[]
+  }
+
+  export type MapaCompraUncheckedUpdateManyWithoutFornecedorNestedInput = {
+    create?: XOR<MapaCompraCreateWithoutFornecedorInput, MapaCompraUncheckedCreateWithoutFornecedorInput> | MapaCompraCreateWithoutFornecedorInput[] | MapaCompraUncheckedCreateWithoutFornecedorInput[]
+    connectOrCreate?: MapaCompraCreateOrConnectWithoutFornecedorInput | MapaCompraCreateOrConnectWithoutFornecedorInput[]
+    upsert?: MapaCompraUpsertWithWhereUniqueWithoutFornecedorInput | MapaCompraUpsertWithWhereUniqueWithoutFornecedorInput[]
+    createMany?: MapaCompraCreateManyFornecedorInputEnvelope
+    set?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    disconnect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    delete?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    connect?: MapaCompraWhereUniqueInput | MapaCompraWhereUniqueInput[]
+    update?: MapaCompraUpdateWithWhereUniqueWithoutFornecedorInput | MapaCompraUpdateWithWhereUniqueWithoutFornecedorInput[]
+    updateMany?: MapaCompraUpdateManyWithWhereWithoutFornecedorInput | MapaCompraUpdateManyWithWhereWithoutFornecedorInput[]
+    deleteMany?: MapaCompraScalarWhereInput | MapaCompraScalarWhereInput[]
   }
 
   export type FornecedorCreateNestedOneWithoutValoresInput = {
@@ -11029,6 +14375,104 @@ export namespace Prisma {
     upsert?: EspecieFaixaPesoUpsertWithoutValoresFornecedorInput
     connect?: EspecieFaixaPesoWhereUniqueInput
     update?: XOR<XOR<EspecieFaixaPesoUpdateToOneWithWhereWithoutValoresFornecedorInput, EspecieFaixaPesoUpdateWithoutValoresFornecedorInput>, EspecieFaixaPesoUncheckedUpdateWithoutValoresFornecedorInput>
+  }
+
+  export type FornecedorCreateNestedOneWithoutMapasCompraInput = {
+    create?: XOR<FornecedorCreateWithoutMapasCompraInput, FornecedorUncheckedCreateWithoutMapasCompraInput>
+    connectOrCreate?: FornecedorCreateOrConnectWithoutMapasCompraInput
+    connect?: FornecedorWhereUniqueInput
+  }
+
+  export type EspecieCreateNestedOneWithoutMapasCompraInput = {
+    create?: XOR<EspecieCreateWithoutMapasCompraInput, EspecieUncheckedCreateWithoutMapasCompraInput>
+    connectOrCreate?: EspecieCreateOrConnectWithoutMapasCompraInput
+    connect?: EspecieWhereUniqueInput
+  }
+
+  export type MapaCompraFaixaCreateNestedManyWithoutMapaCompraInput = {
+    create?: XOR<MapaCompraFaixaCreateWithoutMapaCompraInput, MapaCompraFaixaUncheckedCreateWithoutMapaCompraInput> | MapaCompraFaixaCreateWithoutMapaCompraInput[] | MapaCompraFaixaUncheckedCreateWithoutMapaCompraInput[]
+    connectOrCreate?: MapaCompraFaixaCreateOrConnectWithoutMapaCompraInput | MapaCompraFaixaCreateOrConnectWithoutMapaCompraInput[]
+    createMany?: MapaCompraFaixaCreateManyMapaCompraInputEnvelope
+    connect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+  }
+
+  export type MapaCompraFaixaUncheckedCreateNestedManyWithoutMapaCompraInput = {
+    create?: XOR<MapaCompraFaixaCreateWithoutMapaCompraInput, MapaCompraFaixaUncheckedCreateWithoutMapaCompraInput> | MapaCompraFaixaCreateWithoutMapaCompraInput[] | MapaCompraFaixaUncheckedCreateWithoutMapaCompraInput[]
+    connectOrCreate?: MapaCompraFaixaCreateOrConnectWithoutMapaCompraInput | MapaCompraFaixaCreateOrConnectWithoutMapaCompraInput[]
+    createMany?: MapaCompraFaixaCreateManyMapaCompraInputEnvelope
+    connect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+  }
+
+  export type FornecedorUpdateOneRequiredWithoutMapasCompraNestedInput = {
+    create?: XOR<FornecedorCreateWithoutMapasCompraInput, FornecedorUncheckedCreateWithoutMapasCompraInput>
+    connectOrCreate?: FornecedorCreateOrConnectWithoutMapasCompraInput
+    upsert?: FornecedorUpsertWithoutMapasCompraInput
+    connect?: FornecedorWhereUniqueInput
+    update?: XOR<XOR<FornecedorUpdateToOneWithWhereWithoutMapasCompraInput, FornecedorUpdateWithoutMapasCompraInput>, FornecedorUncheckedUpdateWithoutMapasCompraInput>
+  }
+
+  export type EspecieUpdateOneRequiredWithoutMapasCompraNestedInput = {
+    create?: XOR<EspecieCreateWithoutMapasCompraInput, EspecieUncheckedCreateWithoutMapasCompraInput>
+    connectOrCreate?: EspecieCreateOrConnectWithoutMapasCompraInput
+    upsert?: EspecieUpsertWithoutMapasCompraInput
+    connect?: EspecieWhereUniqueInput
+    update?: XOR<XOR<EspecieUpdateToOneWithWhereWithoutMapasCompraInput, EspecieUpdateWithoutMapasCompraInput>, EspecieUncheckedUpdateWithoutMapasCompraInput>
+  }
+
+  export type MapaCompraFaixaUpdateManyWithoutMapaCompraNestedInput = {
+    create?: XOR<MapaCompraFaixaCreateWithoutMapaCompraInput, MapaCompraFaixaUncheckedCreateWithoutMapaCompraInput> | MapaCompraFaixaCreateWithoutMapaCompraInput[] | MapaCompraFaixaUncheckedCreateWithoutMapaCompraInput[]
+    connectOrCreate?: MapaCompraFaixaCreateOrConnectWithoutMapaCompraInput | MapaCompraFaixaCreateOrConnectWithoutMapaCompraInput[]
+    upsert?: MapaCompraFaixaUpsertWithWhereUniqueWithoutMapaCompraInput | MapaCompraFaixaUpsertWithWhereUniqueWithoutMapaCompraInput[]
+    createMany?: MapaCompraFaixaCreateManyMapaCompraInputEnvelope
+    set?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    disconnect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    delete?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    connect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    update?: MapaCompraFaixaUpdateWithWhereUniqueWithoutMapaCompraInput | MapaCompraFaixaUpdateWithWhereUniqueWithoutMapaCompraInput[]
+    updateMany?: MapaCompraFaixaUpdateManyWithWhereWithoutMapaCompraInput | MapaCompraFaixaUpdateManyWithWhereWithoutMapaCompraInput[]
+    deleteMany?: MapaCompraFaixaScalarWhereInput | MapaCompraFaixaScalarWhereInput[]
+  }
+
+  export type MapaCompraFaixaUncheckedUpdateManyWithoutMapaCompraNestedInput = {
+    create?: XOR<MapaCompraFaixaCreateWithoutMapaCompraInput, MapaCompraFaixaUncheckedCreateWithoutMapaCompraInput> | MapaCompraFaixaCreateWithoutMapaCompraInput[] | MapaCompraFaixaUncheckedCreateWithoutMapaCompraInput[]
+    connectOrCreate?: MapaCompraFaixaCreateOrConnectWithoutMapaCompraInput | MapaCompraFaixaCreateOrConnectWithoutMapaCompraInput[]
+    upsert?: MapaCompraFaixaUpsertWithWhereUniqueWithoutMapaCompraInput | MapaCompraFaixaUpsertWithWhereUniqueWithoutMapaCompraInput[]
+    createMany?: MapaCompraFaixaCreateManyMapaCompraInputEnvelope
+    set?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    disconnect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    delete?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    connect?: MapaCompraFaixaWhereUniqueInput | MapaCompraFaixaWhereUniqueInput[]
+    update?: MapaCompraFaixaUpdateWithWhereUniqueWithoutMapaCompraInput | MapaCompraFaixaUpdateWithWhereUniqueWithoutMapaCompraInput[]
+    updateMany?: MapaCompraFaixaUpdateManyWithWhereWithoutMapaCompraInput | MapaCompraFaixaUpdateManyWithWhereWithoutMapaCompraInput[]
+    deleteMany?: MapaCompraFaixaScalarWhereInput | MapaCompraFaixaScalarWhereInput[]
+  }
+
+  export type MapaCompraCreateNestedOneWithoutFaixasInput = {
+    create?: XOR<MapaCompraCreateWithoutFaixasInput, MapaCompraUncheckedCreateWithoutFaixasInput>
+    connectOrCreate?: MapaCompraCreateOrConnectWithoutFaixasInput
+    connect?: MapaCompraWhereUniqueInput
+  }
+
+  export type EspecieFaixaPesoCreateNestedOneWithoutMapasCompraFaixaInput = {
+    create?: XOR<EspecieFaixaPesoCreateWithoutMapasCompraFaixaInput, EspecieFaixaPesoUncheckedCreateWithoutMapasCompraFaixaInput>
+    connectOrCreate?: EspecieFaixaPesoCreateOrConnectWithoutMapasCompraFaixaInput
+    connect?: EspecieFaixaPesoWhereUniqueInput
+  }
+
+  export type MapaCompraUpdateOneRequiredWithoutFaixasNestedInput = {
+    create?: XOR<MapaCompraCreateWithoutFaixasInput, MapaCompraUncheckedCreateWithoutFaixasInput>
+    connectOrCreate?: MapaCompraCreateOrConnectWithoutFaixasInput
+    upsert?: MapaCompraUpsertWithoutFaixasInput
+    connect?: MapaCompraWhereUniqueInput
+    update?: XOR<XOR<MapaCompraUpdateToOneWithWhereWithoutFaixasInput, MapaCompraUpdateWithoutFaixasInput>, MapaCompraUncheckedUpdateWithoutFaixasInput>
+  }
+
+  export type EspecieFaixaPesoUpdateOneRequiredWithoutMapasCompraFaixaNestedInput = {
+    create?: XOR<EspecieFaixaPesoCreateWithoutMapasCompraFaixaInput, EspecieFaixaPesoUncheckedCreateWithoutMapasCompraFaixaInput>
+    connectOrCreate?: EspecieFaixaPesoCreateOrConnectWithoutMapasCompraFaixaInput
+    upsert?: EspecieFaixaPesoUpsertWithoutMapasCompraFaixaInput
+    connect?: EspecieFaixaPesoWhereUniqueInput
+    update?: XOR<XOR<EspecieFaixaPesoUpdateToOneWithWhereWithoutMapasCompraFaixaInput, EspecieFaixaPesoUpdateWithoutMapasCompraFaixaInput>, EspecieFaixaPesoUncheckedUpdateWithoutMapasCompraFaixaInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -11425,6 +14869,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     valoresFornecedor?: FornecedorValorEspecieCreateNestedManyWithoutFaixaPesoInput
+    mapasCompraFaixa?: MapaCompraFaixaCreateNestedManyWithoutFaixaPesoInput
   }
 
   export type EspecieFaixaPesoUncheckedCreateWithoutEspecieInput = {
@@ -11434,6 +14879,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     valoresFornecedor?: FornecedorValorEspecieUncheckedCreateNestedManyWithoutFaixaPesoInput
+    mapasCompraFaixa?: MapaCompraFaixaUncheckedCreateNestedManyWithoutFaixaPesoInput
   }
 
   export type EspecieFaixaPesoCreateOrConnectWithoutEspecieInput = {
@@ -11443,6 +14889,45 @@ export namespace Prisma {
 
   export type EspecieFaixaPesoCreateManyEspecieInputEnvelope = {
     data: EspecieFaixaPesoCreateManyEspecieInput | EspecieFaixaPesoCreateManyEspecieInput[]
+  }
+
+  export type MapaCompraCreateWithoutEspecieInput = {
+    id?: string
+    lote: number
+    dataDespesca: Date | string
+    prazoDias: number
+    dataVencimento: Date | string
+    pesoBruto: Decimal | DecimalJsLike | number | string
+    descontoUmidade: Decimal | DecimalJsLike | number | string
+    pesoLiquido: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    fornecedor: FornecedorCreateNestedOneWithoutMapasCompraInput
+    faixas?: MapaCompraFaixaCreateNestedManyWithoutMapaCompraInput
+  }
+
+  export type MapaCompraUncheckedCreateWithoutEspecieInput = {
+    id?: string
+    fornecedorId: string
+    lote: number
+    dataDespesca: Date | string
+    prazoDias: number
+    dataVencimento: Date | string
+    pesoBruto: Decimal | DecimalJsLike | number | string
+    descontoUmidade: Decimal | DecimalJsLike | number | string
+    pesoLiquido: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    faixas?: MapaCompraFaixaUncheckedCreateNestedManyWithoutMapaCompraInput
+  }
+
+  export type MapaCompraCreateOrConnectWithoutEspecieInput = {
+    where: MapaCompraWhereUniqueInput
+    create: XOR<MapaCompraCreateWithoutEspecieInput, MapaCompraUncheckedCreateWithoutEspecieInput>
+  }
+
+  export type MapaCompraCreateManyEspecieInputEnvelope = {
+    data: MapaCompraCreateManyEspecieInput | MapaCompraCreateManyEspecieInput[]
   }
 
   export type EspecieFaixaPesoUpsertWithWhereUniqueWithoutEspecieInput = {
@@ -11473,11 +14958,46 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"EspecieFaixaPeso"> | Date | string
   }
 
+  export type MapaCompraUpsertWithWhereUniqueWithoutEspecieInput = {
+    where: MapaCompraWhereUniqueInput
+    update: XOR<MapaCompraUpdateWithoutEspecieInput, MapaCompraUncheckedUpdateWithoutEspecieInput>
+    create: XOR<MapaCompraCreateWithoutEspecieInput, MapaCompraUncheckedCreateWithoutEspecieInput>
+  }
+
+  export type MapaCompraUpdateWithWhereUniqueWithoutEspecieInput = {
+    where: MapaCompraWhereUniqueInput
+    data: XOR<MapaCompraUpdateWithoutEspecieInput, MapaCompraUncheckedUpdateWithoutEspecieInput>
+  }
+
+  export type MapaCompraUpdateManyWithWhereWithoutEspecieInput = {
+    where: MapaCompraScalarWhereInput
+    data: XOR<MapaCompraUpdateManyMutationInput, MapaCompraUncheckedUpdateManyWithoutEspecieInput>
+  }
+
+  export type MapaCompraScalarWhereInput = {
+    AND?: MapaCompraScalarWhereInput | MapaCompraScalarWhereInput[]
+    OR?: MapaCompraScalarWhereInput[]
+    NOT?: MapaCompraScalarWhereInput | MapaCompraScalarWhereInput[]
+    id?: StringFilter<"MapaCompra"> | string
+    fornecedorId?: StringFilter<"MapaCompra"> | string
+    especieId?: StringFilter<"MapaCompra"> | string
+    lote?: IntFilter<"MapaCompra"> | number
+    dataDespesca?: DateTimeFilter<"MapaCompra"> | Date | string
+    prazoDias?: IntFilter<"MapaCompra"> | number
+    dataVencimento?: DateTimeFilter<"MapaCompra"> | Date | string
+    pesoBruto?: DecimalFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFilter<"MapaCompra"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"MapaCompra"> | Date | string
+    updatedAt?: DateTimeFilter<"MapaCompra"> | Date | string
+  }
+
   export type EspecieCreateWithoutFaixasInput = {
     id?: string
     nome: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    mapasCompra?: MapaCompraCreateNestedManyWithoutEspecieInput
   }
 
   export type EspecieUncheckedCreateWithoutFaixasInput = {
@@ -11485,6 +15005,7 @@ export namespace Prisma {
     nome: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    mapasCompra?: MapaCompraUncheckedCreateNestedManyWithoutEspecieInput
   }
 
   export type EspecieCreateOrConnectWithoutFaixasInput = {
@@ -11517,6 +15038,33 @@ export namespace Prisma {
     data: FornecedorValorEspecieCreateManyFaixaPesoInput | FornecedorValorEspecieCreateManyFaixaPesoInput[]
   }
 
+  export type MapaCompraFaixaCreateWithoutFaixaPesoInput = {
+    id?: string
+    pesoKg: Decimal | DecimalJsLike | number | string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    mapaCompra: MapaCompraCreateNestedOneWithoutFaixasInput
+  }
+
+  export type MapaCompraFaixaUncheckedCreateWithoutFaixaPesoInput = {
+    id?: string
+    mapaCompraId: string
+    pesoKg: Decimal | DecimalJsLike | number | string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MapaCompraFaixaCreateOrConnectWithoutFaixaPesoInput = {
+    where: MapaCompraFaixaWhereUniqueInput
+    create: XOR<MapaCompraFaixaCreateWithoutFaixaPesoInput, MapaCompraFaixaUncheckedCreateWithoutFaixaPesoInput>
+  }
+
+  export type MapaCompraFaixaCreateManyFaixaPesoInputEnvelope = {
+    data: MapaCompraFaixaCreateManyFaixaPesoInput | MapaCompraFaixaCreateManyFaixaPesoInput[]
+  }
+
   export type EspecieUpsertWithoutFaixasInput = {
     update: XOR<EspecieUpdateWithoutFaixasInput, EspecieUncheckedUpdateWithoutFaixasInput>
     create: XOR<EspecieCreateWithoutFaixasInput, EspecieUncheckedCreateWithoutFaixasInput>
@@ -11533,6 +15081,7 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mapasCompra?: MapaCompraUpdateManyWithoutEspecieNestedInput
   }
 
   export type EspecieUncheckedUpdateWithoutFaixasInput = {
@@ -11540,6 +15089,7 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mapasCompra?: MapaCompraUncheckedUpdateManyWithoutEspecieNestedInput
   }
 
   export type FornecedorValorEspecieUpsertWithWhereUniqueWithoutFaixaPesoInput = {
@@ -11570,6 +15120,35 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"FornecedorValorEspecie"> | Date | string
   }
 
+  export type MapaCompraFaixaUpsertWithWhereUniqueWithoutFaixaPesoInput = {
+    where: MapaCompraFaixaWhereUniqueInput
+    update: XOR<MapaCompraFaixaUpdateWithoutFaixaPesoInput, MapaCompraFaixaUncheckedUpdateWithoutFaixaPesoInput>
+    create: XOR<MapaCompraFaixaCreateWithoutFaixaPesoInput, MapaCompraFaixaUncheckedCreateWithoutFaixaPesoInput>
+  }
+
+  export type MapaCompraFaixaUpdateWithWhereUniqueWithoutFaixaPesoInput = {
+    where: MapaCompraFaixaWhereUniqueInput
+    data: XOR<MapaCompraFaixaUpdateWithoutFaixaPesoInput, MapaCompraFaixaUncheckedUpdateWithoutFaixaPesoInput>
+  }
+
+  export type MapaCompraFaixaUpdateManyWithWhereWithoutFaixaPesoInput = {
+    where: MapaCompraFaixaScalarWhereInput
+    data: XOR<MapaCompraFaixaUpdateManyMutationInput, MapaCompraFaixaUncheckedUpdateManyWithoutFaixaPesoInput>
+  }
+
+  export type MapaCompraFaixaScalarWhereInput = {
+    AND?: MapaCompraFaixaScalarWhereInput | MapaCompraFaixaScalarWhereInput[]
+    OR?: MapaCompraFaixaScalarWhereInput[]
+    NOT?: MapaCompraFaixaScalarWhereInput | MapaCompraFaixaScalarWhereInput[]
+    id?: StringFilter<"MapaCompraFaixa"> | string
+    mapaCompraId?: StringFilter<"MapaCompraFaixa"> | string
+    faixaPesoId?: StringFilter<"MapaCompraFaixa"> | string
+    pesoKg?: DecimalFilter<"MapaCompraFaixa"> | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalFilter<"MapaCompraFaixa"> | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFilter<"MapaCompraFaixa"> | Date | string
+    updatedAt?: DateTimeFilter<"MapaCompraFaixa"> | Date | string
+  }
+
   export type FornecedorValorEspecieCreateWithoutFornecedorInput = {
     id?: string
     valorKg: Decimal | DecimalJsLike | number | string
@@ -11595,6 +15174,45 @@ export namespace Prisma {
     data: FornecedorValorEspecieCreateManyFornecedorInput | FornecedorValorEspecieCreateManyFornecedorInput[]
   }
 
+  export type MapaCompraCreateWithoutFornecedorInput = {
+    id?: string
+    lote: number
+    dataDespesca: Date | string
+    prazoDias: number
+    dataVencimento: Date | string
+    pesoBruto: Decimal | DecimalJsLike | number | string
+    descontoUmidade: Decimal | DecimalJsLike | number | string
+    pesoLiquido: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    especie: EspecieCreateNestedOneWithoutMapasCompraInput
+    faixas?: MapaCompraFaixaCreateNestedManyWithoutMapaCompraInput
+  }
+
+  export type MapaCompraUncheckedCreateWithoutFornecedorInput = {
+    id?: string
+    especieId: string
+    lote: number
+    dataDespesca: Date | string
+    prazoDias: number
+    dataVencimento: Date | string
+    pesoBruto: Decimal | DecimalJsLike | number | string
+    descontoUmidade: Decimal | DecimalJsLike | number | string
+    pesoLiquido: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    faixas?: MapaCompraFaixaUncheckedCreateNestedManyWithoutMapaCompraInput
+  }
+
+  export type MapaCompraCreateOrConnectWithoutFornecedorInput = {
+    where: MapaCompraWhereUniqueInput
+    create: XOR<MapaCompraCreateWithoutFornecedorInput, MapaCompraUncheckedCreateWithoutFornecedorInput>
+  }
+
+  export type MapaCompraCreateManyFornecedorInputEnvelope = {
+    data: MapaCompraCreateManyFornecedorInput | MapaCompraCreateManyFornecedorInput[]
+  }
+
   export type FornecedorValorEspecieUpsertWithWhereUniqueWithoutFornecedorInput = {
     where: FornecedorValorEspecieWhereUniqueInput
     update: XOR<FornecedorValorEspecieUpdateWithoutFornecedorInput, FornecedorValorEspecieUncheckedUpdateWithoutFornecedorInput>
@@ -11611,12 +15229,29 @@ export namespace Prisma {
     data: XOR<FornecedorValorEspecieUpdateManyMutationInput, FornecedorValorEspecieUncheckedUpdateManyWithoutFornecedorInput>
   }
 
+  export type MapaCompraUpsertWithWhereUniqueWithoutFornecedorInput = {
+    where: MapaCompraWhereUniqueInput
+    update: XOR<MapaCompraUpdateWithoutFornecedorInput, MapaCompraUncheckedUpdateWithoutFornecedorInput>
+    create: XOR<MapaCompraCreateWithoutFornecedorInput, MapaCompraUncheckedCreateWithoutFornecedorInput>
+  }
+
+  export type MapaCompraUpdateWithWhereUniqueWithoutFornecedorInput = {
+    where: MapaCompraWhereUniqueInput
+    data: XOR<MapaCompraUpdateWithoutFornecedorInput, MapaCompraUncheckedUpdateWithoutFornecedorInput>
+  }
+
+  export type MapaCompraUpdateManyWithWhereWithoutFornecedorInput = {
+    where: MapaCompraScalarWhereInput
+    data: XOR<MapaCompraUpdateManyMutationInput, MapaCompraUncheckedUpdateManyWithoutFornecedorInput>
+  }
+
   export type FornecedorCreateWithoutValoresInput = {
     id?: string
     nome: string
     fazenda: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    mapasCompra?: MapaCompraCreateNestedManyWithoutFornecedorInput
   }
 
   export type FornecedorUncheckedCreateWithoutValoresInput = {
@@ -11625,6 +15260,7 @@ export namespace Prisma {
     fazenda: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    mapasCompra?: MapaCompraUncheckedCreateNestedManyWithoutFornecedorInput
   }
 
   export type FornecedorCreateOrConnectWithoutValoresInput = {
@@ -11639,6 +15275,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     especie: EspecieCreateNestedOneWithoutFaixasInput
+    mapasCompraFaixa?: MapaCompraFaixaCreateNestedManyWithoutFaixaPesoInput
   }
 
   export type EspecieFaixaPesoUncheckedCreateWithoutValoresFornecedorInput = {
@@ -11648,6 +15285,7 @@ export namespace Prisma {
     pesoMax: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    mapasCompraFaixa?: MapaCompraFaixaUncheckedCreateNestedManyWithoutFaixaPesoInput
   }
 
   export type EspecieFaixaPesoCreateOrConnectWithoutValoresFornecedorInput = {
@@ -11672,6 +15310,7 @@ export namespace Prisma {
     fazenda?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mapasCompra?: MapaCompraUpdateManyWithoutFornecedorNestedInput
   }
 
   export type FornecedorUncheckedUpdateWithoutValoresInput = {
@@ -11680,6 +15319,7 @@ export namespace Prisma {
     fazenda?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mapasCompra?: MapaCompraUncheckedUpdateManyWithoutFornecedorNestedInput
   }
 
   export type EspecieFaixaPesoUpsertWithoutValoresFornecedorInput = {
@@ -11700,6 +15340,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     especie?: EspecieUpdateOneRequiredWithoutFaixasNestedInput
+    mapasCompraFaixa?: MapaCompraFaixaUpdateManyWithoutFaixaPesoNestedInput
   }
 
   export type EspecieFaixaPesoUncheckedUpdateWithoutValoresFornecedorInput = {
@@ -11709,6 +15350,282 @@ export namespace Prisma {
     pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mapasCompraFaixa?: MapaCompraFaixaUncheckedUpdateManyWithoutFaixaPesoNestedInput
+  }
+
+  export type FornecedorCreateWithoutMapasCompraInput = {
+    id?: string
+    nome: string
+    fazenda: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    valores?: FornecedorValorEspecieCreateNestedManyWithoutFornecedorInput
+  }
+
+  export type FornecedorUncheckedCreateWithoutMapasCompraInput = {
+    id?: string
+    nome: string
+    fazenda: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    valores?: FornecedorValorEspecieUncheckedCreateNestedManyWithoutFornecedorInput
+  }
+
+  export type FornecedorCreateOrConnectWithoutMapasCompraInput = {
+    where: FornecedorWhereUniqueInput
+    create: XOR<FornecedorCreateWithoutMapasCompraInput, FornecedorUncheckedCreateWithoutMapasCompraInput>
+  }
+
+  export type EspecieCreateWithoutMapasCompraInput = {
+    id?: string
+    nome: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    faixas?: EspecieFaixaPesoCreateNestedManyWithoutEspecieInput
+  }
+
+  export type EspecieUncheckedCreateWithoutMapasCompraInput = {
+    id?: string
+    nome: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    faixas?: EspecieFaixaPesoUncheckedCreateNestedManyWithoutEspecieInput
+  }
+
+  export type EspecieCreateOrConnectWithoutMapasCompraInput = {
+    where: EspecieWhereUniqueInput
+    create: XOR<EspecieCreateWithoutMapasCompraInput, EspecieUncheckedCreateWithoutMapasCompraInput>
+  }
+
+  export type MapaCompraFaixaCreateWithoutMapaCompraInput = {
+    id?: string
+    pesoKg: Decimal | DecimalJsLike | number | string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    faixaPeso: EspecieFaixaPesoCreateNestedOneWithoutMapasCompraFaixaInput
+  }
+
+  export type MapaCompraFaixaUncheckedCreateWithoutMapaCompraInput = {
+    id?: string
+    faixaPesoId: string
+    pesoKg: Decimal | DecimalJsLike | number | string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MapaCompraFaixaCreateOrConnectWithoutMapaCompraInput = {
+    where: MapaCompraFaixaWhereUniqueInput
+    create: XOR<MapaCompraFaixaCreateWithoutMapaCompraInput, MapaCompraFaixaUncheckedCreateWithoutMapaCompraInput>
+  }
+
+  export type MapaCompraFaixaCreateManyMapaCompraInputEnvelope = {
+    data: MapaCompraFaixaCreateManyMapaCompraInput | MapaCompraFaixaCreateManyMapaCompraInput[]
+  }
+
+  export type FornecedorUpsertWithoutMapasCompraInput = {
+    update: XOR<FornecedorUpdateWithoutMapasCompraInput, FornecedorUncheckedUpdateWithoutMapasCompraInput>
+    create: XOR<FornecedorCreateWithoutMapasCompraInput, FornecedorUncheckedCreateWithoutMapasCompraInput>
+    where?: FornecedorWhereInput
+  }
+
+  export type FornecedorUpdateToOneWithWhereWithoutMapasCompraInput = {
+    where?: FornecedorWhereInput
+    data: XOR<FornecedorUpdateWithoutMapasCompraInput, FornecedorUncheckedUpdateWithoutMapasCompraInput>
+  }
+
+  export type FornecedorUpdateWithoutMapasCompraInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    fazenda?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    valores?: FornecedorValorEspecieUpdateManyWithoutFornecedorNestedInput
+  }
+
+  export type FornecedorUncheckedUpdateWithoutMapasCompraInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    fazenda?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    valores?: FornecedorValorEspecieUncheckedUpdateManyWithoutFornecedorNestedInput
+  }
+
+  export type EspecieUpsertWithoutMapasCompraInput = {
+    update: XOR<EspecieUpdateWithoutMapasCompraInput, EspecieUncheckedUpdateWithoutMapasCompraInput>
+    create: XOR<EspecieCreateWithoutMapasCompraInput, EspecieUncheckedCreateWithoutMapasCompraInput>
+    where?: EspecieWhereInput
+  }
+
+  export type EspecieUpdateToOneWithWhereWithoutMapasCompraInput = {
+    where?: EspecieWhereInput
+    data: XOR<EspecieUpdateWithoutMapasCompraInput, EspecieUncheckedUpdateWithoutMapasCompraInput>
+  }
+
+  export type EspecieUpdateWithoutMapasCompraInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    faixas?: EspecieFaixaPesoUpdateManyWithoutEspecieNestedInput
+  }
+
+  export type EspecieUncheckedUpdateWithoutMapasCompraInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    faixas?: EspecieFaixaPesoUncheckedUpdateManyWithoutEspecieNestedInput
+  }
+
+  export type MapaCompraFaixaUpsertWithWhereUniqueWithoutMapaCompraInput = {
+    where: MapaCompraFaixaWhereUniqueInput
+    update: XOR<MapaCompraFaixaUpdateWithoutMapaCompraInput, MapaCompraFaixaUncheckedUpdateWithoutMapaCompraInput>
+    create: XOR<MapaCompraFaixaCreateWithoutMapaCompraInput, MapaCompraFaixaUncheckedCreateWithoutMapaCompraInput>
+  }
+
+  export type MapaCompraFaixaUpdateWithWhereUniqueWithoutMapaCompraInput = {
+    where: MapaCompraFaixaWhereUniqueInput
+    data: XOR<MapaCompraFaixaUpdateWithoutMapaCompraInput, MapaCompraFaixaUncheckedUpdateWithoutMapaCompraInput>
+  }
+
+  export type MapaCompraFaixaUpdateManyWithWhereWithoutMapaCompraInput = {
+    where: MapaCompraFaixaScalarWhereInput
+    data: XOR<MapaCompraFaixaUpdateManyMutationInput, MapaCompraFaixaUncheckedUpdateManyWithoutMapaCompraInput>
+  }
+
+  export type MapaCompraCreateWithoutFaixasInput = {
+    id?: string
+    lote: number
+    dataDespesca: Date | string
+    prazoDias: number
+    dataVencimento: Date | string
+    pesoBruto: Decimal | DecimalJsLike | number | string
+    descontoUmidade: Decimal | DecimalJsLike | number | string
+    pesoLiquido: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    fornecedor: FornecedorCreateNestedOneWithoutMapasCompraInput
+    especie: EspecieCreateNestedOneWithoutMapasCompraInput
+  }
+
+  export type MapaCompraUncheckedCreateWithoutFaixasInput = {
+    id?: string
+    fornecedorId: string
+    especieId: string
+    lote: number
+    dataDespesca: Date | string
+    prazoDias: number
+    dataVencimento: Date | string
+    pesoBruto: Decimal | DecimalJsLike | number | string
+    descontoUmidade: Decimal | DecimalJsLike | number | string
+    pesoLiquido: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MapaCompraCreateOrConnectWithoutFaixasInput = {
+    where: MapaCompraWhereUniqueInput
+    create: XOR<MapaCompraCreateWithoutFaixasInput, MapaCompraUncheckedCreateWithoutFaixasInput>
+  }
+
+  export type EspecieFaixaPesoCreateWithoutMapasCompraFaixaInput = {
+    id?: string
+    pesoMin: Decimal | DecimalJsLike | number | string
+    pesoMax: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    especie: EspecieCreateNestedOneWithoutFaixasInput
+    valoresFornecedor?: FornecedorValorEspecieCreateNestedManyWithoutFaixaPesoInput
+  }
+
+  export type EspecieFaixaPesoUncheckedCreateWithoutMapasCompraFaixaInput = {
+    id?: string
+    especieId: string
+    pesoMin: Decimal | DecimalJsLike | number | string
+    pesoMax: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    valoresFornecedor?: FornecedorValorEspecieUncheckedCreateNestedManyWithoutFaixaPesoInput
+  }
+
+  export type EspecieFaixaPesoCreateOrConnectWithoutMapasCompraFaixaInput = {
+    where: EspecieFaixaPesoWhereUniqueInput
+    create: XOR<EspecieFaixaPesoCreateWithoutMapasCompraFaixaInput, EspecieFaixaPesoUncheckedCreateWithoutMapasCompraFaixaInput>
+  }
+
+  export type MapaCompraUpsertWithoutFaixasInput = {
+    update: XOR<MapaCompraUpdateWithoutFaixasInput, MapaCompraUncheckedUpdateWithoutFaixasInput>
+    create: XOR<MapaCompraCreateWithoutFaixasInput, MapaCompraUncheckedCreateWithoutFaixasInput>
+    where?: MapaCompraWhereInput
+  }
+
+  export type MapaCompraUpdateToOneWithWhereWithoutFaixasInput = {
+    where?: MapaCompraWhereInput
+    data: XOR<MapaCompraUpdateWithoutFaixasInput, MapaCompraUncheckedUpdateWithoutFaixasInput>
+  }
+
+  export type MapaCompraUpdateWithoutFaixasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fornecedor?: FornecedorUpdateOneRequiredWithoutMapasCompraNestedInput
+    especie?: EspecieUpdateOneRequiredWithoutMapasCompraNestedInput
+  }
+
+  export type MapaCompraUncheckedUpdateWithoutFaixasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fornecedorId?: StringFieldUpdateOperationsInput | string
+    especieId?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EspecieFaixaPesoUpsertWithoutMapasCompraFaixaInput = {
+    update: XOR<EspecieFaixaPesoUpdateWithoutMapasCompraFaixaInput, EspecieFaixaPesoUncheckedUpdateWithoutMapasCompraFaixaInput>
+    create: XOR<EspecieFaixaPesoCreateWithoutMapasCompraFaixaInput, EspecieFaixaPesoUncheckedCreateWithoutMapasCompraFaixaInput>
+    where?: EspecieFaixaPesoWhereInput
+  }
+
+  export type EspecieFaixaPesoUpdateToOneWithWhereWithoutMapasCompraFaixaInput = {
+    where?: EspecieFaixaPesoWhereInput
+    data: XOR<EspecieFaixaPesoUpdateWithoutMapasCompraFaixaInput, EspecieFaixaPesoUncheckedUpdateWithoutMapasCompraFaixaInput>
+  }
+
+  export type EspecieFaixaPesoUpdateWithoutMapasCompraFaixaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    especie?: EspecieUpdateOneRequiredWithoutFaixasNestedInput
+    valoresFornecedor?: FornecedorValorEspecieUpdateManyWithoutFaixaPesoNestedInput
+  }
+
+  export type EspecieFaixaPesoUncheckedUpdateWithoutMapasCompraFaixaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    especieId?: StringFieldUpdateOperationsInput | string
+    pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoMax?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    valoresFornecedor?: FornecedorValorEspecieUncheckedUpdateManyWithoutFaixaPesoNestedInput
   }
 
   export type PesagemCreateManyOperadorInput = {
@@ -11791,6 +15708,20 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type MapaCompraCreateManyEspecieInput = {
+    id?: string
+    fornecedorId: string
+    lote: number
+    dataDespesca: Date | string
+    prazoDias: number
+    dataVencimento: Date | string
+    pesoBruto: Decimal | DecimalJsLike | number | string
+    descontoUmidade: Decimal | DecimalJsLike | number | string
+    pesoLiquido: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type EspecieFaixaPesoUpdateWithoutEspecieInput = {
     id?: StringFieldUpdateOperationsInput | string
     pesoMin?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -11798,6 +15729,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     valoresFornecedor?: FornecedorValorEspecieUpdateManyWithoutFaixaPesoNestedInput
+    mapasCompraFaixa?: MapaCompraFaixaUpdateManyWithoutFaixaPesoNestedInput
   }
 
   export type EspecieFaixaPesoUncheckedUpdateWithoutEspecieInput = {
@@ -11807,6 +15739,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     valoresFornecedor?: FornecedorValorEspecieUncheckedUpdateManyWithoutFaixaPesoNestedInput
+    mapasCompraFaixa?: MapaCompraFaixaUncheckedUpdateManyWithoutFaixaPesoNestedInput
   }
 
   export type EspecieFaixaPesoUncheckedUpdateManyWithoutEspecieInput = {
@@ -11817,9 +15750,62 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MapaCompraUpdateWithoutEspecieInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fornecedor?: FornecedorUpdateOneRequiredWithoutMapasCompraNestedInput
+    faixas?: MapaCompraFaixaUpdateManyWithoutMapaCompraNestedInput
+  }
+
+  export type MapaCompraUncheckedUpdateWithoutEspecieInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fornecedorId?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    faixas?: MapaCompraFaixaUncheckedUpdateManyWithoutMapaCompraNestedInput
+  }
+
+  export type MapaCompraUncheckedUpdateManyWithoutEspecieInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fornecedorId?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type FornecedorValorEspecieCreateManyFaixaPesoInput = {
     id?: string
     fornecedorId: string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MapaCompraFaixaCreateManyFaixaPesoInput = {
+    id?: string
+    mapaCompraId: string
+    pesoKg: Decimal | DecimalJsLike | number | string
     valorKg: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11849,10 +15835,51 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MapaCompraFaixaUpdateWithoutFaixaPesoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesoKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mapaCompra?: MapaCompraUpdateOneRequiredWithoutFaixasNestedInput
+  }
+
+  export type MapaCompraFaixaUncheckedUpdateWithoutFaixaPesoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mapaCompraId?: StringFieldUpdateOperationsInput | string
+    pesoKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MapaCompraFaixaUncheckedUpdateManyWithoutFaixaPesoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mapaCompraId?: StringFieldUpdateOperationsInput | string
+    pesoKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type FornecedorValorEspecieCreateManyFornecedorInput = {
     id?: string
     faixaPesoId: string
     valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MapaCompraCreateManyFornecedorInput = {
+    id?: string
+    especieId: string
+    lote: number
+    dataDespesca: Date | string
+    prazoDias: number
+    dataVencimento: Date | string
+    pesoBruto: Decimal | DecimalJsLike | number | string
+    descontoUmidade: Decimal | DecimalJsLike | number | string
+    pesoLiquido: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11876,6 +15903,86 @@ export namespace Prisma {
   export type FornecedorValorEspecieUncheckedUpdateManyWithoutFornecedorInput = {
     id?: StringFieldUpdateOperationsInput | string
     faixaPesoId?: StringFieldUpdateOperationsInput | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MapaCompraUpdateWithoutFornecedorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    especie?: EspecieUpdateOneRequiredWithoutMapasCompraNestedInput
+    faixas?: MapaCompraFaixaUpdateManyWithoutMapaCompraNestedInput
+  }
+
+  export type MapaCompraUncheckedUpdateWithoutFornecedorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    especieId?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    faixas?: MapaCompraFaixaUncheckedUpdateManyWithoutMapaCompraNestedInput
+  }
+
+  export type MapaCompraUncheckedUpdateManyWithoutFornecedorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    especieId?: StringFieldUpdateOperationsInput | string
+    lote?: IntFieldUpdateOperationsInput | number
+    dataDespesca?: DateTimeFieldUpdateOperationsInput | Date | string
+    prazoDias?: IntFieldUpdateOperationsInput | number
+    dataVencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    pesoBruto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descontoUmidade?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    pesoLiquido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MapaCompraFaixaCreateManyMapaCompraInput = {
+    id?: string
+    faixaPesoId: string
+    pesoKg: Decimal | DecimalJsLike | number | string
+    valorKg: Decimal | DecimalJsLike | number | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MapaCompraFaixaUpdateWithoutMapaCompraInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pesoKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    faixaPeso?: EspecieFaixaPesoUpdateOneRequiredWithoutMapasCompraFaixaNestedInput
+  }
+
+  export type MapaCompraFaixaUncheckedUpdateWithoutMapaCompraInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    faixaPesoId?: StringFieldUpdateOperationsInput | string
+    pesoKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MapaCompraFaixaUncheckedUpdateManyWithoutMapaCompraInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    faixaPesoId?: StringFieldUpdateOperationsInput | string
+    pesoKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valorKg?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

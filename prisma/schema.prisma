@@ -48,6 +48,7 @@ model Especie {
   nome      String
 
   faixas    EspecieFaixaPeso[]
+  mapasCompra MapaCompra[]
 
   createdAt DateTime      @default(now())
   updatedAt DateTime      @updatedAt
@@ -65,6 +66,7 @@ model EspecieFaixaPeso {
   pesoMax    Decimal
 
   valoresFornecedor FornecedorValorEspecie[]
+  mapasCompraFaixa MapaCompraFaixa[]
 
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -78,6 +80,8 @@ model Fornecedor {
   fazenda   String
 
   valores   FornecedorValorEspecie[]
+
+  mapasCompra MapaCompra[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -102,4 +106,47 @@ model FornecedorValorEspecie {
   @@unique([fornecedorId, faixaPesoId])
 }
 
+model MapaCompra {
+  id              String   @id @default(uuid())
 
+  fornecedor      Fornecedor @relation(fields: [fornecedorId], references: [id])
+  fornecedorId    String
+
+  especie         Especie @relation(fields: [especieId], references: [id])
+  especieId       String
+
+  lote            Int
+
+  dataDespesca    DateTime
+  prazoDias       Int
+  dataVencimento  DateTime
+
+  pesoBruto       Decimal
+  descontoUmidade Decimal
+  pesoLiquido     Decimal
+
+  faixas          MapaCompraFaixa[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([fornecedorId, lote]) // 🔥 REGRA
+}
+
+model MapaCompraFaixa {
+  id             String   @id @default(uuid())
+
+  mapaCompra     MapaCompra @relation(fields: [mapaCompraId], references: [id])
+  mapaCompraId   String
+
+  faixaPeso      EspecieFaixaPeso @relation(fields: [faixaPesoId], references: [id])
+  faixaPesoId    String
+
+  pesoKg         Decimal
+  valorKg        Decimal
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([mapaCompraId, faixaPesoId])
+}

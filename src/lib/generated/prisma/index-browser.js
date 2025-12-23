@@ -177,6 +177,31 @@ exports.Prisma.FornecedorValorEspecieScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.MapaCompraScalarFieldEnum = {
+  id: 'id',
+  fornecedorId: 'fornecedorId',
+  especieId: 'especieId',
+  lote: 'lote',
+  dataDespesca: 'dataDespesca',
+  prazoDias: 'prazoDias',
+  dataVencimento: 'dataVencimento',
+  pesoBruto: 'pesoBruto',
+  descontoUmidade: 'descontoUmidade',
+  pesoLiquido: 'pesoLiquido',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MapaCompraFaixaScalarFieldEnum = {
+  id: 'id',
+  mapaCompraId: 'mapaCompraId',
+  faixaPesoId: 'faixaPesoId',
+  pesoKg: 'pesoKg',
+  valorKg: 'valorKg',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -195,7 +220,9 @@ exports.Prisma.ModelName = {
   Especie: 'Especie',
   EspecieFaixaPeso: 'EspecieFaixaPeso',
   Fornecedor: 'Fornecedor',
-  FornecedorValorEspecie: 'FornecedorValorEspecie'
+  FornecedorValorEspecie: 'FornecedorValorEspecie',
+  MapaCompra: 'MapaCompra',
+  MapaCompraFaixa: 'MapaCompraFaixa'
 };
 
 /**
